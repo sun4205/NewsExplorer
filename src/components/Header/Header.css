@@ -1,55 +1,53 @@
-.header__container{
-    width: 1440px;
-    max-width: 100%;
-    height: 576px;
-    background-image: url("../../images/headerbackground.jpg");
-    background-color:  rgba(100, 100, 100, 0.8);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    width: 100%;
+.header__container {
+  width: 1440px;
+  max-width: 100%;
+  height: 576px;
+  background-image: url("../../images/headerbackground.jpg");
+  background-color: rgba(100, 100, 100, 0.8);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  width: 100%;
 }
 
-.header {       
-    height: 80px;
-    display: flex;   
-    align-items: center;
-    padding: 12px 80px;
-    width: 100%;
-    justify-content: space-between;
-    background-color: rgba(255, 255, 255, 0.2);
+.header {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  padding: 12px 80px;
+  width: 100%;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
-.header__logo{
-    width: 90px;
-    height: 60px;
-    border-radius: 60%;   
+.header__logo {
+  width: 85px;
+  height: 50px;
+  border-radius: 100%;
+  background: transparent;
 }
 
-.header__nav {   
-    display: flex; 
-    margin-left: auto;
-    gap:24px;
+.header__nav {
+  display: flex;
+  margin-left: auto;
+  gap: 24px;
 }
 
 .header__homge-btn {
-    background: none;
-    font-size: 20px;
-    cursor: pointer;
-    border: none;
-    color:black;
-    font-weight: 700;
+  background: none;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+  color: black;
+  font-weight: 700;
 }
 
 .header__signIn-btn {
-    background:none;
-    font-size: 20px;
-    cursor: pointer;          
-    background-image: url("../../images/Rectangle.svg");
-    color: black;
-    border :1px solid black;
-    padding:12px 48px;
-    font-weight: 700;
-    border-radius: 30%;
+  background: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: black;
+  font-weight: 700;
+  border: none;
 }
