@@ -1,24 +1,8 @@
-# Final Project: News Explorer
+# React + Vite
 
-## A description of the project and its functionality
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-News Explorer is a web application that allows users to search for news articles. Users can enter a keyword to find relevant articles, which are displayed in a clean, responsive grid. Logged-in users can save or delete articles.
+Currently, two official plugins are available:
 
-## Technologies and techniques used
-
-- CSS: CSS (Cascading Style Sheets) allows you to create great-looking web pages.
-- Javascript: A programming language that helps make web pages interactive.
-- Vite : modern build tool designed to improve the development experience for web applications.
-- API:  The News API is used to fetch articles based on search keywords, allowing users to explore relevant news content.
-- React: React is a JavaScript library that uses reusable UI components, making it convenient to build web applications.
-- JSX :  Allows writing HTML-like syntax inside JavaScript, making it easier to create React components.
-
-## Screenshot
-
-- This is a screenshot. 
-
-## Frontend
-
-- frontend on GitHub Page [here](https://github.com/sun4205/NewsExplorer.git)
-
-
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
