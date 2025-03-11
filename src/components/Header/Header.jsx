@@ -1,5 +1,6 @@
 import "./Header.css";
 import logo from "../../images/logo.jpg";
+import SearchForm from "../SearchForm/SearchForm";
 
 
 function Header() {
@@ -12,6 +13,7 @@ function Header() {
         <button className="header__signIn-btn">Sign In</button>
       </div>
     </header>
+    <SearchForm />
     </div>
   );
 }

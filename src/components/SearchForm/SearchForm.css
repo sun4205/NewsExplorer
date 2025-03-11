@@ -1,0 +1,65 @@
+.searchForm__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding : 32px 100px;
+    width: 100%;
+    background-color: rgba(11, 10, 10, 0.6);
+}
+
+.searchForm__title{
+    color:white;
+    font-weight: 400;
+    font-size:60px;
+    line-height: 64px;    
+    margin: 0 0 38px 0;
+    
+}
+
+.searchForm__description{
+    color:white;
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 48px;
+    line-height: 24px;
+    margin: 0 0 64px 0;
+}
+
+.searchForm__controls{
+    display: flex;
+    position: relative;
+    
+}
+
+input {
+    padding-left: 20px;
+}
+
+.searchForm__input{
+    background-image: url("../../images/Rectangle.svg");    
+    background-color: white;
+    border: none;    
+    width: 608px;
+    height: 64px;    
+    background-color: transparent;    
+    box-sizing: border-box;
+    
+}
+
+.searchForm__btn{
+    background-image: url('../../images/button.svg');
+    width: 168px;
+    height: 144px;
+    border: none;
+    background-size: contain;
+    background-repeat: no-repeat; 
+    background-position: center;
+    outline: none;
+    background-color: transparent; 
+    position:absolute;
+    right:-20px;
+    top:-36px;
+    box-sizing: border-box;
+    
+}
