@@ -1,0 +1,39 @@
+.about {
+    display: flex;
+    padding: 80px;
+    align-items: center;
+}
+
+.about__mypicture{
+    width: 464px;
+    height: 464px;
+    width: 100%;
+    background-color: transparent; 
+    margin-right: 56px;
+}
+
+.about__author{
+    display: flex;
+    flex-direction: column;
+}
+
+.about__author-title{
+    margin: 0;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 46px;
+    margin-bottom: 24px;
+}
+
+.about__author-description1{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 24px;
+}
+
+.about__author-description2{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;    
+}

@@ -1,5 +1,6 @@
 import "./Main.css";
 import NewsCard from "../NewsCard/NewsCard";
+import About from "../About/About";
 
 function Main() {
   return (
@@ -9,6 +10,7 @@ function Main() {
         <ul className="cards__list">
           <NewsCard />
         </ul>
+        <About />
       </section>
     </main>
   );
