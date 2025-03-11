@@ -1,0 +1,11 @@
+.main{
+    padding:80px 104px;
+}
+
+.main__title{
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 46px;
+    text-align: left;
+    margin-bottom: 64px;
+}
