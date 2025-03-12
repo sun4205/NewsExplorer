@@ -6,6 +6,7 @@ export const newsApiBaseUrl = process.env.NODE_ENV === "production"
 
 export const getNewsCards = (query) => {
   const API_KEY = process.env.REACT_APP_API_KEY;
+  console.log("API_KEY", API_KEY); 
   return fetch(
     `${newsApiBaseUrl}?q=${query}&apiKey=${process.env.REACT_APP_API_KEY}`
   ).then(checkResponse);
