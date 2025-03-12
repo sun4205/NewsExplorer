@@ -38,7 +38,7 @@ const deleteNewsCard = (_id) => {
   });
 };
 
-const NewsCardSaved = (id, token) => {
+const addNewsCardSaved = (id, token) => {
   console.log("Card ID:", id);
   return fetch(`${baseUrl}/saveNews/${id}/saved`, {
     method: "PUT",
@@ -67,6 +67,6 @@ export {
   checkResponse,
   savedNews,
   deleteNewsCard,
-  NewsCardSaved,
+  addNewsCardSaved,
   removeNewsCardSved,
 };
