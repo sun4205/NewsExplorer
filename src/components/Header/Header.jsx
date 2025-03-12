@@ -3,7 +3,7 @@ import logo from "../../images/logo.jpg";
 import SearchForm from "../SearchForm/SearchForm";
 
 
-function Header() {
+function Header({handleSearchSubmit, query}) {
   return (
     <div className="header__container">
     <header className="header">
@@ -13,7 +13,7 @@ function Header() {
         <button className="header__signIn-btn">Sign In</button>
       </div>
     </header>
-    <SearchForm />
+    <SearchForm handleSearchSubmit={handleSearchSubmit} query={query}/>
     </div>
   );
 }

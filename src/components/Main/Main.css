@@ -9,3 +9,10 @@
     text-align: left;
     margin-bottom: 64px;
 }
+
+.main__cards-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:20px;
+}

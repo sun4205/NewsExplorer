@@ -179,16 +179,16 @@ function App() {
       })
       .catch(console.error);
   }, []);
-  console.log(NewsItems);
+  console.log(newsItems);
 
   return (
     <>
       <div className='page'>
         <div className='page-content'>
-          <Header />
+          <Header handleSearchSubmit={handleSearchSubmit} query={query}/>
           <Main 
-          NewsData = {NewsData}
-          NewsItems = {NewsItems}
+          newsData = {newsData}
+          newsItems = {newsItems}
           />
         </div>
       </div>
