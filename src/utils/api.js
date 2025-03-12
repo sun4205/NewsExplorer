@@ -1,5 +1,6 @@
+
 const baseUrl = "http://localhost:3001";
-const API_KEY = "MY_API_KEY";
+
 
 function checkResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Error:${res.status}`);
