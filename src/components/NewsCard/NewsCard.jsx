@@ -1,9 +1,20 @@
-import './NewsCard.css';
+import "./NewsCard.css";
 
-function NewsCard() {
-    return(
-        <></>
-    )
+function NewsCard(data) {
+  const currentDate = new Date().toLocaleString("default", {
+    month: "long",
+    day: "numeric",
+  });
+  return (
+    <li className="card">
+      <img className="card__image" src={data.image} alt={data.image} />
+      <button className="card__save-btn"></button>
+      <p className="card__date">{currentDate}</p>
+      <p className="card__title">{data.title}</p>
+      <p className="card__description">{data.description}</p>
+      <p className="card__source">{data.source}</p>
+    </li>
+  );
 }
 
 export default NewsCard;
