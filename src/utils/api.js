@@ -1,5 +1,4 @@
-const newsApiBaseUrl = "https://newsapi.org/v2/everything";
-const backendBaseUrl = "http://localhost:3001";
+const baseUrl = "http://localhost:3001";
 const API_KEY = "MY_API_KEY";
 
 function checkResponse(res) {
@@ -10,13 +9,9 @@ function request(url, options) {
   return fetch(url, options).then(checkResponse);
 }
 
-function getNewsCards(query) {
-  return request(`${newsApiBaseUrl}?q=${query}&apiKey=${API_KEY}`);
-}
-
 function savedNews({ source, title, date, description, image }) {
   const token = localStorage.getItem("jwt");
-  return request(`${backendBaseUrl}/savedNews`, {
+  return request(`${baseUrl}/savedNews`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -34,7 +29,7 @@ function savedNews({ source, title, date, description, image }) {
 
 const deleteNewsCard = (_id) => {
   console.log("Deleting NewsCard with _id:", _id);
-  return request(`${backendBaseUrl}/savedNews/${_id}`, {
+  return request(`${baseUrl}/savedNews/${_id}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -45,7 +40,7 @@ const deleteNewsCard = (_id) => {
 
 const NewsCardSaved = (id, token) => {
   console.log("Card ID:", id);
-  return fetch(`${backendBaseUrl}/saveNews/${id}/saved`, {
+  return fetch(`${baseUrl}/saveNews/${id}/saved`, {
     method: "PUT",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -57,7 +52,7 @@ const NewsCardSaved = (id, token) => {
 };
 
 const removeNewsCardSved = (id, token) => {
-  return fetch(`${backendBaseUrl}/saveNews/${id}`, {
+  return fetch(`${baseUrl}/saveNews/${id}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -70,7 +65,6 @@ const removeNewsCardSved = (id, token) => {
 
 export {
   checkResponse,
-  getNewsCards,
   savedNews,
   deleteNewsCard,
   NewsCardSaved,

@@ -1,8 +1,8 @@
 import { checkResponse } from "./api";
-export const backendBaseUrl = "http://localhost:3001";
+export const baseUrl = "http://localhost:3001";
 
 export const register = (email, password, username) => {
-    return fetch(`${backendBaseUrl}/signup`, {
+    return fetch(`${baseUrl}/signup`, {
       method: "POST",
       headers: {        
         "Content-Type": "application/json",
@@ -12,7 +12,7 @@ export const register = (email, password, username) => {
   };
   
   export const authorize = (email, password) => {
-    return fetch(`${backendBaseUrl}/signin`, {
+    return fetch(`${baseUrl}/signin`, {
       method: "POST",
       headers: {       
         "Content-Type": "application/json",
@@ -22,7 +22,7 @@ export const register = (email, password, username) => {
   };
   
   export const getUserInfo = (token) => {
-    return fetch(`${backendBaseUrl}/users/me`, {
+    return fetch(`${baseUrl}/users/me`, {
       method: "GET",
       headers: {        
         "Content-Type": "application/json",
