@@ -6,8 +6,8 @@ function Main() {
   return (
     <main className="main">
       <h2 className="main__title">Search results</h2>
-      <section className="cards">
-        <ul className="cards__list">
+      <section className="main__cards">
+        <ul className="main__cards-list">
           <NewsCard />
         </ul>
         <About />
