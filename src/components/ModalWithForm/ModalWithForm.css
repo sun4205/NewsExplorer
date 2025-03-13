@@ -1,0 +1,100 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #0000004d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: visible;
+}
+
+.modal_opened {
+  visibility: visible;
+}
+
+.modal__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border: none;
+  background: none;
+}
+
+.modal__content {
+  background-color: #fff;
+  position: relative;
+  padding: 34px 36px 36px 36px;
+  max-width: 430px;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 16px;
+}
+
+.modal__title {
+  margin: 0;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 100%;
+  margin-bottom: 22px;
+  color: #1a1b22;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.modal__label {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #2f71e5;
+  
+}
+
+.modal__input {
+  display: block;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  color: #000000;
+  border: none;
+  border-bottom: 1px solid #000;
+  outline: none;
+  margin-top: 9px;
+  margin-bottom: 39px;
+  width: 100%;
+  padding: 0;
+  padding-bottom: 5px;
+}
+
+
+
+.modal__login-text {
+  margin: 0;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #00000080;
+  margin-left: 12px;
+}
+
+.modal__button-container {
+  display: flex;
+  align-items: center;
+}
+
+
+.modal__signin-grey{
+  width: 358px;
+  height: 64px;
+  width: 100%;
+  border-radius: 20%;
+  border: none;
+  background-color: transparent;
+}
