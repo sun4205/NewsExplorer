@@ -3,18 +3,20 @@ import "./LoginModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../hooks/useForm";
 
-function LoginModal(
+function LoginModal({
   activeModal,
   closeActiveModal,
-  buttonText = "Login",
+  buttonText,
   handleLogin,
   setActiveModal,
   modalRef
-) {
+}) {
   const { values, handleChange } = useForm({
     email: "",
     password: "",
   });
+
+  const isFilled = values.email.trim() !=="" || values.password.trim() !=="";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,14 +29,20 @@ function LoginModal(
   return (
     <ModalWithForm
       isOpen={activeModal === "login"}
-      title="Login"
+      title="Sign in"
       buttonText={buttonText}
-      secondaryButtonText="or Sign up"
+      secondaryButtonText={
+        <>
+          <span className="or-text">or</span> <span className="signup-text">Sign up</span>
+        </>
+      }
       onSecondaryClick={() => setActiveModal("register")}
       activeModal={activeModal}
       onSubmit={handleSubmit}
       modalRef={modalRef}
       closeActiveModal={closeActiveModal}
+      customClass="modal__signUp"
+      isFilled={isFilled}
     >
       <label htmlFor="email" className="modal__label">
         Email
@@ -43,7 +51,7 @@ function LoginModal(
           className="modal__input"
           id="email"
           name="email"
-          placeholder="Email"
+          placeholder="Enter Email"
           value={values.email}
           onChange={handleChange}
         />
@@ -56,8 +64,8 @@ function LoginModal(
           className="modal__input"
           id="password"
           name="password"
-          placeholder="Password"
-          vlaue={values.password}
+          placeholder="Enter Password"
+          value={values.password}
           onChange={handleChange}
         />
       </label>
