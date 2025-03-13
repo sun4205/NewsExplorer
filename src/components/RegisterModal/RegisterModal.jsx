@@ -1,8 +1,90 @@
 import './RegisterModal.css';
+import React, { useRef } from "react";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useForm } from "../../hooks/useForm";
 
-function RegisterModal() {
+
+function RegisterModal({
+    activeModal,
+    closeActiveModal,    
+    handleRegisterSubmit,
+    setActiveModal,
+    modalRef
+}) {
+    const { values, handleChange } = useForm({
+        email: "",
+        password: "",
+        username:"",
+      });
+
+      const isFilled = values.email.trim() !=="" || values.password.trim() !=="";
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("Form submitted with values:", values);
+        handleRegisterSubmit({
+          email: values.email,
+          password: values.password,
+          username:values.username,
+        });
+    }
     return(
-        <></>
+        <ModalWithForm
+      isOpen={activeModal === "register"}
+      title="Sign Up"      
+      secondaryButtonText={
+        <>
+          <span className="or-text">or</span> <span className="signup-text">Sign in</span>
+        </>
+      }
+      onSecondaryClick={() => setActiveModal("login")}
+      activeModal={activeModal}
+      onSubmit={handleSubmit}
+      modalRef={modalRef}
+      closeActiveModal={closeActiveModal}
+      customClass="modal__signIn"
+      isFilled={isFilled}
+    >
+      <label htmlFor="email" className="modal__label">
+        Email
+        <input
+          type="email"
+          className="modal__input"
+          id="email"
+          name="email"
+          placeholder="Enter Email"
+          value={values.email}
+          onChange={handleChange}
+        />
+      </label>
+
+      <label htmlFor="password" className="modal__label">
+        Password
+        <input
+          type="password"
+          className="modal__input"
+          id="password"
+          name="password"
+          placeholder="Enter Password"
+          value={values.password}
+          onChange={handleChange}
+        />
+      </label>
+
+      <label htmlFor="username" className="modal__label">
+        Username
+        <input
+          type="username"
+          className="modal__input"
+          id="username"
+          name="username"
+          placeholder="Enter your username"
+          value={values.username}
+          onChange={handleChange}
+        />
+      </label>
+    </ModalWithForm>
+
     )
 }
 
