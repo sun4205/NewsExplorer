@@ -87,14 +87,15 @@
 .modal__button-container {
   display: flex;
   align-items: center;
+  flex-direction: column;
 }
 
-
-.modal__signin-grey{
+.modal__signin {
   width: 358px;
   height: 64px;
-  width: 100%;
   border-radius: 20%;
   border: none;
   background-color: transparent;
+  margin-bottom: 20px;
 }
+

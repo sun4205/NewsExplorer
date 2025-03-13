@@ -13,6 +13,10 @@ function ModalWithForm({
   children,
   buttonText,  
   isOpen,
+  customClass,
+  onSecondaryClick,
+  secondaryButtonText,
+  isFilled,
 }) {
   //         const modalRef = useRef(null);
   //   useEscapeKey(!!activeModal, closeActiveModal, modalRef);
@@ -35,8 +39,17 @@ function ModalWithForm({
               className="modal__submit"
             >
               {buttonText}
-              <img src={signingrey} alt="signinbutton" className="modal__signin-grey"/>
+              <img src={isFilled ? signinblue :signingrey} alt="signinbutton" className={`modal__signin ${isFilled ? "modal__signin-blue" : "modal__signin-grey"}`}/>
             </button>
+            {secondaryButtonText && (
+              <button
+                type="button"
+                className="modal__submit modal__submit_without-border"
+                onClick={onSecondaryClick}
+              >
+                {secondaryButtonText}
+              </button>
+            )}
            
           </div>
         </form>
