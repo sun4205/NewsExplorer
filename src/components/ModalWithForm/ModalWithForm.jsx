@@ -25,11 +25,14 @@ function ModalWithForm({
       <div className="modal__content">
         <h2 className="modal__title">{title}</h2>
         <button
-          onClick={closeActiveModal}
+          onClick={() => {
+            console.log('closeActiveModal called');
+            closeActiveModal();
+          }}
           type="button"
           className="modal__close"
         >
-          <img src={close} alt="close_button" />
+          <img src={close} className="modal__close-btn" alt="close_button" />
         </button>
         <form onSubmit={onSubmit} className="modal__form">
           {children}
