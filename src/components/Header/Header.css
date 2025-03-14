@@ -9,7 +9,7 @@
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
-  width: 100%;  
+  width: 100%;
 }
 
 .header {
@@ -24,31 +24,7 @@
 
 .header__logo {
   width: 85px;
-  height: 50px;  
-  background-color: transparent; 
+  height: 50px;
+  background-color: transparent;
   display: block;
-}
-
-.header__nav {
-  display: flex;
-  margin-left: auto;
-  gap: 24px;
-}
-
-.header__homge-btn {
-  background: none;
-  font-size: 20px;
-  cursor: pointer;
-  border: none;
-  color: white;
-  font-weight: 700;
-}
-
-.header__signIn-btn {
-  background: none;
-  font-size: 20px;
-  cursor: pointer;
-  color: white;
-  font-weight: 700;
-  border: none;
 }
