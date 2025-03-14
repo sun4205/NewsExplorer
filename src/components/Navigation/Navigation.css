@@ -1,0 +1,55 @@
+
+.navigation__nav {
+    display: flex;
+    margin-left: auto;
+    gap: 24px;
+  }
+  
+  .navigation__home-btn {
+    background: none;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    font-weight: 700;
+  }
+  
+  .navigation__signIn-btn {
+    background: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+    font-weight: 700;
+    border: none;
+  }
+  
+  .navigation__loggedIn-control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .navigation__savedArticle-nav {
+    color: #1a1b22;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0;
+  }
+  
+  .navigation__username{
+    border-radius: 30%;
+    border : 1px solid #d1d2d6;
+    color:#1a1b22;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0;
+  
+  }
+  
+  .navigation__logout{
+    width: 17.41px;
+    height: 16px;
+    color:#1a1b22;
+  }
