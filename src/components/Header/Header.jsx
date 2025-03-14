@@ -3,17 +3,14 @@ import logo from "../../images/logo.jpg";
 import SearchForm from "../SearchForm/SearchForm";
 import Navigation from "../Navigation/Navigation";
 
-
-function Header({ handleSearchSubmit, query}) {
+function Header({ handleSearchSubmit, query }) {
   console.log("Header!");
-
-
 
   return (
     <div className="header__container">
       <header className="header">
         <img src={logo} alt={logo} className="header__logo" />
-       <Navigation />
+        <Navigation />
       </header>
       <SearchForm handleSearchSubmit={handleSearchSubmit} query={query} />
     </div>
