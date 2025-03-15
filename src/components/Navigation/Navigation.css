@@ -30,17 +30,27 @@
   }
   
   .navigation__savedArticle-nav {
-    color: #1a1b22;
+    color: #b6bcbf;
     font-weight: 500;
     font-size: 18px;
     line-height: 24px;
     letter-spacing: 0;
+    background-color: transparent;
+    border: none;
+    margin-left: 56px;
+    margin-right: 56px;
   }
   
   .navigation__username{
+    display: flex;
+    width: 112px;
+    height: 48px;
+    padding:12px 19px;
+    justify-content: center;
+    align-items: center;
     border-radius: 30%;
     border : 1px solid #d1d2d6;
-    color:#1a1b22;
+    color: #b6bcbf;
     font-weight: 500;
     font-size: 18px;
     line-height: 24px;
@@ -49,7 +59,10 @@
   }
   
   .navigation__logout{
-    width: 17.41px;
-    height: 16px;
-    color:#1a1b22;
+    width: 24px;
+    height: 24px;
+    width: 100%;   
+    background-color: transparent;    
+   margin-left: 12px;
+   color: #b6bcbf;
   }
