@@ -1,6 +1,7 @@
 import "./Main.css";
 import NewsCard from "../NewsCard/NewsCard";
 import About from "../About/About";
+import ShowMore from "../ShowMore/ShowMore";
 
 
 function Main() {
@@ -11,6 +12,7 @@ function Main() {
         <ul className="main__cards-list">
           <NewsCard />          
         </ul>
+        <ShowMore />
         <About />
        
       </section>
