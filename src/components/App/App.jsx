@@ -1,22 +1,27 @@
 import React, { useEffect, useState, useRef } from "react";
 // import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
-import './App.css'
-import Header from '../Header/Header'
+import "./App.css";
+import Header from "../Header/Header";
 import Main from "../Main/Main";
+import Preloader from "../Preloader/Preloader";
 import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
-import * as newsapi from '../../utils/NewsApi';
-import * as token from '../../utils/token';
-
+import * as newsapi from "../../utils/NewsApi";
+import * as token from "../../utils/token";
+import LoginModal from "../LoginModal/LoginModal";
+import RegisterModal from "../RegisterModal/RegisterModal";
+import Footer from "../Footer/Footer";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+import SearchComponent from "../SearchComponent/SearchComponent";
 
 function App() {
   const [query, setQuery] = useState("");
   const [newsData, setNewsData] = useState({
-    source:"", 
-    title:"", 
-    date:"", 
-    description:"", 
-    image:"",
+    source: "",
+    title: "",
+    date: "",
+    description: "",
+    image: "",
   });
   const [activeModal, setActiveModal] = useState("");
   const [newsItems, setNewsItems] = useState([]);
@@ -25,18 +30,15 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [token, setToken] = useState({ getToken: () => null });
 
-  
   // const navigate = useNavigate();
   // const location = useLocation();
 
-
-  
   const openRemoveItemModal = (card) => {
     setSelectedCard(card);
     setIsRemoveItemModalOpen(true);
   };
-  
 
   const openRegisterModal = () => {
     console.log("Opening register modal");
@@ -72,26 +74,26 @@ function App() {
       .catch(console.error);
   }
 
-  // const handleLogin = ({ email, password }) => {
-  //   if (!email || !password) {
-  //     return;
-  //   }
+  const handleLogin = ({ email, password }) => {
+    if (!email || !password) {
+      return;
+    }
 
-  //   auth
-  //     .authorize(email, password)
-  //     .then((data) => {
-  //       if (data.token) {
-  //         setToken(data.token);
-  //         setIsLoggedIn(true);
-  //         getUserInformation(data.token).then(() => {
-  //           const redirectPath = location.state?.from?.pathname || "/";
-  //           navigate(redirectPath);
-  //           closeActiveModal();
-  //         });
-  //       }
-  //     })
-  //     .catch(console.error);
-  // };
+    auth
+      .authorize(email, password)
+      .then((data) => {
+        if (data.token) {
+          setToken(data.token);
+          setIsLoggedIn(true);
+          getUserInformation(data.token).then(() => {
+            const redirectPath = location.state?.from?.pathname || "/";
+            navigate(redirectPath);
+            closeActiveModal();
+          });
+        }
+      })
+      .catch(console.error);
+  };
 
   useEffect(() => {
     const jwt = token.getToken();
@@ -141,59 +143,71 @@ function App() {
   };
 
   const handleSearchSubmit = (values) => {
-    asyncSubmit(() => 
-    newsapi.getNewsCards(query).then((newData)=>{
-      console.log("current saved news:",);
-      setNewsItems([newData,...newsItems]);
-    }))
-  }
+    asyncSubmit(() =>
+      newsapi.getNewsCards(values.query).then((newData) => {
+        console.log("current saved news:");
+        setNewsItems([newData, ...newsItems]);
+      })
+    );
+  };
 
-  
   const handleRegisterSubmit = (values) => {
     asyncSubmit(() =>
-      register(values.email, values.password, values.username).then(
-        () => {
-          handleLogin({ email: values.email, password: values.password, username:values.username });
-        }
-      )
+      register(values.email, values.password, values.username).then(() => {
+        handleLogin(values.email, values.password, () => {});
+      })
     );
   };
 
   useEffect(() => {
-    if(query) {
-       newsapi.getNewsCards(query)
+    newsapi
+      .getNewsCards(query)
       .then((data) => {
         console.log("API response:", data);
-        const filterData = filteredNewsData(data);
-        console.log("Filtered data:", filterData);
-        setNewsData(filterData);
-    })      
-      .catch(console.error);
-  }
-  }, [query]);
-
-  useEffect(() => {
-    newsapi.getNewsCards()
-      .then((data) => {
-        setNewsItems(data);
+        if (query) {
+          const filterData = filteredNewsData(data);
+          console.log("Filtered data:", filterData);
+          setNewsData(filterData);
+        } else {
+          setNewsItems(data);
+        }
       })
       .catch(console.error);
-  }, []);
-  console.log(newsItems);
+  }, [query]);
 
   return (
-    <>
-      <div className='page'>
-        <div className='page-content'>
-          <Header handleSearchSubmit={handleSearchSubmit} query={query}/>
-          <Main 
-          newsData = {newsData}
-          newsItems = {newsItems}
+    <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
+      <div className="page">
+        <div className="page-content">
+          <Header
+            handleSearchSubmit={handleSearchSubmit}
+            query={query}
+            openLoginModal={openLoginModal}
+            isLoading={isLoading}
+            setToken={setToken}
           />
+          <SearchComponent />
+          {isLoading && <Preloader />}
+
+          <Main newsData={newsData} newsItems={newsItems} />
+          <Footer />
         </div>
+
+        <LoginModal
+          activeModal={activeModal}
+          closeActiveModal={closeActiveModal}
+          handleLogin={handleLogin}
+          setActiveModal={setActiveModal}
+        />
+        <RegisterModal
+          activeModal={activeModal}
+          closeActiveModal={closeActiveModal}
+          handleRegisterSubmit={handleRegisterSubmit}
+          setActiveModal={setActiveModal}
+        />
       </div>
-    </>
-  )
+    </CurrentUserContext.Provider>
+  );
 }
 
-export default App
+export default App;
