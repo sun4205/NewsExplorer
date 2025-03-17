@@ -1,15 +1,16 @@
 import { checkResponse } from "./api";
 
-export const newsApiBaseUrl = process.env.NODE_ENV === "production" 
-  ? "https://nomoreparties.co/news/v2/everything"
-  : "https://newsapi.org/v2/everything";
+export const newsApiBaseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://nomoreparties.co/news/v2/everything"
+    : "https://newsapi.org/v2/everything";
 
 export const getNewsCards = (query) => {
-  const API_KEY = process.env.REACT_APP_API_KEY;
-  console.log("API_KEY", API_KEY); 
-  return fetch(
-    `${newsApiBaseUrl}?q=${query}&apiKey=${process.env.REACT_APP_API_KEY}`
-  ).then(checkResponse);
+  const API_KEY = import.meta.env.VITE_API_KEY;
+  console.log("API_KEY", API_KEY);
+  return fetch(`${newsApiBaseUrl}?q=${query}&apiKey=${API_KEY}`).then(
+    checkResponse
+  );
 };
 
 export const filteredNewsData = (data) => {
