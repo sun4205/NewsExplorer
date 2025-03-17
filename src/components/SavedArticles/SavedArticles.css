@@ -1,0 +1,46 @@
+.savedArticles__container {
+    display: flex;
+    padding :60px 104px;
+    flex-direction: column;
+}
+
+.savedArticles__title{
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0;
+    margin-bottom: 28px;
+    flex-direction: left;
+    color:rgba(26, 27, 34, 0.5);
+    margin: 0;
+}
+
+.savedArticles__numberSaved{
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 46px;
+    letter-spacing: 0;
+    color:#1a1b22;
+    margin-bottom: 30px;
+    margin: 0;
+    flex-direction: left;
+}
+
+.savedArticles__by{
+    margin: 0;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0;
+    color:#1a1b22;
+    flex-direction: left;
+}
+
+.savedArticles__kewords{
+    margin: 0;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0;
+    color:#1a1b22;
+}
