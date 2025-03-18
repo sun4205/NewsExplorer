@@ -9,14 +9,14 @@ function LoginModal({
   buttonText,
   handleLogin,
   setActiveModal,
-  modalRef
+  modalRef,
 }) {
   const { values, handleChange } = useForm({
     email: "",
     password: "",
   });
 
-  const isFilled = values.email.trim() !=="" || values.password.trim() !=="";
+  const isFilled = values.email.trim() !== "" || values.password.trim() !== "";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,10 +30,10 @@ function LoginModal({
     <ModalWithForm
       isOpen={activeModal === "login"}
       title="Sign in"
-      buttonText={buttonText}
       secondaryButtonText={
         <>
-          <span className="or-text">or</span> <span className="signup-text">Sign up</span>
+          <span className="or-text">or</span>{" "}
+          <span className="signup-text">Sign up</span>
         </>
       }
       onSecondaryClick={() => setActiveModal("register")}
