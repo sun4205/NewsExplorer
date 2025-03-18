@@ -3,14 +3,14 @@ import logo from "../../images/logo.jpg";
 import SearchForm from "../SearchForm/SearchForm";
 import Navigation from "../Navigation/Navigation";
 
-function Header({ handleSearchSubmit, query, openLoginModal,setToken}) {
+function Header({ handleSearchSubmit, query, openLoginModal}) {
   console.log("Header!");
 
   return (
     <div className="header__container">
       <header className="header">
         <img src={logo} alt={logo} className="header__logo" />
-        <Navigation openLoginModal={openLoginModal} setToken={setToken} />
+        <Navigation openLoginModal={openLoginModal}  />
       </header>
       <SearchForm handleSearchSubmit={handleSearchSubmit} query={query} />
     </div>
