@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-// import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -30,10 +30,10 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [token, setToken] = useState({ getToken: () => null });
+  const [jwt, setJwt] = useState(token.getToken());
 
-  // const navigate = useNavigate();
-  // const location = useLocation();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const openRemoveItemModal = (card) => {
     setSelectedCard(card);
@@ -83,7 +83,8 @@ function App() {
       .authorize(email, password)
       .then((data) => {
         if (data.token) {
-          setToken(data.token);
+          token.setToken(data.token);
+          setJwt(data.token);
           setIsLoggedIn(true);
           getUserInformation(data.token).then(() => {
             const redirectPath = location.state?.from?.pathname || "/";
@@ -96,24 +97,25 @@ function App() {
   };
 
   useEffect(() => {
-    const jwt = token.getToken();
-    console.log("JWT from storage:", jwt);
+    const jwtFromStorage = token.getToken();
+    console.log("JWT from storage:", jwtFromStorage);
 
-    if (!jwt) {
+    if (!jwtFromStorage) {
       console.log("No JWT found. Logging out.");
       setCurrentUser(null);
       setIsLoggedIn(false);
       return;
     }
 
-    getUserInformation(jwt);
-  }, []);
+    getUserInformation(jwtFromStorage);
+  }, [jwt]);
 
   const handleLogOut = () => {
     console.log("Log Out button clicked.");
-    removeToken();
+    token.removeToken();
     setIsLoggedIn(false);
     setCurrentUser(null);
+    setJwt(null);
     navigate("/");
     console.log("User logged out successfully.");
   };
@@ -153,7 +155,7 @@ function App() {
 
   const handleRegisterSubmit = (values) => {
     asyncSubmit(() =>
-      register(values.email, values.password, values.username).then(() => {
+      auth.register(values.email, values.password, values.username).then(() => {
         handleLogin(values.email, values.password, () => {});
       })
     );
@@ -184,7 +186,7 @@ function App() {
             query={query}
             openLoginModal={openLoginModal}
             isLoading={isLoading}
-            setToken={setToken}
+            
           />
           <SearchComponent />
           {isLoading && <Preloader />}
