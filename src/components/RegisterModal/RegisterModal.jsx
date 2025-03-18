@@ -1,40 +1,41 @@
-import './RegisterModal.css';
+import "./RegisterModal.css";
 import React, { useRef } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../hooks/useForm";
 
-
 function RegisterModal({
-    activeModal,
-    closeActiveModal,    
-    handleRegisterSubmit,
-    setActiveModal,
-    modalRef
+  activeModal,
+  closeActiveModal,
+  handleRegisterSubmit,
+  setActiveModal,
+  modalRef,
+  buttonText,
 }) {
-    const { values, handleChange } = useForm({
-        email: "",
-        password: "",
-        username:"",
-      });
+  const { values, handleChange } = useForm({
+    email: "",
+    password: "",
+    username: "",
+  });
 
-      const isFilled = values.email.trim() !=="" || values.password.trim() !=="";
+  const isFilled = values.email.trim() !== "" || values.password.trim() !== "";
 
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log("Form submitted with values:", values);
-        handleRegisterSubmit({
-          email: values.email,
-          password: values.password,
-          username:values.username,
-        });
-    }
-    return(
-        <ModalWithForm
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form submitted with values:", values);
+    handleRegisterSubmit({
+      email: values.email,
+      password: values.password,
+      username: values.username,
+    });
+  };
+  return (
+    <ModalWithForm
       isOpen={activeModal === "register"}
-      title="Sign Up"      
+      title="Sign Up"
       secondaryButtonText={
         <>
-          <span className="or-text">or</span> <span className="signup-text">Sign in</span>
+          <span className="or-text">or</span>{" "}
+          <span className="signup-text">Sign in</span>
         </>
       }
       onSecondaryClick={() => setActiveModal("login")}
@@ -84,8 +85,7 @@ function RegisterModal({
         />
       </label>
     </ModalWithForm>
-
-    )
+  );
 }
 
 export default RegisterModal;

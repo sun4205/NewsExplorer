@@ -1,8 +1,10 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import "./ModalWithForm.css";
-import signingrey from '../../images/signingrey.svg';
-import signinblue from '../../images/signinblue.svg';
-import close from '../../images/close.svg';
+import signingrey from "../../images/signingrey.svg";
+import signinblue from "../../images/signinblue.svg";
+import signup from "../../images/signup.svg";
+import signupgrey from "../../images/signingrey.svg";
+import close from "../../images/close.svg";
 // import useEscpeKey from '../../hooks/useEscapeKey';
 
 function ModalWithForm({
@@ -11,7 +13,7 @@ function ModalWithForm({
   title,
   onSubmit,
   children,
-  buttonText,  
+  buttonText,
   isOpen,
   customClass,
   onSecondaryClick,
@@ -20,13 +22,27 @@ function ModalWithForm({
 }) {
   //         const modalRef = useRef(null);
   //   useEscapeKey(!!activeModal, closeActiveModal, modalRef);
+
+  const [buttonImage, setButtonImage] = useState(signingrey);
+
+  useEffect(() => {
+    console.log("isFilled:", isFilled);
+    console.log("title:", title);
+
+    if (title === "Sign up") {
+      setButtonImage(isFilled ? signup : signupgrey);
+    } else {
+      setButtonImage(isFilled ? signinblue : signingrey);
+    }
+  }, [title, isFilled]);
+
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
       <div className="modal__content">
         <h2 className="modal__title">{title}</h2>
         <button
           onClick={() => {
-            console.log('closeActiveModal called');
+            console.log("closeActiveModal called");
             closeActiveModal();
           }}
           type="button"
@@ -37,12 +53,12 @@ function ModalWithForm({
         <form onSubmit={onSubmit} className="modal__form">
           {children}
           <div className="modal__button-container">
-            <button
-              type="submit"
-              className="modal__submit"
-            >
-              {buttonText}
-              <img src={isFilled ? signinblue :signingrey} alt="signinbutton" className={`modal__signin ${isFilled ? "modal__signin-blue" : "modal__signin-grey"}`}/>
+            <button type="submit" className="modal__submit">
+              <img
+                src={buttonImage}
+                alt="button"
+                className='modal__signin'
+              />
             </button>
             {secondaryButtonText && (
               <button
@@ -53,7 +69,6 @@ function ModalWithForm({
                 {secondaryButtonText}
               </button>
             )}
-           
           </div>
         </form>
       </div>

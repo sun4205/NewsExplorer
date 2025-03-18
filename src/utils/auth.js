@@ -1,5 +1,5 @@
 import { checkResponse } from "./api";
-export const baseUrl = "http://localhost:3001";
+export const baseUrl = "http://localhost:3000";
 
 export const register = (email, password, username) => {
   return fetch(`${baseUrl}/signup`, {
