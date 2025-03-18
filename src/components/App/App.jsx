@@ -13,6 +13,7 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import Footer from "../Footer/Footer";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import SearchComponent from "../SearchComponent/SearchComponent";
+import SavedArticles from "../SavedArticles/SavedArticles";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -31,6 +32,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [jwt, setJwt] = useState(token.getToken());
+  const [savedArticles, setSavedArticles] = useState([]);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -186,12 +188,20 @@ function App() {
             query={query}
             openLoginModal={openLoginModal}
             isLoading={isLoading}
-            
           />
-          <SearchComponent />
-          {isLoading && <Preloader />}
-
-          <Main newsData={newsData} newsItems={newsItems} />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <SearchComponent />
+                  {isLoading && <Preloader />}
+                  <Main newsData={newsData} newsItems={newsItems} />
+                </>
+              }
+            />
+            <Route path="/savedNews" element={<SavedArticles />} />
+          </Routes>
           <Footer />
         </div>
 
