@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./SearchForm.css";
-import { useState } from "react";
+
 
 function SearchForm({ handleSearchSubmit,query,setQuery }) {
   const [debouncedQuery, setDebouncedQuery] = useState(""); 
@@ -22,6 +22,13 @@ function SearchForm({ handleSearchSubmit,query,setQuery }) {
         setQuery(e.target.value);
         console.log("setquery:", e.target.value); 
     }
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      if (query.trim() === "") return; 
+      handleSearchSubmit(query);
+    };
+  
 
   return (
     <div className="searchForm__container">
