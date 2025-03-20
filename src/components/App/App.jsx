@@ -172,7 +172,7 @@ function App() {
       .then((data) => {
         console.log("API response:", data);
         if (query) {
-          const filterData = filteredNewsData(data);
+          const filterData = newsapi.filteredNewsData(data);
           console.log("Filtered data:", filterData);
           setNewsData(filterData);
         } else {
