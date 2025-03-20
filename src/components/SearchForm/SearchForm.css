@@ -30,6 +30,7 @@
 .searchForm__controls{
     display: flex;
     position: relative;
+    align-items: center;
     
 }
 
@@ -50,8 +51,8 @@ input {
 
 .searchForm__btn{
     background-image: url('../../images/button.svg');
-    width: 168px;
-    height: 144px;
+    width: 179px;
+    height: 64px;
     border: none;
     background-size: contain;
     background-repeat: no-repeat; 
@@ -59,8 +60,8 @@ input {
     outline: none;
     background-color: transparent; 
     position:absolute;
-    right:-20px;
-    top:-36px;
+    right:0;
+    top:0;
     box-sizing: border-box;
     
 }

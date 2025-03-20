@@ -1,17 +1,21 @@
-import { useState } from 'react';
-import { useDebounce } from '../../utils/useDebounce';
-import { fetchData } from '../../utils/apiService';
+import SearchForm from "../SearchForm/SearchForm";
+import { useDebounce } from "../../utils/useDebounce";
+import { fetchData } from "../../utils/apiService";
 
-const SearchComponent = () => {
-  const [query, setQuery] = useState('');
+const SearchComponent = ({ query, setQuery }) => {
   const debouncedFetchData = useDebounce((q) => fetchData(q), 500);
 
-  const handleInputChange = (event) => {
-    setQuery(event.target.value);
-    debouncedFetchData(event.target.value);
+  const handleSearchSubmit = (searchQuery) => {
+    debouncedFetchData(searchQuery);
   };
 
-  return <input type="text" value={query} onChange={handleInputChange} />;
+  return (
+    <SearchForm
+      query={query}
+      setQuery={setQuery}
+      handleSearchSubmit={handleSearchSubmit}
+    />
+  );
 };
 
 export default SearchComponent;

@@ -188,18 +188,18 @@ function App() {
         <Header
           handleSearchSubmit={handleSearchSubmit}
           query={query}
+          setQuery={setQuery}
           openLoginModal={openLoginModal}
           isLoading={isLoading}
           handleLogOut={handleLogOut}
         />
-      
+
         <div className="page-content">
           <Routes>
             <Route
               path="/"
               element={
                 <>
-                  <SearchComponent />
                   {isLoading && <Preloader />}
                   <Main newsData={newsData} newsItems={newsItems} />
                 </>

@@ -1,9 +1,10 @@
 import "./SearchForm.css";
 
-function SearchForm({ handleSearchSubmit,query }) {
+function SearchForm({ handleSearchSubmit,query,setQuery }) {
 
     const handleInputChange = (e) => {
         setQuery(e.target.value);
+        console.log("setquery:", e.target.value); 
     }
 
     const handleSubmit = (e) => {
