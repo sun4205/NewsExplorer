@@ -8,7 +8,7 @@ import Navigation from "../Navigation/Navigation";
 function Header({
   handleSearchSubmit,
   query,
-  setquery,
+  setQuery,
   openLoginModal,
   handleLogOut,
 }) {
@@ -29,7 +29,7 @@ function Header({
         />
       </header>
       {location.pathname === "/" && (
-        <SearchComponent query={query} setquery={setquery} />
+        <SearchComponent query={query} setQuery={setQuery} />
       )}
     </div>
   );
