@@ -1,18 +1,28 @@
+import { useEffect } from "react";
 import "./SearchForm.css";
+import { useState } from "react";
 
 function SearchForm({ handleSearchSubmit,query,setQuery }) {
+  const [debouncedQuery, setDebouncedQuery] = useState(""); 
 
+  useEffect(()=>{
+    const timer =setTimeout(()=>{
+      setDebouncedQuery(query);
+    },500);
+    return () => clearTimeout(timer);
+  },[query]);
+
+  useEffect(() => {
+    if (debouncedQuery.trim() !== "") {
+      handleSearchSubmit(debouncedQuery);
+    }
+  }, [debouncedQuery]);
+ 
     const handleInputChange = (e) => {
         setQuery(e.target.value);
         console.log("setquery:", e.target.value); 
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    
-        if(query.trim() === "") return;
-        handleSearchSubmit(query);
-      };
   return (
     <div className="searchForm__container">
       <h1 className="searchForm__title">What's going on in the world?</h1>
