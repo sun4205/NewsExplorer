@@ -5,22 +5,90 @@
     gap: 24px;
   }
   
-  .navigation__home-btn {
-    background: none;
+  .navigation__home-btn {   
     font-size: 20px;
     cursor: pointer;
     border: none;
     color: white;
     font-weight: 700;
+    background-color: transparent;
+    position: relative;
+    outline: none;
   }
+
+  .navigation__home-btn::after {   
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -28px; 
+    width: 0; 
+    height: 3px;
+    background-color: white; 
+    transition: width 0.3s ease-in-out;
+    transform: translateX(-50%);
+
+  }
+
+  .navigation__home-btn:hover::after {
+    width: 68px;
+}
+
+  .navigation__home-btn.font-black {
+    color:#1a1b22;
+    background:none;
+    border: none;
+    position: relative;
+  }
+
+  .navigation__home-btn.font-black::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -16px; 
+    width: 0; 
+    height: 3px;
+    background-color:#1a1b22;
+    transition: width 0.3s ease-in-out;
+    transform: translateX(-50%);
+  }
+
+  .navigation__home-btn.font-black:hover::after{
+    width: 68px;
+  }
+
   
   .navigation__signIn-btn {
-    background: none;
+    background-image: url("../../images/Rectangle.svg");
+    padding:0;
+    background-size: 100% 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    color:white;
+    width: 100%;
     font-size: 20px;
-    cursor: pointer;
-    color: white;
+    cursor: pointer;  
     font-weight: 700;
     border: none;
+    position: relative;
+    background-color: transparent;
+    width: 176px;
+    height: 48px;
+  }
+
+  .navigation__signIn-btn::after{
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -28px; 
+    width: 0; 
+    height: 3px;
+    background-color:white;
+    transition: width 0.3s ease-in-out;
+    transform: translateX(-50%);
+  }
+
+  .navigation__signIn-btn:hover::after{
+    width: 75px;
   }
   
   .navigation__loggedIn-control {
@@ -30,8 +98,8 @@
   }
   
   .navigation__savedArticle-nav {
-    color: #b6bcbf;
-    font-weight: 500;
+    color: white;
+    font-weight: 700;
     font-size: 18px;
     line-height: 24px;
     letter-spacing: 0;
@@ -39,6 +107,46 @@
     border: none;
     margin-left: 56px;
     margin-right: 56px;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .navigation__savedArticle-nav::after{
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -26px; 
+    width: 0; 
+    height: 3px;
+    background-color:white;
+    transition: width 0.3s ease-in-out;
+    transform: translateX(-50%);
+  }
+
+  .navigation__savedArticle-nav:hover::after{
+    width: 166px;
+  }
+
+  .navigation__savedArticle-nav.font-black{
+    color:#1a1b22;
+    background:none;
+    border: none;
+  }
+
+  .navigation__savedArticle-nav.font-black::after{
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -26px; 
+    width: 0; 
+    height: 3px;
+    background-color:#1a1b22;
+    transition: width 0.3s ease-in-out;
+    transform: translateX(-50%);
+  }
+
+  .navigation__savedArticle-nav.font-black:hover::after{
+    width: 166px;
   }
   
   .navigation__username{
@@ -50,12 +158,51 @@
     align-items: center;
     border-radius: 30%;
     border : 1px solid #d1d2d6;
-    color: #b6bcbf;
-    font-weight: 500;
+    color: white;
+    font-weight: 700;
     font-size: 18px;
     line-height: 24px;
     letter-spacing: 0;
+    cursor: pointer;
+    position: relative;
   
+  }
+
+  .navigation__username::after{
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -20px; 
+    width: 0; 
+    height: 3px;
+    background-color:white;
+    transition: width 0.3s ease-in-out;
+    transform: translateX(-50%);
+  }
+
+  .navigation__username:hover::after{
+    width: 166px;
+  }
+
+  .navigation__username.font-black{
+    color:#1a1b22;
+    background:none;
+    border: none;
+  }
+  .navigation__username.font-black::after{
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -20px; 
+    width: 0; 
+    height: 3px;
+    background-color:#1a1b22;
+    transition: width 0.3s ease-in-out;
+    transform: translateX(-50%);
+  }
+
+  .navigation__username.font-black:hover::after{
+    width: 130px;
   }
   
   .navigation__logout{

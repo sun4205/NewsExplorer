@@ -14,6 +14,8 @@ import Footer from "../Footer/Footer";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import SearchComponent from "../SearchComponent/SearchComponent";
 import SavedArticles from "../SavedArticles/SavedArticles";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import SearchForm from "../SearchForm/SearchForm";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -88,6 +90,7 @@ function App() {
           token.setToken(data.token);
           setJwt(data.token);
           setIsLoggedIn(true);
+          console.log("Login successful!.");
           getUserInformation(data.token).then(() => {
             const redirectPath = location.state?.from?.pathname || "/";
             navigate(redirectPath);
@@ -182,13 +185,15 @@ function App() {
   return (
     <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
       <div className="page">
+        <Header
+          handleSearchSubmit={handleSearchSubmit}
+          query={query}
+          openLoginModal={openLoginModal}
+          isLoading={isLoading}
+          handleLogOut={handleLogOut}
+        />
+      
         <div className="page-content">
-          <Header
-            handleSearchSubmit={handleSearchSubmit}
-            query={query}
-            openLoginModal={openLoginModal}
-            isLoading={isLoading}
-          />
           <Routes>
             <Route
               path="/"
@@ -200,24 +205,31 @@ function App() {
                 </>
               }
             />
-            <Route path="/savedNews" element={<SavedArticles />} />
+            <Route
+              path="/savedNews"
+              element={
+                <ProtectedRoute isLoggedIn={isLoggedIn}>
+                  <SavedArticles savedArticles={savedArticles} />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
-          <Footer />
         </div>
-
-        <LoginModal
-          activeModal={activeModal}
-          closeActiveModal={closeActiveModal}
-          handleLogin={handleLogin}
-          setActiveModal={setActiveModal}
-        />
-        <RegisterModal
-          activeModal={activeModal}
-          closeActiveModal={closeActiveModal}
-          handleRegisterSubmit={handleRegisterSubmit}
-          setActiveModal={setActiveModal}
-        />
+        <Footer />
       </div>
+
+      <LoginModal
+        activeModal={activeModal}
+        closeActiveModal={closeActiveModal}
+        handleLogin={handleLogin}
+        setActiveModal={setActiveModal}
+      />
+      <RegisterModal
+        activeModal={activeModal}
+        closeActiveModal={closeActiveModal}
+        handleRegisterSubmit={handleRegisterSubmit}
+        setActiveModal={setActiveModal}
+      />
     </CurrentUserContext.Provider>
   );
 }

@@ -1,16 +1,29 @@
 import React, { useState } from "react";
 import "./Navigation.css";
+import { useNavigate,useLocation } from "react-router-dom";
 import Union from "../../images/Union.svg";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
 
-
-function Navigation({ openLoginModal }) {
+function Navigation({ openLoginModal, handleLogOut }) {
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const savedNewsPage = location.pathname === "/savedNews"; 
+
+  const handleHomeClick = () => {
+    navigate("/");
+  };
+
+
+  const handleSavedNews = () => {
+    navigate("/savedNews");
+  };
 
   return (
     <div className="navigation__nav">
-      <button type="button" className="navigation__home-btn">
+      <button onClick ={handleHomeClick} type="button" className={`navigation__home-btn${savedNewsPage ? 'font-black':""}`}>
         Home
       </button>
       {!currentUser ? (
@@ -23,21 +36,22 @@ function Navigation({ openLoginModal }) {
         </button>
       ) : (
         <div className="navigation__loggedIn-control">
-          <a href="/savedArticle">
-            <button type="button" className="navigation__savedArticle-nav">
-              Saved Articles
-            </button>
-          </a>
+          <button
+            onClick={handleSavedNews}
+            type="button"
+            className={`navigation__savedArticle-nav ${savedNewsPage ? 'font-black':""}`}
+          >
+            Saved Articles
+          </button>
 
-          <div className="navigation__username">
+          <div className={`navigation__username ${savedNewsPage ? 'font-black':""}`}>
             {currentUser.username}
-            <button type="button">
+            <button onClick={handleLogOut} type="button">
               <img src={Union} className="navigation__logout" />
             </button>
           </div>
         </div>
       )}
-      
     </div>
   );
 }
