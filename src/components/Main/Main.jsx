@@ -5,6 +5,7 @@ import ShowMore from "../ShowMore/ShowMore";
 
 
 function Main({newsData,newsItems}) {
+  console.log("newsItems in Main:", newsItems);
   return (
     <main className="main">
       <h2 className="main__title">Search results</h2>
