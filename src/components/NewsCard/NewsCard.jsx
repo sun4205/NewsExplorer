@@ -5,14 +5,14 @@ import nature from"../../images/nature.svg";
 
 function NewsCard({data}) {
   if (!data) {
-    console.warn("NewsCard received undefined data!");
+    console.log("undefined data!");
     return null; 
   }
    const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
    });
-   console.log("Received data in NewsCard:", data);
+   console.log("Received data:", data);
   return (
      <li className="card">
        <img className="card__image" src={data?.image} alt={data?.title} />

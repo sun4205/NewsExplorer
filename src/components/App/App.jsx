@@ -151,9 +151,9 @@ function App() {
 
   const handleSearchSubmit = (values) => {
     asyncSubmit(() =>
-      newsapi.getNewsCards(values.query).then((newData) => {
-        console.log("current saved news:");
-        setNewsItems([newData, ...newsItems]);
+      newsapi.getNewsCards(values.query).then((newsData) => {
+        console.log("Fetched news data:", newsData);
+        setNewsItems([...newsData, ...newsItems]);
       })
     );
   };

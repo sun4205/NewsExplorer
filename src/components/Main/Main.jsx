@@ -4,7 +4,7 @@ import About from "../About/About";
 import ShowMore from "../ShowMore/ShowMore";
 
 
-function Main({newData, newsItems}) {
+function Main({newsData,newsItems}) {
   return (
     <main className="main">
       <h2 className="main__title">Search results</h2>
