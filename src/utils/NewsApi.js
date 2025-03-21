@@ -1,14 +1,14 @@
 import { checkResponse } from "./api";
 
-export const newsApiBaseUrl =
-  process.env.NODE_ENV === "production"
-    ? "https://nomoreparties.co/news/v2/everything"
-    : "https://newsapi.org/v2/everything";
+// export const newsApiBaseUrl =
+//   process.env.NODE_ENV === "production"
+//     ? "https://nomoreparties.co/news/v2/everything"
+//     : "https://newsapi.org/v2/everything";
 
-  //   export const newsApiBaseUrl =
-  // process.env.NODE_ENV === "production"
-  //   ? "https://nomorepart.co/news/v2/everything"
-  //   : "https://news.org/v2/everything";
+    export const newsApiBaseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://nomorepart.co/news/v2/everything"
+    : "https://news.org/v2/everything";
 
 export const getNewsCards = (query) => {
   const API_KEY = import.meta.env.VITE_API_KEY;  
