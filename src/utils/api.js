@@ -1,6 +1,4 @@
-
 const baseUrl = "http://localhost:3001";
-
 
 function checkResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Error:${res.status}`);
@@ -63,8 +61,6 @@ const removeNewsCardSved = (id, token) => {
     .then((res) => res.json())
     .catch((err) => console.log(err));
 };
-
-const APIkey = "9ac17ce8a5e34f38a0ac6c2add53e71b"
 
 export {
   checkResponse,
