@@ -29,7 +29,7 @@ function Header({
         />
       </header>
       {location.pathname === "/" && (
-        <SearchComponent query={query} setQuery={setQuery} />
+        <SearchComponent query={query} setQuery={setQuery} handleSearchSubmit={handleSearchSubmit} />
       )}
     </div>
   );

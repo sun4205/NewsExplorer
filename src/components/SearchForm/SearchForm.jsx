@@ -3,20 +3,8 @@ import "./SearchForm.css";
 
 
 function SearchForm({ handleSearchSubmit,query,setQuery }) {
-  const [debouncedQuery, setDebouncedQuery] = useState(""); 
+ 
 
-  useEffect(()=>{
-    const timer =setTimeout(()=>{
-      setDebouncedQuery(query);
-    },500);
-    return () => clearTimeout(timer);
-  },[query]);
-
-  useEffect(() => {
-    if (debouncedQuery.trim() !== "") {
-      handleSearchSubmit(debouncedQuery);
-    }
-  }, [debouncedQuery]);
  
     const handleInputChange = (e) => {
         setQuery(e.target.value);
@@ -26,7 +14,7 @@ function SearchForm({ handleSearchSubmit,query,setQuery }) {
     const handleSubmit = (e) => {
       e.preventDefault();
       if (query.trim() === "") return; 
-      handleSearchSubmit(query);
+      handleSearchSubmit({query});
     };
   
 

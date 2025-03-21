@@ -2,11 +2,12 @@ import SearchForm from "../SearchForm/SearchForm";
 import { useDebounce } from "../../utils/useDebounce";
 import { fetchData } from "../../utils/apiService";
 
-const SearchComponent = ({ query, setQuery }) => {
+const SearchComponent = ({ query, setQuery, handleSearchSubmit}) => {
   const debouncedFetchData = useDebounce((q) => fetchData(q), 500);
 
-  const handleSearchSubmit = (searchQuery) => {
+  const handleSearchSubmitLocal = (searchQuery) => {
     debouncedFetchData(searchQuery);
+    handleSearchSubmit({ query: searchQuery });
   };
 
   return (

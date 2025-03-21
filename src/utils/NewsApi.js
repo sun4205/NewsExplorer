@@ -11,6 +11,11 @@ export const newsApiBaseUrl =
   //   : "https://news.org/v2/everything";
 
 export const getNewsCards = (query) => {
+  if(!query){
+    console.error("query is empty");
+    return Promise.reject(new Error("you must enter a search query"));
+  }
+
   const API_KEY = import.meta.env.VITE_API_KEY;  
   return fetch(`${newsApiBaseUrl}?q=${query}&apiKey=${API_KEY}`).then(
     checkResponse

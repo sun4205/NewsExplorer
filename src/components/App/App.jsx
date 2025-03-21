@@ -150,10 +150,12 @@ function App() {
   };
 
   const handleSearchSubmit = (values) => {
+    console.log("handleSearchSubmit called with:", values);
+    if (values.query.length < 3) return; 
     asyncSubmit(() =>
       newsapi.getNewsCards(values.query).then((newsData) => {
         console.log("Fetched news data:", newsData);
-        setNewsItems([...newsData, ...newsItems]);
+        setNewsItems(newsData);
       })
     );
   };

@@ -67,6 +67,5 @@ export {
   savedNews,
   deleteNewsCard,
   addNewsCardSaved,
-  removeNewsCardSved,
-  APIkey,
+  removeNewsCardSved,  
 };
