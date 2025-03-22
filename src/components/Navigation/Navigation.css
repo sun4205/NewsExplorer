@@ -19,7 +19,7 @@
   content: "";
   position: absolute;
   left: 50%;
-  bottom: -28px;
+  bottom: -20px;
   width: 0;
   height: 3px;
   background-color: white;
@@ -120,7 +120,7 @@
   content: "";
   position: absolute;
   left: 50%;
-  bottom: -26px;
+  bottom: -29px;
   width: 0;
   height: 3px;
   background-color: white;
@@ -158,11 +158,11 @@
   display: flex;
   width: 112px;
   height: 48px;
-  padding: 12px 19px;
+  padding: 12px;
   justify-content: center;
   align-items: center;
-  border-radius: 30%;
-  border: 1px solid #d1d2d6;
+  border-radius: 50px;
+  border: 2px solid #d1d2d6;
   color: white;
   font-weight: 700;
   font-size: 18px;
@@ -170,6 +170,8 @@
   letter-spacing: 0;
   cursor: pointer;
   position: relative;
+  background-color: transparent;
+  background: none;
 }
 
 .navigation__username::after {
@@ -192,6 +194,8 @@
   color: #1a1b22;
   background: none;
   border: none;
+  border-radius: 50px;
+  border: 2px solid #1a1b22;
 }
 .navigation__username.font-black::after {
   content: "";
@@ -212,8 +216,20 @@
 .navigation__logout {
   width: 24px;
   height: 24px;
-  width: 100%;
   background-color: transparent;
   margin-left: 12px;
-  color: #b6bcbf;
+  border: none;
+  border: none;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+
+.navigation__logout.logout-black {
+  background-image: url("../../images/logoutblack.svg");
+}
+
+.navigation__logout.logout-white {
+  background-image: url("../../images/logout.svg");
 }
