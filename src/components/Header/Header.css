@@ -13,10 +13,9 @@
 }
 
 .header__container.no-background {
-  background-image: none; 
+  background-image: none;
   height: 80px;
 }
-
 
 .header {
   height: 80px;
@@ -31,12 +30,10 @@
 
 .header.no-background {
   background-color: white;
-  
 }
 
 .header__logo {
-  width: 85px;
-  height: 50px;
+  width: 200px;
+  height: 24px;
   background-color: transparent;
-  display: block;
 }

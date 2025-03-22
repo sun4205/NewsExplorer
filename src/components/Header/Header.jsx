@@ -1,5 +1,6 @@
 import "./Header.css";
-import logo from "../../images/logo.jpg";
+import NewsExplorer from "../../images/NewsExplorer.svg";
+import NewsExplorerblack from "../../images/NewsExplorerblack.svg";
 import { useLocation } from "react-router-dom";
 import SearchComponent from "../SearchComponent/SearchComponent";
 
@@ -22,7 +23,7 @@ function Header({
       className={`header__container ${savedNewsPage ? "no-background" : ""}`}
     >
       <header className={`header ${savedNewsPage ? "no-background" : ""}`}>
-        <img src={logo} alt={logo} className="header__logo" />
+        <img src={savedNewsPage ? NewsExplorerblack : NewsExplorer} />
         <Navigation
           openLoginModal={openLoginModal}
           handleLogOut={handleLogOut}
