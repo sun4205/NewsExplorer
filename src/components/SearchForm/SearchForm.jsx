@@ -37,7 +37,7 @@ function SearchForm({ handleSearchSubmit,query,setQuery }) {
             onChange = {handleInputChange}
           ></input>
         </label>
-        <button type="button" onClick={handleSubmit} className="searchForm__btn"></button>
+        <button type="button" onClick={handleSubmit} className="searchForm__btn">Search</button>
       </div>
     </div>
   );

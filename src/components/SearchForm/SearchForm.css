@@ -31,6 +31,9 @@
     display: flex;
     position: relative;
     align-items: center;
+    justify-content: space-between;
+    background-color:white;    
+    border-radius:50px;
     
 }
 
@@ -38,31 +41,33 @@ input {
     padding-left: 20px;
 }
 
-.searchForm__input{
-    background-image: url("../../images/Rectangle.svg");    
+.searchForm__input{  
     background-color: white;
     border: none;    
-    width: 608px;
-    height: 64px;    
+    width: 440px;   
     background-color: transparent;    
     box-sizing: border-box;
+    height:64px;
+    display:block;
     
 }
 
 .searchForm__btn{
-    background-image: url('../../images/button.svg');
-    width: 179px;
-    height: 64px;
+    background-color:#2f71e5;
+    width: 168px;
+    height:100%;
     border: none;
     background-size: cover;
     background-repeat: no-repeat; 
     background-position: center;
     outline: none;
-    background-color: transparent; 
-    position:absolute;
-    right:-12px;
-    top:3px;
+    padding:14px;   
     box-sizing: border-box;
-    padding: 0;
+    color:white;
+    border-radius:50px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0;
     
 }
