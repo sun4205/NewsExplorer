@@ -91,7 +91,9 @@ function App() {
           setJwt(data.token);
           setIsLoggedIn(true);
           console.log("Login successful!.");
-          getUserInformation(data.token).then(() => {
+          getUserInformation(data.token).then((userInfo) => {
+            setCurrentUser(userInfo);
+            console.log("User info updated:", userInfo);
             const redirectPath = location.state?.from?.pathname || "/";
             navigate(redirectPath);
             closeActiveModal();
@@ -112,7 +114,10 @@ function App() {
       return;
     }
 
-    getUserInformation(jwtFromStorage);
+    getUserInformation(jwtFromStorage).then((userInfo) => {
+      setCurrentUser(userInfo);
+      console.log("userInfo", userInfo);
+    });
   }, [jwt]);
 
   const handleLogOut = () => {
@@ -133,9 +138,14 @@ function App() {
 
           .addNewsCardSaved(id, token)
           .then((updatedData) => {
-            setNewsItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedData : item))
-            );
+            setNewsItems((cards) => {
+              if (Array.isArray(cards)) {
+                return cards.map((item) =>
+                  item._id === id ? updatedData : item
+                );
+              }
+              return [];
+            });
           })
           .catch((err) => console.log(err))
       : api
@@ -145,13 +155,23 @@ function App() {
             setNewsItems((cards) =>
               cards.map((item) => (item._id === id ? updatedData : item))
             );
+            setNewsItems((cards) => {
+              if (Array.isArray(cards)) {
+                return cards.map((item) =>
+                  item._id === id ? updatedData : item
+                );
+              }
+              return [];
+            });
           })
           .catch((err) => console.log(err));
   };
 
   const handleSearchSubmit = (values) => {
     console.log("handleSearchSubmit called with:", values);
-    if (values.query.length < 3) return; 
+    if (values.query.length < 3) return;
+
+    localStorage.setItem("query", values.query);
     asyncSubmit(() =>
       newsapi.getNewsCards(values.query).then((newsData) => {
         console.log("Fetched news data:", newsData);
@@ -184,6 +204,26 @@ function App() {
       .catch(console.error);
   }, [query]);
 
+  useEffect(() => {
+    if (newsItems.length > 0) {
+      localStorage.setItem("newsItems", JSON.stringify(newsItems));
+    }
+  }, [newsItems]);
+
+  useEffect(() => {
+    const savedNewsItems = JSON.parse(localStorage.getItem("newsItems"));
+    if (savedNewsItems) {
+      setNewsItems(savedNewsItems);
+    }
+  }, []);
+
+  useEffect(() => {
+    const savedQuary = localStorage.getItem("query");
+    if (savedQuary) {
+      setQuery(savedQuary);
+    }
+  }, []);
+
   return (
     <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
       <div className="page">
@@ -203,7 +243,11 @@ function App() {
               element={
                 <>
                   {isLoading && <Preloader />}
-                  <Main newsData={newsData} newsItems={newsItems} />
+                  <Main
+                    newsData={newsData}
+                    newsItems={newsItems}
+                    handleNewsSaved={handleNewsSaved}
+                  />
                 </>
               }
             />
