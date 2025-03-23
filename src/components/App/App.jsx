@@ -198,8 +198,10 @@ function App() {
           const filterData = newsapi.filteredNewsData(data);
           console.log("Filtered data:", filterData);
           setNewsData(filterData);
+          console.log('news response', filterData);
         } else {
           setNewsItems(data);
+          console.log('news response', data);
         }
       })
       .catch(console.error);

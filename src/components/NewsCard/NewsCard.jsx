@@ -24,6 +24,7 @@ function NewsCard({ data, handleNewsSaved }) {
       : false;
 
   const handleNewsClick = () => {
+    console.log("News ID:", data._id);
     handleNewsSaved({ id: data._id, saved: data.saved });
   };
   return (
