@@ -54,14 +54,15 @@ input {
     width: 179px;
     height: 64px;
     border: none;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat; 
     background-position: center;
     outline: none;
     background-color: transparent; 
     position:absolute;
-    right:0;
-    top:0;
+    right:-12px;
+    top:3px;
     box-sizing: border-box;
+    padding: 0;
     
 }

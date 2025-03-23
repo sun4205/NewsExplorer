@@ -14,10 +14,11 @@
 }
 
 .card__image {
-  width: 400px;
   height: 272px;
   width: 100%;
   border: none;
+  object-fit: cover;
+  object-position: center;
   border-radius: 20px 20px 0 0;
 }
 
@@ -25,7 +26,7 @@
   border: none;
   position: absolute;
   cursor: pointer;
-  top: 37px;
+  top: 12px;
   right: 9px;
   background-color: transparent;
   z-index: 1;

@@ -84,7 +84,7 @@
   content: "";
   position: absolute;
   left: 50%;
-  bottom: -10px;
+  bottom: -20px;
   width: 0;
   height: 3px;
   background-color: white;
@@ -93,7 +93,7 @@
 }
 
 .navigation__signIn-btn:hover::after {
-  width: 75px;
+  width: 160px;
 }
 
 .navigation__loggedIn-control {
