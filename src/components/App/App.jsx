@@ -16,6 +16,7 @@ import SearchComponent from "../SearchComponent/SearchComponent";
 import SavedArticles from "../SavedArticles/SavedArticles";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import SearchForm from "../SearchForm/SearchForm";
+import About from '../About/About';
 
 function App() {
   const [query, setQuery] = useState("");
@@ -114,7 +115,7 @@ function App() {
       return;
     }
 
-    getUserInformation(jwtFromStorage).then((userInfo) => {
+    auth.getUserInfo(jwtFromStorage).then((userInfo) => {
       setCurrentUser(userInfo);
       console.log("userInfo", userInfo);
     });
@@ -243,11 +244,13 @@ function App() {
               element={
                 <>
                   {isLoading && <Preloader />}
-                  <Main
+                  {query && (
+                    <Main
                     newsData={newsData}
                     newsItems={newsItems}
                     handleNewsSaved={handleNewsSaved}
                   />
+                  )}
                 </>
               }
             />
@@ -261,6 +264,7 @@ function App() {
             />
           </Routes>
         </div>
+        <About />
         <Footer />
       </div>
 
