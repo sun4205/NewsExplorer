@@ -1,6 +1,5 @@
 import "./Main.css";
 import NewsCard from "../NewsCard/NewsCard";
-import About from "../About/About";
 import ShowMore from "../ShowMore/ShowMore";
 import { useState } from "react";
 
@@ -9,16 +8,18 @@ function Main({ newsData, newsItems, handleNewsSaved }) {
   console.log("newsItems in Main:", newsItems);
 
   const handleShowMore = () => {
-    setRenderedCards((prev)=> Math.min(prev + 3, 9));
-  }
+    setRenderedCards((prev) => Math.min(prev + 3, 9));
+  };
+
+  const articles = newsItems?.articles || [];
   return (
     <main className="main">
       <h2 className="main__title">Search results</h2>
       <section className="main__cards">
         <ul className="main__cards-list">
-          {Array.isArray(newsItems.articles) &&
-          newsItems.articles.length > 0 ? (
-            newsItems.articles
+          {Array.isArray(articles) &&
+          articles.length > 0 ? (
+            articles
               .slice(0, renderedCards)
               .map((item, index) => (
                 <NewsCard
@@ -31,10 +32,9 @@ function Main({ newsData, newsItems, handleNewsSaved }) {
             <p>Nothing found</p>
           )}
         </ul>
-        {renderedCards < 9 && renderedCards < newsItems.articles.length && (
+        {renderedCards < 9 && renderedCards < articles.length && (
           <ShowMore onClick={handleShowMore} />
         )}
-        <About />
       </section>
     </main>
   );
