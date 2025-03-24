@@ -22,6 +22,11 @@ function LoginModal({
 
   const isFilled = values.email.trim() !== "" || values.password.trim() !== "";
 
+  // const handleEmailError = (event) => {
+  //   const { name, value } = event.target;
+        
+  // };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted with values:", values);
@@ -62,6 +67,7 @@ function LoginModal({
           placeholder="Enter Email"
           value={values.email}
           onChange={handleChange}
+          // onBlur={handleBlur} 
         />
       </label>
 
@@ -75,6 +81,7 @@ function LoginModal({
           placeholder="Enter Password"
           value={values.password}
           onChange={handleChange}
+          // onBlur={handleBlur} 
         />
       </label>
     </ModalWithForm>
