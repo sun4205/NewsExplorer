@@ -1,0 +1,17 @@
+.signup-text {
+    outline: none;
+    border: none;
+  }
+
+.or-text {
+    outline: none;
+    border: none;
+}
+
+.error-text {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100;
+  color:#ff0000;
+  display: block;
+}

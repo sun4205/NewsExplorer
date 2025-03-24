@@ -17,6 +17,7 @@ import SavedArticles from "../SavedArticles/SavedArticles";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import SearchForm from "../SearchForm/SearchForm";
 import About from '../About/About';
+import RegisterMessage from "../RegisterMessage/RegisterMessage";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -270,18 +271,24 @@ function App() {
         <Footer />
       </div>
 
-      <LoginModal
+      {activeModal === "login" && (<LoginModal
         activeModal={activeModal}
         closeActiveModal={closeActiveModal}
         handleLogin={handleLogin}
         setActiveModal={setActiveModal}
-      />
-      <RegisterModal
+      />)}
+        {activeModal === "register" && (<RegisterModal
         activeModal={activeModal}
         closeActiveModal={closeActiveModal}
         handleRegisterSubmit={handleRegisterSubmit}
         setActiveModal={setActiveModal}
-      />
+      />)}
+       {activeModal === "registerSuccess" && (
+        <RegisterMessage
+          closeActiveModal={closeActiveModal}
+          setActiveModal={setActiveModal}
+        />
+      )}
     </CurrentUserContext.Provider>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import "./LoginModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import useEscapeKey from "../../hooks/useEscapeKey";
 import { useForm } from "../../hooks/useForm";
 
 function LoginModal({
@@ -11,6 +12,9 @@ function LoginModal({
   setActiveModal,
   modalRef,
 }) {
+
+  
+
   const { values, handleChange } = useForm({
     email: "",
     password: "",
@@ -27,6 +31,8 @@ function LoginModal({
     });
     closeActiveModal();
   };
+
+  useEscapeKey(!!activeModal, closeActiveModal, modalRef);
   return (
     <ModalWithForm
       isOpen={activeModal === "login"}
@@ -42,8 +48,9 @@ function LoginModal({
       onSubmit={handleSubmit}
       modalRef={modalRef}
       closeActiveModal={closeActiveModal}
-      customClass="modal__signUp"
+     
       isFilled={isFilled}
+      ref={modalRef}
     >
       <label htmlFor="email" className="modal__label">
         Email
