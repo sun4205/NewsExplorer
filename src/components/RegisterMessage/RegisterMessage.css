@@ -1,0 +1,25 @@
+.modal__register_msg {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  z-index: 10;
+  height: 182px;
+}
+
+.modal__register_title {
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: black;
+}
+
+.modal__register_btn {
+  border: none;
+  width: 66px;
+  padding: 5px 0;
+  cursor: pointer;
+  text-align: center;
+  display: inline-block;
+  background-color: transparent;
+}

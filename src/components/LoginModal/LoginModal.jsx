@@ -25,6 +25,7 @@ function LoginModal({
       email: values.email,
       password: values.password,
     });
+    closeActiveModal();
   };
   return (
     <ModalWithForm

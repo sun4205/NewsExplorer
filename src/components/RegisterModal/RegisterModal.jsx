@@ -1,6 +1,7 @@
 import "./RegisterModal.css";
-import React, { useRef } from "react";
+import React, { useRef, useState} from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import RegisterMessage from "../RegisterMessage/RegisterMessage";
 import { useForm } from "../../hooks/useForm";
 
 function RegisterModal({
@@ -17,6 +18,8 @@ function RegisterModal({
     username: "",
   });
 
+  const [isSuccess, setIsSuccess] = useState(false);
+
   const isFilled = values.email.trim() !== "" || values.password.trim() !== "";
 
   const handleSubmit = (e) => {
@@ -27,11 +30,15 @@ function RegisterModal({
       password: values.password,
       username: values.username,
     });
+    setIsSuccess(true);
   };
   return (
+    <> {isSuccess ?(
+      <RegisterMessage closeActiveModal={closeActiveModal} setActiveModal={setActiveModal}/>
+    ) : (
     <ModalWithForm
       isOpen={activeModal === "register"}
-      title="Sign Up"
+      title={isSuccess ? "Registration Successfully Completed" : "Sign Up"}
       secondaryButtonText={
         <>
           <span className="or-text">or</span>{" "}
@@ -46,7 +53,8 @@ function RegisterModal({
       customClass="modal__signIn"
       isFilled={isFilled}
     >
-      <label htmlFor="email" className="modal__label">
+      
+         <label htmlFor="email" className="modal__label">
         Email
         <input
           type="email"
@@ -85,6 +93,8 @@ function RegisterModal({
         />
       </label>
     </ModalWithForm>
+    )}
+    </>
   );
 }
 
