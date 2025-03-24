@@ -246,12 +246,13 @@ function App() {
               path="/"
               element={
                 <>
-                  {isLoading && <Preloader />}
+                 
                   {query && (
                     <Main
                     newsData={newsData}
                     newsItems={newsItems}
                     handleNewsSaved={handleNewsSaved}
+                    isLoading={isLoading}
                   />
                   )}
                 </>
