@@ -22,10 +22,8 @@ function ModalWithForm({
 }) {
   const modalRef = useRef(null);
   useEscapeKey(!!activeModal, closeActiveModal, modalRef);
-  console.log("Modal Title:", title); 
 
   return (
-    
     <div className={`modal ${isOpen ? "modal_opened" : ""}`} ref={modalRef}>
       <div className="modal__content">
         <h2 className="modal__title">{title}</h2>
@@ -48,7 +46,6 @@ function ModalWithForm({
                 isFilled ? "modal__submit--filled" : "modal__submit--empty"
               }`}
             >
-              {console.log("Button Title Check:", title)}
               {title === "Sign in" ? "Sign in" : "Sign up"}
             </button>
             {secondaryButtonText && (
