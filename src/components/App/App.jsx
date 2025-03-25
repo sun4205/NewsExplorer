@@ -235,8 +235,7 @@ function App() {
           handleSearchSubmit={handleSearchSubmit}
           query={query}
           setQuery={setQuery}
-          openLoginModal={openLoginModal}
-          isLoading={isLoading}
+          openLoginModal={openLoginModal}         
           handleLogOut={handleLogOut}
         />
 

@@ -1,3 +1,13 @@
+.preloader__container{  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #f5f6f7;
+  position: relative;
+  height: 24px;
+}
+
 .circle-preloader {
     display: block;
     width: 50px;
@@ -18,4 +28,13 @@
     100% {
       transform: rotate(360deg);
     }
+  }
+
+  .preloader__paragraph {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0;
+    color:#B6BCBF;
+    margin-top: 24px;
   }

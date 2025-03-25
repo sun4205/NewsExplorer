@@ -21,22 +21,31 @@ function RegisterModal({
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorEmail, setErrorEmail] = useState("");
 
-  const isFilled = values.email.trim() !== "" || values.password.trim() !== "";
+  const isFilled = values.email.trim() !== "" && values.password.trim() !== "";
+
+  const handleEmailError = (email) => {
+    const checkValid = isValidEmail(email);
+    if (!checkValid) {
+      setErrorEmail("Invalid email address");
+    } else {
+      setErrorEmail("");
+    }
+  };
 
   const isValidEmail = (email) => {
     const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     return regex.test(email);
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted with values:", values);
 
-    if(!isValidEmail(values.email)){
+    if (!isValidEmail(values.email)) {
       setErrorEmail("Invalid email address");
       console.log("Email error:", errorEmail);
       return;
-    }else{
+    } else {
       setErrorEmail("");
     }
 
@@ -88,10 +97,11 @@ function RegisterModal({
               id="email"
               name="email"
               placeholder="Enter Email"
-              value={values.email}
+              value={values.email || ""}
               onChange={handleChange}
+              onBlur={(e) => handleEmailError(e.target.value)}
             />
-             {errorEmail && <span className="error-text">{errorEmail}</span>}
+            {errorEmail && <span className="error-text">{errorEmail}</span>}
           </label>
 
           <label htmlFor="password" className="modal__label">
@@ -103,7 +113,7 @@ function RegisterModal({
               name="password"
               placeholder="Enter Password"
               value={values.password}
-              onChange={handleChange}
+              onChange={handleChange}             
             />
           </label>
 

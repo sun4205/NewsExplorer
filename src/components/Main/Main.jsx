@@ -15,13 +15,16 @@ function Main({ isLoading, newsData, newsItems, handleNewsSaved }) {
 
   const articles = newsItems?.articles || [];
 
-  if (isLoading) {
-    return <Preloader />;
-  }
+  // if (isLoading) {
+  //   return <Preloader />;
+  // }
+
+  
 
   return (
     
-    <main className="main">      
+    <main className="main">   
+    <Preloader />   
       <h2 className="main__title">Search results</h2>      
       <section className="main__cards">
         <ul className="main__cards-list">
