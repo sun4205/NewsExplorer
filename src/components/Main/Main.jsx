@@ -4,7 +4,6 @@ import ShowMore from "../ShowMore/ShowMore";
 import Preloader from "../Preloader/Preloader";
 import { useState } from "react";
 
-
 function Main({ isLoading, newsData, newsItems, handleNewsSaved }) {
   const [renderedCards, setRenderedCards] = useState(3);
   console.log("newsItems in Main:", newsItems);
@@ -15,43 +14,37 @@ function Main({ isLoading, newsData, newsItems, handleNewsSaved }) {
 
   const articles = newsItems?.articles || [];
 
-  // if (isLoading) {
-  //   return <Preloader />;
-  // }
-
-  
-
   return (
-    
-    <main className="main">   
-    <Preloader />   
-      <h2 className="main__title">Search results</h2>      
-      <section className="main__cards">
-        <ul className="main__cards-list">
-          {Array.isArray(articles) &&
-          articles.length > 0 ? (
-            articles
-              .slice(0, renderedCards)
-              .map((item, index) => (
-                <NewsCard
-                  key={index}
-                  data={item}
-                  handleNewsSaved={handleNewsSaved}
-                />
-              ))
-          ) : (
-            <p>Nothing found</p>
-          )}
-        </ul>
-        {renderedCards < 9 && renderedCards < articles.length && (
-          <ShowMore onClick={handleShowMore} />
-        )}
-      </section>
-     
+    <main className="main">
+      {isLoading ? (
+        <Preloader />
+      ) : (
+        <>
+          <h2 className="main__title">Search results</h2>
+          <section className="main__cards">
+            <ul className="main__cards-list">
+              {Array.isArray(articles) && articles.length > 0 ? (
+                articles
+                  .slice(0, renderedCards)
+                  .map((item, index) => (
+                    <NewsCard
+                      key={index}
+                      data={item}
+                      handleNewsSaved={handleNewsSaved}
+                    />
+                  ))
+              ) : (
+                <p>Nothing found</p>
+              )}
+            </ul>
+            {renderedCards < 9 && renderedCards < articles.length && (
+              <ShowMore onClick={handleShowMore} />
+            )}
+          </section>
+        </>
+      )}
     </main>
-    
-  )
-  
+  );
 }
 
 export default Main;
