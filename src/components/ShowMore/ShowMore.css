@@ -6,7 +6,7 @@
 }
 
 .showmore__btn {
-  background-image: url("../../images/showmore.svg");
+  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,11 +19,18 @@
   padding: 0;
   display: block;
   font-size: 18px;
-  background-color: white;
+  background-color: #ffffff;
   border-radius: 50px;
   font-weight: 500;
   line-height: 24px;
   letter-spacing: 0;
   margin : 0 auto;
+  margin-top: 56px;
   
+}
+
+.showmore__btn:hover{
+  background-color: #e8e8e8;
+  color:#1a1b22;
+  cursor: pointer;
 }
