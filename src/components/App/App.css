@@ -5,6 +5,7 @@
 body,
 div {
   user-select: none;
+  overflow-x: hidden;
 }
 
 img {
@@ -34,4 +35,16 @@ img {
   min-height: 100vh;
   display: flex;  
   width: 100%;
+}
+
+
+@media screen and (max-width: 768px) {
+
+
+}
+
+
+@media screen and (max-width: 320px) {
+
+
 }

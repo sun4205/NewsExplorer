@@ -156,3 +156,19 @@ button {
   line-height: 100;
   color:#ff0000;
 }
+
+
+
+@media screen and (max-width: 768px) {
+.modal__content{
+  max-width: 430px;
+  padding:34px 36px 28px 36px;
+}
+
+}
+
+
+@media screen and (max-width: 320px) {
+
+
+}

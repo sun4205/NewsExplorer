@@ -48,6 +48,7 @@ input {
     background-color: transparent;    
     box-sizing: border-box;
     height:64px;
+    border-radius: 50px;
     display:block;
     
 }
@@ -70,4 +71,49 @@ input {
     line-height: 24px;
     letter-spacing: 0;
     
+}
+
+
+@media screen and (max-width: 768px) {
+ 
+}
+
+@media screen and (max-width: 320px) {
+
+.searchForm__container{    
+    padding:30px 16px 0 16px;
+}
+
+.searchForm__title {
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 40px;
+    letter-spacing: 0;
+}
+
+.searchForm__description {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0;
+}
+
+  
+.searchForm__input{       
+    width: 288px; 
+        
+   
+   
+}
+
+.searchForm__btn{
+    width: 288px;     
+       
+}
+
+.searchForm__controls{
+    display: flex;
+    flex-direction: column;
+}
+
 }
