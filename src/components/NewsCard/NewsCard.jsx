@@ -18,14 +18,17 @@ function NewsCard({ data, handleNewsSaved }) {
   });
   console.log("Received data:", data);
 
+  const articleId = data._id || encodeURIComponent(data.url);
+
   const isSaved =
     currentUser && Array.isArray(data.saved)
       ? data.saved.includes(currentUser._id)
       : false;
 
   const handleNewsClick = () => {
-    console.log("News ID:", data._id);
-    handleNewsSaved({ id: data._id, saved: data.saved });
+    console.log(" handleNewsClick clicked"); 
+    console.log("News ID:", articleId);   
+    handleNewsSaved({ id: articleId, saved: data.saved });
   };
   return (
     <li className="card">
@@ -36,19 +39,27 @@ function NewsCard({ data, handleNewsSaved }) {
             onClick={handleNewsClick}
             className={`card__save-btn ${isSaved ? "saved" : ""}`}
           >
+          <div className="card__save-btn-content">
             <img
               src={isSaved ? savedBlue : savebtn}
               className="card__savebtn-img"
               alt="save button"
             />
+              {!currentUser && (
+      <span className="card__sign-in-text">Sign in to save articles</span>
+    )}
+             </div>
           </button>
         ) : (
           <button className="card__save-btn">
+            <div className="card__save-btn-content">
             <img
               src={savebtn}
               className="card__savebtn-img"
               alt="save button"
             />
+            <span className="card__sign-in-text">Sign in to save articles</span>
+            </div>
           </button>
         )}
       </div>
