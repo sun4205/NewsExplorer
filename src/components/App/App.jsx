@@ -135,7 +135,7 @@ function App() {
   function generateUniqueId(data) {
     console.log("Full Article:", data)
     const title = data?.source?.name || "no-title";
-  const date = data?.publishedAt || "no-date";
+    const date = data?.publishedAt ? new Date(data.publishedAt).toISOString() : "no-date"; 
     return encodeURIComponent(`${title}-${date}`);
   }
 

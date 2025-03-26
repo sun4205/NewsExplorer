@@ -41,14 +41,14 @@ const deleteNewsCard = (_id) => {
 function generateUniqueId(data) {
   console.log("Full Article:", data)
   const title = data?.source?.name || "no-title";
-  const date = data?.publishedAt || "no-date";
+  const date = data?.publishedAt ? new Date(data.publishedAt).toISOString() : "no-date"; 
   return encodeURIComponent(`${title}-${date}`);
 }
 
 const addNewsCardSaved = (data, token) => {
   console.log("Article object:", data);
   console.log("Article Title:", data.title);
-  console.log("Article Date:", data.date);
+  console.log("Article Date:", data.publishedAt); 
   const articleId = data.id || generateUniqueId(data);
   console.log("Card ID:", articleId); 
  
@@ -58,7 +58,7 @@ const addNewsCardSaved = (data, token) => {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ id: articleId }),
+    body: JSON.stringify({ id: articleId, publishedAt: data.publishedAt }),
   })
   .then((res) => {
     if (!res.ok) {
