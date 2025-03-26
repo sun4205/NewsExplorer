@@ -16,7 +16,7 @@ import SearchComponent from "../SearchComponent/SearchComponent";
 import SavedArticles from "../SavedArticles/SavedArticles";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import SearchForm from "../SearchForm/SearchForm";
-import About from '../About/About';
+import About from "../About/About";
 import RegisterMessage from "../RegisterMessage/RegisterMessage";
 
 function App() {
@@ -132,39 +132,38 @@ function App() {
     console.log("User logged out successfully.");
   };
 
-  const handleNewsSaved = ({ id, saved }) => {
-    const token = localStorage.getItem("jwt");
+  function generateUniqueId(data) {
+    console.log("Full Article:", data)
+    const title = data.source.name || "no-title";
+  const date = data.publishedAt || "no-date";
+    return encodeURIComponent(`${title}-${date}`);
+  }
 
+  const handleNewsSaved = ({ data }) => {
+    const token = localStorage.getItem("jwt");
+    const articleId = data.id || generateUniqueId({data });
+
+    const saved = data.saved;
     !saved
       ? api
 
-          .addNewsCardSaved(id, token)
+          .addNewsCardSaved(data, token)
           .then((updatedData) => {
-            setNewsItems((cards) => {
-              if (Array.isArray(cards)) {
-                return cards.map((item) =>
-                  item._id === id ? updatedData : item
-                );
-              }
-              return [];
-            });
+            setNewsItems((cards) =>
+              cards.map((item) => (item._id === articleId ? updatedData : item))
+            );
           })
           .catch((err) => console.log(err))
       : api
 
-          .removeCardLike(id, token)
+          .removeCardLike(articleId, token)
           .then((updatedData) => {
             setNewsItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedData : item))
+              cards.map((item) => (item._id === articleId ? updatedData : item))
             );
-            setNewsItems((cards) => {
-              if (Array.isArray(cards)) {
-                return cards.map((item) =>
-                  item._id === id ? updatedData : item
-                );
-              }
-              return [];
-            });
+            setNewsItems((cards) =>
+              cards.map((item) => (item._id === articleId ? updatedData : item))
+            );
           })
           .catch((err) => console.log(err));
   };
@@ -199,10 +198,10 @@ function App() {
           const filterData = newsapi.filteredNewsData(data);
           console.log("Filtered data:", filterData);
           setNewsData(filterData);
-          console.log('news response', filterData);
+          console.log("news response", filterData);
         } else {
           setNewsItems(data);
-          console.log('news response', data);
+          console.log("news response", data);
         }
       })
       .catch(console.error);
@@ -235,7 +234,7 @@ function App() {
           handleSearchSubmit={handleSearchSubmit}
           query={query}
           setQuery={setQuery}
-          openLoginModal={openLoginModal}         
+          openLoginModal={openLoginModal}
           handleLogOut={handleLogOut}
         />
 
@@ -245,14 +244,13 @@ function App() {
               path="/"
               element={
                 <>
-                 
                   {query && (
                     <Main
-                    newsData={newsData}
-                    newsItems={newsItems}
-                    handleNewsSaved={handleNewsSaved}
-                    isLoading={isLoading}
-                  />
+                      newsData={newsData}
+                      newsItems={newsItems}
+                      handleNewsSaved={handleNewsSaved}
+                      isLoading={isLoading}
+                    />
                   )}
                 </>
               }
@@ -267,23 +265,27 @@ function App() {
             />
           </Routes>
         </div>
-        <About />
+        {!isLoggedIn && <About />}
         <Footer />
       </div>
 
-      {activeModal === "login" && (<LoginModal
-        activeModal={activeModal}
-        closeActiveModal={closeActiveModal}
-        handleLogin={handleLogin}
-        setActiveModal={setActiveModal}
-      />)}
-        {activeModal === "register" && (<RegisterModal
-        activeModal={activeModal}
-        closeActiveModal={closeActiveModal}
-        handleRegisterSubmit={handleRegisterSubmit}
-        setActiveModal={setActiveModal}
-      />)}
-       {activeModal === "registerSuccess" && (
+      {activeModal === "login" && (
+        <LoginModal
+          activeModal={activeModal}
+          closeActiveModal={closeActiveModal}
+          handleLogin={handleLogin}
+          setActiveModal={setActiveModal}
+        />
+      )}
+      {activeModal === "register" && (
+        <RegisterModal
+          activeModal={activeModal}
+          closeActiveModal={closeActiveModal}
+          handleRegisterSubmit={handleRegisterSubmit}
+          setActiveModal={setActiveModal}
+        />
+      )}
+      {activeModal === "registerSuccess" && (
         <RegisterMessage
           closeActiveModal={closeActiveModal}
           setActiveModal={setActiveModal}

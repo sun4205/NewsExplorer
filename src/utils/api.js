@@ -1,3 +1,4 @@
+
 const baseUrl = "http://localhost:3001";
 
 function checkResponse(res) {
@@ -35,19 +36,29 @@ const deleteNewsCard = (_id) => {
       "Content-Type": "application/json",
     },
   });
-};
 
-const addNewsCardSaved = (id, token) => {
-  console.log("Card ID:", id);
-  return fetch(`${baseUrl}/saveNews/${id}`, {
+};
+function generateUniqueId(data) {
+  console.log("Full Article:", data)
+  const title = data.source?.name || "no-title";
+  const date = data.publishedAt || "no-date";
+  return encodeURIComponent(`${title}-${date}`);
+}
+
+const addNewsCardSaved = (data, token) => {
+  console.log("Article object:", data);
+  console.log("Article Title:", data.title);
+  console.log("Article Date:", data.date);
+  const articleId = article.id || generateUniqueId(data);
+  console.log("Card ID:", articleId); 
+ 
+  return fetch(`${baseUrl}/saveNews/${articleId}`, {
     method: "PUT",
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      id, 
-    }),
+    body: JSON.stringify({ id: articleId }),
   })
   .then((res) => {
     if (!res.ok) {

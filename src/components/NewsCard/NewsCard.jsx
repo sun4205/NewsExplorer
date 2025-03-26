@@ -28,7 +28,7 @@ function NewsCard({ data, handleNewsSaved }) {
   const handleNewsClick = () => {
     console.log(" handleNewsClick clicked"); 
     console.log("News ID:", articleId);   
-    handleNewsSaved({ id: articleId, saved: data.saved });
+    handleNewsSaved({ data});
   };
   return (
     <li className="card">
