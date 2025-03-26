@@ -10,7 +10,7 @@ function request(url, options) {
 
 function savedNews({ source, title, date, description, image }) {
   const token = localStorage.getItem("jwt");
-  return request(`${baseUrl}/savedNews`, {
+  return request(`${baseUrl}/saveNews`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -28,7 +28,7 @@ function savedNews({ source, title, date, description, image }) {
 
 const deleteNewsCard = (_id) => {
   console.log("Deleting NewsCard with _id:", _id);
-  return request(`${baseUrl}/savedNews/${_id}`, {
+  return request(`${baseUrl}/saveNews/${_id}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -39,15 +39,26 @@ const deleteNewsCard = (_id) => {
 
 const addNewsCardSaved = (id, token) => {
   console.log("Card ID:", id);
-  return fetch(`${baseUrl}/saveNews/${id}/saved`, {
+  return fetch(`${baseUrl}/saveNews/${id}`, {
     method: "PUT",
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
+    body: JSON.stringify({
+      id, 
+    }),
   })
-    .then((res) => res.json())
-    .catch((err) => console.log(err));
+  .then((res) => {
+    if (!res.ok) {
+      throw new Error("Failed to save the article");
+    }
+    return res.json();
+  })
+  .catch((err) => {
+    console.error("Error saving article:", err);  
+    throw err;  
+  });
 };
 
 const removeNewsCardSved = (id, token) => {
@@ -67,5 +78,5 @@ export {
   savedNews,
   deleteNewsCard,
   addNewsCardSaved,
-  removeNewsCardSved,  
+  removeNewsCardSved,
 };

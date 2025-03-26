@@ -27,13 +27,16 @@ export const filteredNewsData = (data) => {
     console.error(" No articles found");
     return [];
   }
+
+  console.log('data',data);
   
   return data.articles.map((article)=>({
     source : article?.source?.name || "unknown source",
     title : article?.title || "no title",
     date : article?.publishedAt || " no date",
     description : article?.description || " no description",
-    image : article?.urlToImage || "no image"
+    image : article?.urlToImage || "no image",
+    _id: article.id
 
   }))
 };
