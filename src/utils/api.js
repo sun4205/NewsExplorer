@@ -40,8 +40,8 @@ const deleteNewsCard = (_id) => {
 };
 function generateUniqueId(data) {
   console.log("Full Article:", data)
-  const title = data.source?.name || "no-title";
-  const date = data.publishedAt || "no-date";
+  const title = data?.source?.name || "no-title";
+  const date = data?.publishedAt || "no-date";
   return encodeURIComponent(`${title}-${date}`);
 }
 
@@ -49,7 +49,7 @@ const addNewsCardSaved = (data, token) => {
   console.log("Article object:", data);
   console.log("Article Title:", data.title);
   console.log("Article Date:", data.date);
-  const articleId = article.id || generateUniqueId(data);
+  const articleId = data.id || generateUniqueId(data);
   console.log("Card ID:", articleId); 
  
   return fetch(`${baseUrl}/saveNews/${articleId}`, {

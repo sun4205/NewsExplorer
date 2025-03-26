@@ -12,10 +12,7 @@ function NewsCard({ data, handleNewsSaved }) {
     console.log("undefined data!");
     return null;
   }
-  const currentDate = new Date().toLocaleString("default", {
-    month: "long",
-    day: "numeric",
-  });
+  
   console.log("Received data:", data);
 
   const articleId = data._id || encodeURIComponent(data.url);
@@ -64,7 +61,7 @@ function NewsCard({ data, handleNewsSaved }) {
         )}
       </div>
       <div className="card__info">
-        <p className="card__date">{currentDate}</p>
+        <p className="card__date">{data.publishedAt}</p>
         <p className="card__title">{data.title}</p>
         <p className="card__description">{data.description}</p>
         <p className="card__source">{data.source.name}</p>

@@ -134,14 +134,14 @@ function App() {
 
   function generateUniqueId(data) {
     console.log("Full Article:", data)
-    const title = data.source.name || "no-title";
-  const date = data.publishedAt || "no-date";
+    const title = data?.source?.name || "no-title";
+  const date = data?.publishedAt || "no-date";
     return encodeURIComponent(`${title}-${date}`);
   }
 
   const handleNewsSaved = ({ data }) => {
     const token = localStorage.getItem("jwt");
-    const articleId = data.id || generateUniqueId({data });
+    const articleId = data.id || generateUniqueId(data);
 
     const saved = data.saved;
     !saved
@@ -265,7 +265,7 @@ function App() {
             />
           </Routes>
         </div>
-        {!isLoggedIn && <About />}
+        <About />
         <Footer />
       </div>
 

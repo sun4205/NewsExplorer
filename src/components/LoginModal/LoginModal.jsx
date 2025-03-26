@@ -22,8 +22,8 @@ function LoginModal({
 
   const isFilled = values.email.trim() !== "" || values.password.trim() !== "";
 
-  // const handleEmailError = (event) => {
-  //   const { name, value } = event.target;
+  //  const handleEmailError = (event) => {
+  //    const { name, value } = event.target;
         
   // };
 
@@ -67,7 +67,7 @@ function LoginModal({
           placeholder="Enter Email"
           value={values.email}
           onChange={handleChange}
-          // onBlur={handleBlur} 
+          //  onBlur={handleBlur} 
         />
       </label>
 
@@ -81,7 +81,7 @@ function LoginModal({
           placeholder="Enter Password"
           value={values.password}
           onChange={handleChange}
-          // onBlur={handleBlur} 
+          //  onBlur={handleBlur} 
         />
       </label>
     </ModalWithForm>
