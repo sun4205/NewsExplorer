@@ -19,3 +19,14 @@
     gap:20px;
     list-style-type: none;
 }
+
+
+@media screen and (max-width: 768px) {
+ 
+}
+
+@media screen and (max-width: 320px) {
+.main{
+    padding:32px 16px 16px 16px;
+}
+}

@@ -6,6 +6,7 @@ import { useState } from "react";
 
 function Main({ isLoading, newsData, newsItems, handleNewsSaved }) {
   const [renderedCards, setRenderedCards] = useState(3);
+  
   console.log("newsItems in Main:", newsItems);
 
   const handleShowMore = () => {
