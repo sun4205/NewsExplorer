@@ -2,6 +2,7 @@ import "./Header.css";
 import NewsExplorer from "../../images/NewsExplorer.svg";
 import NewsExplorerblack from "../../images/NewsExplorerblack.svg";
 import { useLocation } from "react-router-dom";
+import SearchForm from "../SearchForm/SearchForm";
 import SearchComponent from "../SearchComponent/SearchComponent";
 
 import Navigation from "../Navigation/Navigation";
@@ -29,8 +30,9 @@ function Header({
           handleLogOut={handleLogOut}
         />
       </header>
+
       {location.pathname === "/" && (
-        <SearchComponent
+        <SearchForm
           query={query}
           setQuery={setQuery}
           handleSearchSubmit={handleSearchSubmit}

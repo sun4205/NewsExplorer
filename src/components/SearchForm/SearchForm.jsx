@@ -1,22 +1,15 @@
-import { useEffect, useState } from "react";
 import "./SearchForm.css";
 
+function SearchForm({ handleSearchSubmit, query, setQuery }) {
+  const handleInputChange = (e) => {
+    setQuery(e.target.value);
+  };
 
-function SearchForm({ handleSearchSubmit,query,setQuery }) {
- 
-
- 
-    const handleInputChange = (e) => {
-        setQuery(e.target.value);
-        console.log("setquery:", e.target.value); 
-    }
-
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      if (query.trim() === "") return; 
-      handleSearchSubmit({query});
-    };
-  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (query.trim() === "") return;
+    handleSearchSubmit({ query });
+  };
 
   return (
     <div className="searchForm__container">
@@ -34,10 +27,16 @@ function SearchForm({ handleSearchSubmit,query,setQuery }) {
             name="search__input"
             placeholder="Enter Topic"
             value={query}
-            onChange = {handleInputChange}
+            onChange={handleInputChange}
           ></input>
         </label>
-        <button type="button" onClick={handleSubmit} className="searchForm__btn">Search</button>
+        <button
+          type="button"
+          onClick={handleSubmit}
+          className="searchForm__btn"
+        >
+          Search
+        </button>
       </div>
     </div>
   );
