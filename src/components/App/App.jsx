@@ -27,8 +27,6 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState("");
   const [newsItems, setNewsItems] = useState([]);
-  const [selectedCard, setSelectedCard] = useState({});
-  const [isRemoveItemModalOpen, setIsRemoveItemModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -123,18 +121,13 @@ function App() {
   const handleNewsSaved = ({ data }) => {
     const token = localStorage.getItem("jwt");
     const articleId = crypto.randomUUID();
-   
+
     const currentSavedArticles =
       JSON.parse(localStorage.getItem("savedArticles")) || [];
 
-    
-      if (currentSavedArticles.some(item => item.id === articleId)) {
-        console.log("This article is already saved.");
-        return;
-      }
     const { source, title, date, description, image } = data;
 
-    if (!data.saved) {
+    if (!data) {
       api
         .savedNews({ source, title, date, description, image })
         .then((updatedData) => {
@@ -210,8 +203,6 @@ function App() {
       setNewsItems({ ...data, articles: data.articles || [] });
     });
   }, [query]);
-
-  
 
   useEffect(() => {
     const storedSavedArticles =

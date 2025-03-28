@@ -17,17 +17,11 @@ function NewsCard({ data, handleNewsSaved, handleRemoveArticle }) {
   }
 
   console.log("Received data:", data);
-
+  const saved = currentUser?.saved || [];
   const articleId = crypto.randomUUID();
+  const isSaved = saved.includes(articleId);
 
-  const isSaved =
-    currentUser && Array.isArray(data.saved)
-      ? data.saved.includes(currentUser._id)
-      : false;
-
-  const handleNewsClick = () => {
-    console.log(" handleNewsClick clicked");
-    console.log("News ID:", articleId);
+  const handleSaveClick = () => {
     handleNewsSaved({ data });
   };
 
@@ -36,25 +30,42 @@ function NewsCard({ data, handleNewsSaved, handleRemoveArticle }) {
       <div className="card__image-control">
         <img className="card__image" src={data?.urlToImage} alt={data?.title} />
         {currentUser ? (
-        location.pathname === "/savedNews" ? (
-          <button onClick={() => handleRemoveArticle(data)} className="card__save-btn">
-            <img src={deletebtn} className="card__savebtn-img" alt="delete button" />
-          </button>
+          location.pathname === "/savedNews" ? (
+            <button
+              onClick={() => handleRemoveArticle(data)}
+              className="card__save-btn"
+            >
+              <img
+                src={deletebtn}
+                className="card__savebtn-img"
+                alt="delete button"
+              />
+            </button>
+          ) : (
+            <button onClick={handleSaveClick} className="card__save-btn">
+              <img
+                src={isSaved ? savedBlue : savebtn}
+                className="card__savebtn-img"
+                alt="save button"
+              />
+            </button>
+          )
         ) : (
-          <button onClick={handleNewsClick} className="card__save-btn">
-            <img src={isSaved ? savedBlue : savebtn} className="card__savebtn-img" alt="save button" />
+          <button className="card__save-btn">
+            <div className="card__save-btn-content">
+              <img
+                src={savebtn}
+                className="card__savebtn-img"
+                alt="save button"
+              />
+              <span className="card__sign-in-text">
+                Sign in to save articles
+              </span>
+            </div>
           </button>
-        )
-      ) : (
-        <button className="card__save-btn">
-          <div className="card__save-btn-content">
-            <img src={savebtn} className="card__savebtn-img" alt="save button" />
-            <span className="card__sign-in-text">Sign in to save articles</span>
-          </div>
-        </button>
-      )}
-    </div>
-    
+        )}
+      </div>
+
       <div className="card__info">
         <p className="card__date">{data?.publishedAt}</p>
         <p className="card__title">{data?.title}</p>

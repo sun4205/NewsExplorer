@@ -39,19 +39,22 @@
 }
 
 @media screen and (max-width: 768px) {
- 
+  .header__container {
+    max-width: 768px;
+    width: 100vw;
+  }
 }
 
 @media screen and (max-width: 320px) {
-  .header__container{
+  .header__container {
     max-width: 320px;
     width: 100%;
   }
-  
-   .header {
-     display: flex;
-     width:100%;
-     padding:16px;
-     justify-content: space-between;
-   }
+
+  .header {
+    display: flex;
+    width: 100%;
+    padding: 16px;
+    justify-content: space-between;
+  }
 }
