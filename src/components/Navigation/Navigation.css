@@ -1,8 +1,24 @@
+.navigation {
+  position: relative;
+}
+
+.navigation__mobile-menu {
+  display: none;
+  background-image: url("../../images/menu.svg");
+  background-color: white;
+  width: 100%;
+  width: 24px;
+  height: 24;
+  border: none;
+  cursor: pointer;
+}
+
 .navigation__nav {
   display: flex;
   margin-left: auto;
   gap: 24px;
   overflow: hidden;
+  padding: 0;
 }
 
 .navigation__home-btn {
@@ -237,3 +253,41 @@
   background-image: url("../../images/logout.svg");
 }
 
+@media screen and (max-width: 768px) {
+  .navigation__home-btn {
+    margin: 0;
+    padding: 0;
+  }
+
+  .navigation__savedArticle-nav {
+    margin-left: 0;
+    margin-right: 16px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .navigation__home-btn:not(.show-mobile) {
+    display: none;
+  }
+  .navigation__mobile-menu {
+    display: block;
+  }
+  .navigation__nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background: #1a1b22;
+    width: 320px;
+    border: none;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .navigation__nav.open {
+    display: flex;
+  }
+
+  .navigation__nav button {
+    display: block;
+  }
+}

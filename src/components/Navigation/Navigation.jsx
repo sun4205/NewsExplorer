@@ -11,22 +11,33 @@ function Navigation({ openLoginModal, handleLogOut }) {
 
   const savedNewsPage = location.pathname === "/saveNews";
 
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   const handleHomeClick = () => {
     console.log("Navigating to Home");
-    navigate("/");
+    navigate("/"); 
+    setIsMobileMenuOpen(false);  
   };
 
   const handleSavedNews = () => {
     console.log("Navigating to Saved News");
     navigate("/saveNews");
+    setIsMobileMenuOpen(false);
   };
 
   return (
-    <div className="navigation__nav">
+    <div className="navigation">
+      <button className="navigation__mobile-menu" onClick={toggleMobileMenu}>       
+      </button>
+      <nav className={`navigation__nav ${isMobileMenuOpen ? "open" : ""}`}>
       <button
         onClick={handleHomeClick}
         type="button"
-        className={`navigation__home-btn ${savedNewsPage ? "font-black" : ""}`}
+        className={`navigation__home-btn ${savedNewsPage ? "font-black" : ""} ${isMobileMenuOpen ? "show-mobile" : ""}`}
       >
         Home
       </button>
@@ -64,6 +75,7 @@ function Navigation({ openLoginModal, handleLogOut }) {
           </div>
         </div>
       )}
+      </nav>
     </div>
   );
 }
