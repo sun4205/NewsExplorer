@@ -1,9 +1,5 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef} from "react";
 import "./ModalWithForm.css";
-import signingrey from "../../images/signingrey.svg";
-import signinblue from "../../images/signinblue.svg";
-import signup from "../../images/signup.svg";
-import signupgrey from "../../images/signingrey.svg";
 import close from "../../images/close.svg";
 import useEscapeKey from "../../hooks/useEscapeKey";
 
@@ -13,9 +9,7 @@ function ModalWithForm({
   title,
   onSubmit,
   children,
-  buttonText,
   isOpen,
-  customClass,
   onSecondaryClick,
   secondaryButtonText,
   isFilled,

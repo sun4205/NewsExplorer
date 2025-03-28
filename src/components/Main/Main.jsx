@@ -4,7 +4,7 @@ import ShowMore from "../ShowMore/ShowMore";
 import Preloader from "../Preloader/Preloader";
 import { useState } from "react";
 
-function Main({ isLoading, newsData, newsItems, handleNewsSaved, handleRemoveArticle }) {
+function Main({ isLoading, newsItems, handleNewsSaved, handleRemoveArticle }) {
   const [renderedCards, setRenderedCards] = useState(3);
 
   console.log("newsItems in Main:", newsItems);

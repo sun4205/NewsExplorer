@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./Navigation.css";
 import { useNavigate, useLocation } from "react-router-dom";
-import logout from "../../images/logout.svg";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
 

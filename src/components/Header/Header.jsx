@@ -3,8 +3,6 @@ import NewsExplorer from "../../images/NewsExplorer.svg";
 import NewsExplorerblack from "../../images/NewsExplorerblack.svg";
 import { useLocation } from "react-router-dom";
 import SearchForm from "../SearchForm/SearchForm";
-import SearchComponent from "../SearchComponent/SearchComponent";
-
 import Navigation from "../Navigation/Navigation";
 
 function Header({
