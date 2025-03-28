@@ -10,14 +10,16 @@ function Navigation({ openLoginModal, handleLogOut }) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const savedNewsPage = location.pathname === "/savedNews";
+  const savedNewsPage = location.pathname === "/saveNews";
 
   const handleHomeClick = () => {
+    console.log("Navigating to Home");
     navigate("/");
   };
 
   const handleSavedNews = () => {
-    navigate("/savedNews");
+    console.log("Navigating to Saved News");
+    navigate("/saveNews");
   };
 
   return (

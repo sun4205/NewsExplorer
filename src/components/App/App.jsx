@@ -1,9 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
-import Preloader from "../Preloader/Preloader";
 import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
 import * as newsapi from "../../utils/NewsApi";
@@ -12,10 +11,8 @@ import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import Footer from "../Footer/Footer";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-import SearchComponent from "../SearchComponent/SearchComponent";
 import SavedArticles from "../SavedArticles/SavedArticles";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-import SearchForm from "../SearchForm/SearchForm";
 import About from "../About/About";
 import RegisterMessage from "../RegisterMessage/RegisterMessage";
 
@@ -40,16 +37,6 @@ function App() {
 
   const navigate = useNavigate();
   const location = useLocation();
-
-  const openRemoveItemModal = (card) => {
-    setSelectedCard(card);
-    setIsRemoveItemModalOpen(true);
-  };
-
-  const openRegisterModal = () => {
-    console.log("Opening register modal");
-    setActiveModal("register");
-  };
 
   const openLoginModal = () => {
     console.log("opening login modal ");
@@ -97,6 +84,7 @@ function App() {
             setCurrentUser(userInfo);
             console.log("User info updated:", userInfo);
             const redirectPath = location.state?.from?.pathname || "/";
+            console.log("redirectPath", redirectPath);
             navigate(redirectPath);
             closeActiveModal();
           });
@@ -118,12 +106,12 @@ function App() {
 
     auth.getUserInfo(jwtFromStorage).then((userInfo) => {
       setCurrentUser(userInfo);
+      setIsLoggedIn(true);
       console.log("userInfo", userInfo);
     });
   }, [jwt]);
 
   const handleLogOut = () => {
-    console.log("Log Out button clicked.");
     token.removeToken();
     setIsLoggedIn(false);
     setCurrentUser(null);
@@ -132,40 +120,67 @@ function App() {
     console.log("User logged out successfully.");
   };
 
-  function generateUniqueId(data) {
-    console.log("Full Article:", data)
-    const title = data?.source?.name || "no-title";
-    const date = data?.publishedAt ? new Date(data.publishedAt).toISOString() : "no-date"; 
-    return encodeURIComponent(`${title}-${date}`);
-  }
-
   const handleNewsSaved = ({ data }) => {
     const token = localStorage.getItem("jwt");
-    const articleId = data.id || generateUniqueId(data);
+    const articleId = crypto.randomUUID();
+   
+    const currentSavedArticles =
+      JSON.parse(localStorage.getItem("savedArticles")) || [];
 
-    const saved = data.saved;
-    !saved
-      ? api
+    
+      if (currentSavedArticles.some(item => item.id === articleId)) {
+        console.log("This article is already saved.");
+        return;
+      }
+    const { source, title, date, description, image } = data;
 
-          .addNewsCardSaved(data, token)
-          .then((updatedData) => {
-            setNewsItems((cards) =>
-              cards.map((item) => (item._id === articleId ? updatedData : item))
-            );
-          })
-          .catch((err) => console.log(err))
-      : api
+    if (!data.saved) {
+      api
+        .savedNews({ source, title, date, description, image })
+        .then((updatedData) => {
+          const updatedArticles = [...currentSavedArticles, updatedData];
+          setNewsItems((prev) => ({
+            ...prev,
+            articles: [...prev.articles, updatedData],
+          }));
+          setSavedArticles(updatedArticles);
+          localStorage.setItem(
+            "savedArticles",
+            JSON.stringify(updatedArticles)
+          );
+          console.log("Save successful:", updatedData);
+        })
+        .catch(console.error);
+    } else {
+      api
+        .removeNewsCardSved(articleId, token)
+        .then(() => {
+          const updatedArticles = currentSavedArticles.filter(
+            (item) => item._id !== articleId
+          );
+          setNewsItems((prev) => ({
+            ...prev,
+            articles: prev.articles.filter((item) => item._id !== articleId),
+          }));
+          setSavedArticles(updatedArticles);
+          localStorage.setItem(
+            "savedArticles",
+            JSON.stringify(updatedArticles)
+          );
+          console.log("Delete complete");
+        })
+        .catch(console.error);
+    }
+  };
 
-          .removeCardLike(articleId, token)
-          .then((updatedData) => {
-            setNewsItems((cards) =>
-              cards.map((item) => (item._id === articleId ? updatedData : item))
-            );
-            setNewsItems((cards) =>
-              cards.map((item) => (item._id === articleId ? updatedData : item))
-            );
-          })
-          .catch((err) => console.log(err));
+  const handleRemoveArticle = (articleId) => {
+    const currentSavedArticles =
+      JSON.parse(localStorage.getItem("savedArticles")) || [];
+    const updatedSavedArticles = currentSavedArticles.filter(
+      (item) => item.id !== articleId
+    );
+    localStorage.setItem("savedArticles", JSON.stringify(updatedSavedArticles));
+    setSavedArticles(updatedSavedArticles);
   };
 
   const handleSearchSubmit = (values) => {
@@ -174,9 +189,9 @@ function App() {
 
     localStorage.setItem("query", values.query);
     asyncSubmit(() =>
-      newsapi.getNewsCards(values.query).then((newsData) => {
-        console.log("Fetched news data:", newsData);
-        setNewsItems(newsData);
+      newsapi.getNewsCards(values.query).then((data) => {
+        console.log("Fetched news data:", data);
+        setNewsItems(data);
       })
     );
   };
@@ -190,34 +205,19 @@ function App() {
   };
 
   useEffect(() => {
-    newsapi
-      .getNewsCards(query)
-      .then((data) => {
-        console.log("API response:", data);
-        if (query) {
-          const filterData = newsapi.filteredNewsData(data);
-          console.log("Filtered data:", filterData);
-          setNewsData(filterData);
-          console.log("news response", filterData);
-        } else {
-          setNewsItems(data);
-          console.log("news response", data);
-        }
-      })
-      .catch(console.error);
+    newsapi.getNewsCards(query).then((data) => {
+      console.log("Fetched news data:", data);
+      setNewsItems({ ...data, articles: data.articles || [] });
+    });
   }, [query]);
 
-  useEffect(() => {
-    if (newsItems.length > 0) {
-      localStorage.setItem("newsItems", JSON.stringify(newsItems));
-    }
-  }, [newsItems]);
+  
 
   useEffect(() => {
-    const savedNewsItems = JSON.parse(localStorage.getItem("newsItems"));
-    if (savedNewsItems) {
-      setNewsItems(savedNewsItems);
-    }
+    const storedSavedArticles =
+      JSON.parse(localStorage.getItem("savedArticles")) || [];
+    console.log("Loaded savedArticles from localStorage:", storedSavedArticles);
+    setSavedArticles(storedSavedArticles);
   }, []);
 
   useEffect(() => {
@@ -256,16 +256,19 @@ function App() {
               }
             />
             <Route
-              path="/savedNews"
+              path="/saveNews"
               element={
                 <ProtectedRoute isLoggedIn={isLoggedIn}>
-                  <SavedArticles savedArticles={savedArticles} />
+                  <SavedArticles
+                    savedArticles={savedArticles}
+                    handleRemoveArticle={handleRemoveArticle}
+                  />
                 </ProtectedRoute>
               }
             />
           </Routes>
         </div>
-        <About />
+        {location.pathname === "/" && <About />}
         <Footer />
       </div>
 

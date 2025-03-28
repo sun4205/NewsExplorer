@@ -44,13 +44,11 @@
 .card__save-btn:hover {
   background-image: url("../../images/savehover.svg");
   background-color: transparent;
-
   cursor: pointer;
 }
 
 .card__save-btn:hover .card__savebtn-img {
   opacity: 0;
- 
 }
 
 .card__save-btn.saved {
@@ -66,6 +64,26 @@
   border-radius: 5px;
   transition: none;
 }
+
+
+.card__savebtn-img.savedBlue {
+  width: 40px;
+  height: 40px;
+  color: #b6bcbf;
+  border-radius: 5px;
+  transition: none;
+}
+
+
+.card__savebtn-img.savebtn {
+  width: 40px;
+  height: 40px;
+  color: #b6bcbf;
+  border-radius: 5px;
+  transition: none;
+}
+
+
 
 .card__save-btn-content {
   display: flex;

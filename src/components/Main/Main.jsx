@@ -4,7 +4,7 @@ import ShowMore from "../ShowMore/ShowMore";
 import Preloader from "../Preloader/Preloader";
 import { useState } from "react";
 
-function Main({ isLoading, newsData, newsItems, handleNewsSaved }) {
+function Main({ isLoading, newsData, newsItems, handleNewsSaved, handleRemoveArticle }) {
   const [renderedCards, setRenderedCards] = useState(3);
 
   console.log("newsItems in Main:", newsItems);
@@ -31,7 +31,8 @@ function Main({ isLoading, newsData, newsItems, handleNewsSaved }) {
                     <NewsCard
                       key={index}
                       data={item}
-                      handleNewsSaved={handleNewsSaved}
+                      handleNewsSaved={() => handleNewsSaved({ data: item })}
+                      handleRemoveArticle={handleRemoveArticle}
                     />
                   ))
               ) : (

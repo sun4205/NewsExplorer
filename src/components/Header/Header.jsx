@@ -16,7 +16,7 @@ function Header({
   console.log("Header!");
   const location = useLocation();
 
-  const savedNewsPage = location.pathname === "/savedNews";
+  const savedNewsPage = location.pathname === "/saveNews";
 
   return (
     <div

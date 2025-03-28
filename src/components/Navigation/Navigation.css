@@ -30,6 +30,7 @@
 
 .navigation__home-btn:hover::after {
   width: 68px;
+  transition: width 0.3s ease-in-out;
 }
 
 .navigation__home-btn.font-black {
