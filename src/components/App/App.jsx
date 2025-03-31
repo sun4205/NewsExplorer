@@ -11,6 +11,7 @@ import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import Footer from "../Footer/Footer";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
+import SavedArticlesContext from "../../contexts/SavedArticlesContext";
 import SavedArticles from "../SavedArticles/SavedArticles";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import About from "../About/About";
@@ -118,62 +119,71 @@ function App() {
     console.log("User logged out successfully.");
   };
 
-  const handleNewsSaved = ({ data }) => {
+  const handleNewsSaved = (data) => {
     const token = localStorage.getItem("jwt");
-    const articleId = crypto.randomUUID();
+    console.log("Received data in handleNewsSaved:", data);
+    console.log("data.id:", data.data.id);
 
-    const currentSavedArticles =
+    const { id, source, title, publishedAt, description, urlToImage } =
+      data.data;
+
+    const storedArticles =
       JSON.parse(localStorage.getItem("savedArticles")) || [];
 
-    const { source, title, date, description, image } = data;
+    const storedKeywords =
+      JSON.parse(localStorage.getItem("savedKeywords")) || [];
 
-    if (!data) {
-      api
-        .savedNews({ source, title, date, description, image })
-        .then((updatedData) => {
-          const updatedArticles = [...currentSavedArticles, updatedData];
-          setNewsItems((prev) => ({
-            ...prev,
-            articles: [...prev.articles, updatedData],
-          }));
-          setSavedArticles(updatedArticles);
-          localStorage.setItem(
-            "savedArticles",
-            JSON.stringify(updatedArticles)
-          );
-          console.log("Save successful:", updatedData);
-        })
-        .catch(console.error);
-    } else {
-      api
-        .removeNewsCardSved(articleId, token)
-        .then(() => {
-          const updatedArticles = currentSavedArticles.filter(
-            (item) => item._id !== articleId
-          );
-          setNewsItems((prev) => ({
-            ...prev,
-            articles: prev.articles.filter((item) => item._id !== articleId),
-          }));
-          setSavedArticles(updatedArticles);
-          localStorage.setItem(
-            "savedArticles",
-            JSON.stringify(updatedArticles)
-          );
-          console.log("Delete complete");
-        })
-        .catch(console.error);
-    }
+    const updatedKeywords = storedKeywords.includes(query)
+      ? storedKeywords
+      : [...storedKeywords, query];
+    localStorage.setItem("savedKeywords", JSON.stringify(updatedKeywords));
+    setSavedArticles(updatedKeywords);
+
+    api
+      .savedNews({
+        articleId: id,
+        source: source?.name,
+        title,
+        date: publishedAt,
+        description,
+        image: urlToImage,
+        keywords: updatedKeywords,
+      })
+      .then((updatedData) => {
+        console.log("updateddataa", updatedData);
+        console.log("Save successful:", updatedData);
+        console.log("Keywords:", updatedData.keywords);
+        console.log(
+          "Is keywords an array?",
+          Array.isArray(updatedData.keywords)
+        );
+        const newSavedArticles = [...storedArticles, updatedData];
+        console.log("newsSavedArticles", newSavedArticles);
+
+        localStorage.setItem("savedArticles", JSON.stringify(newSavedArticles));
+
+        return setSavedArticles(newSavedArticles);
+        console.log("newsSavedArticles", newSavedArticles);
+      })
+      .catch(console.error);
   };
 
   const handleRemoveArticle = (articleId) => {
-    const currentSavedArticles =
-      JSON.parse(localStorage.getItem("savedArticles")) || [];
-    const updatedSavedArticles = currentSavedArticles.filter(
-      (item) => item.id !== articleId
-    );
-    localStorage.setItem("savedArticles", JSON.stringify(updatedSavedArticles));
-    setSavedArticles(updatedSavedArticles);
+    api
+      .removeNewsCardSved(articleId)
+      .then(() => {
+        const storedArticles =
+          JSON.parse(localStorage.getItem("savedArticles")) || [];
+
+        const updatedArticles = storedArticles.filter(
+          (article) => article.articleId !== articleId
+        );
+
+        localStorage.setItem("savedArticles", JSON.stringify(updatedArticles));
+
+        setSavedArticles(updatedArticles);
+      })
+      .catch(console.error);
   };
 
   const handleSearchSubmit = (values) => {
@@ -220,71 +230,78 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
-      <div className="page">
-        <Header
-          handleSearchSubmit={handleSearchSubmit}
-          query={query}
-          setQuery={setQuery}
-          openLoginModal={openLoginModal}
-          handleLogOut={handleLogOut}
-        />
+      <SavedArticlesContext.Provider
+        value={{
+          savedArticles,
+          setSavedArticles,
+        }}
+      >
+        <div className="page">
+          <Header
+            handleSearchSubmit={handleSearchSubmit}
+            query={query}
+            setQuery={setQuery}
+            openLoginModal={openLoginModal}
+            handleLogOut={handleLogOut}
+          />
 
-        <div className="page-content">
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  {query && (
-                    <Main
-                      newsData={newsData}
-                      newsItems={newsItems}
-                      handleNewsSaved={handleNewsSaved}
-                      isLoading={isLoading}
+          <div className="page-content">
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <>
+                    {query && (
+                      <Main
+                        newsData={newsData}
+                        newsItems={newsItems}
+                        handleNewsSaved={handleNewsSaved}
+                        isLoading={isLoading}
+                      />
+                    )}
+                  </>
+                }
+              />
+              <Route
+                path="/saveNews"
+                element={
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
+                    <SavedArticles
+                      savedArticles={savedArticles}
+                      handleRemoveArticle={handleRemoveArticle}
                     />
-                  )}
-                </>
-              }
-            />
-            <Route
-              path="/saveNews"
-              element={
-                <ProtectedRoute isLoggedIn={isLoggedIn}>
-                  <SavedArticles
-                    savedArticles={savedArticles}
-                    handleRemoveArticle={handleRemoveArticle}
-                  />
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+          </div>
+          {location.pathname === "/" && <About />}
+          <Footer />
         </div>
-        {location.pathname === "/" && <About />}
-        <Footer />
-      </div>
 
-      {activeModal === "login" && (
-        <LoginModal
-          activeModal={activeModal}
-          closeActiveModal={closeActiveModal}
-          handleLogin={handleLogin}
-          setActiveModal={setActiveModal}
-        />
-      )}
-      {activeModal === "register" && (
-        <RegisterModal
-          activeModal={activeModal}
-          closeActiveModal={closeActiveModal}
-          handleRegisterSubmit={handleRegisterSubmit}
-          setActiveModal={setActiveModal}
-        />
-      )}
-      {activeModal === "registerSuccess" && (
-        <RegisterMessage
-          closeActiveModal={closeActiveModal}
-          setActiveModal={setActiveModal}
-        />
-      )}
+        {activeModal === "login" && (
+          <LoginModal
+            activeModal={activeModal}
+            closeActiveModal={closeActiveModal}
+            handleLogin={handleLogin}
+            setActiveModal={setActiveModal}
+          />
+        )}
+        {activeModal === "register" && (
+          <RegisterModal
+            activeModal={activeModal}
+            closeActiveModal={closeActiveModal}
+            handleRegisterSubmit={handleRegisterSubmit}
+            setActiveModal={setActiveModal}
+          />
+        )}
+        {activeModal === "registerSuccess" && (
+          <RegisterMessage
+            closeActiveModal={closeActiveModal}
+            setActiveModal={setActiveModal}
+          />
+        )}
+      </SavedArticlesContext.Provider>
     </CurrentUserContext.Provider>
   );
 }

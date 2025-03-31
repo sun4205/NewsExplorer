@@ -6,6 +6,9 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 function SavedArticles({ savedArticles, handleRemoveArticle }) {
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
   console.log("savedArticles:", savedArticles);
+  if (!currentUser) {
+    return <div>Loading...</div>; 
+  }
   
   return (
     <div className="savedArticles__container">
@@ -16,7 +19,9 @@ function SavedArticles({ savedArticles, handleRemoveArticle }) {
       <p className="savedArticles__by">
         By keywords:{" "}
         <span className="savedArticles__keywords">
-          {savedArticles.map((item) => item.keywords).join(", ")}
+        {savedArticles
+   .map((item) => Array.isArray(item?.keywords) ? item.keywords.join(", ") : item?.keywords || "")
+   .join(", ")}
         </span>
       </p>
   

@@ -8,11 +8,21 @@ function request(url, options) {
   return fetch(url, options).then(checkResponse);
 }
 
-function savedNews({ source, title, date, description, image }) {
-  const articleId = crypto.randomUUID();
-  console.log("Card ID:", articleId);
-  console.log(" Sending fetch request...");
+function savedNews({ articleId, source, title, date, description, image, keywords  }) {
+  console.log("Sending fetch request...");
+  console.log("ID being sent:", articleId); 
+  console.log("Data being sent:", {
+    id: articleId,  
+    source,
+    title,
+    date,
+    description,
+    image,
+    keywords,
+  });
+
   const token = localStorage.getItem("jwt");
+
   return fetch(`${baseUrl}/saveNews`, {
     method: "POST",
     headers: {
@@ -20,13 +30,26 @@ function savedNews({ source, title, date, description, image }) {
       authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
-      source,
+      id: articleId,  
+      source: source?.name,  
       title,
       date,
       description,
       image,
+      keywords,
     }),
-  });
+  }) 
+    .then((res) => {
+      console.log("Response status:", res.status);
+      return res.json();
+    })
+    .then((data) => {
+      console.log("Server response:", data);
+      return data; 
+    })
+    .catch((error) => {
+      console.error("Error saving news:", error);
+    });
 }
 
 const removeNewsCardSved = (id, token) => {
@@ -41,8 +64,4 @@ const removeNewsCardSved = (id, token) => {
     .catch((err) => console.log(err));
 };
 
-export {
-  checkResponse,
-  savedNews, 
-  removeNewsCardSved,
-};
+export { checkResponse, savedNews, removeNewsCardSved };
