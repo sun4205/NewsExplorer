@@ -26,16 +26,20 @@
   display: block;
 }
 
-.card__save-btn-delete{
-  background-image: url('../../images/saved-btn-delete.svg');
+.card__save-btn-delete {
+  background-image: url("../../images/saved-btn-delete.svg");
   width: 40px;
   height: 40px;
   border-radius: 5px;
 }
 
+.card__save-btn-delete:hover {
+  background-image: url("../../images/delete_dark.svg");
+}
+
 .card__save-btn {
   width: 40px;
-  height: 40px;  
+  height: 40px;
   border: none;
   position: absolute;
   cursor: pointer;
@@ -47,66 +51,27 @@
   background-repeat: no-repeat;
   z-index: 1;
 }
-/* 
-.card__save-btn:hover {
-  background-image: url("../../images/savehover.svg");
-  background-color: transparent;
-  cursor: pointer;
-} */
-/* 
-.card__save-btn:hover .card__savebtn-img {
-  opacity: 0;
-} */
-/* 
-.card__save-btn.saved {
-  width: 40px;
-  height: 40px;
-  border-radius: 5px;
-} */
-/* 
-.card__savebtn-img-save {
-  width: 40px;
-  height: 40px;
-  color: #b6bcbf;
-  border-radius: 5px;
-  transition: none;
-} */
-
 
 .card__save-btn--saved {
-  background-image: url('../../images/saved-btn-blue.svg');
+  background-image: url("../../images/saved-btn-blue.svg");
   width: 40px;
   height: 40px;
   color: #b6bcbf;
   border-radius: 5px;
   transition: none;
 }
-
 
 .card__save-btn--default {
-  background-image: url('../../images/savebtn.svg');
+  background-image: url("../../images/savebtn.svg");
   width: 40px;
   height: 40px;
   color: #b6bcbf;
   border-radius: 5px;
   transition: none;
 }
-/* 
-.card__savebtn-img.savedBlue {
-  width: 40px;
-  height: 40px;
-  color: #b6bcbf;
-  border-radius: 5px;
-  transition: none;
-} */
-/* 
-.card__savebtn-img.savebtn {
-  width: 40px;
-  height: 40px;
-  color: #b6bcbf;
-  border-radius: 5px;
-  transition: none;
-} */
+.card__save-btn--default:hover {
+  background-image: url("../../images/save_dark.svg");
+}
 
 .card__save-btn-content {
   display: flex;
@@ -122,6 +87,7 @@
 .card__sign-in-text {
   position: absolute;
   right: 60px;
+  top: 1px;
   width: 100%;
   min-width: 182px;
   height: 40px;
@@ -143,10 +109,6 @@
   transform: translateX(10px);
   transition: transform 0.3s ease;
 }
-/* 
-.card__save-btn.saved:hover .card__savebtn-img {
-  opacity: 0;
-} */
 
 .card__info {
   display: flex;
@@ -197,12 +159,6 @@
   text-transform: uppercase;
   color: #b6bcbf;
 }
-/* 
-.card__save-btn:hover .card__sign-in-text {
-  display: inline-block;
-  transform: translateX(10px);
-  transition: transform 0.3s ease;
-} */
 
 @media screen and (max-width: 768px) {
   .card {
