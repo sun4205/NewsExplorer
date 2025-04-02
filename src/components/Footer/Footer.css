@@ -1,5 +1,13 @@
 .footer {
   padding: 30px 60px 26px 60px;
+  display: flex;  
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer__container {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -11,39 +19,57 @@
   line-height: 22px;
   color: #b6bcbf;
 }
-.footer__link_container{
-    display: flex;
+
+
+.footer__links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* .footer__links-item-container {
+  display: flex;
+  gap: 15px;
+} */
+
+.footer__links-item-container {
+  display: flex;
+  justify-content: space-between;
 }
 
-.footer__link {
+.footer__links-item-left{
   display: flex;
- 
+  flex-direction: column;
 }
+
 
 .footer__link-item {
   color: #1a1b22;
   margin-left: 40px;
 }
 
-.footer__link-item .footer__link-item_gitHub{
-margin-left: 40px;
-}
 
 @media screen and (max-width: 768px) {
 }
 
 @media screen and (max-width: 320px) {
   .footer {
+    padding:20px 16px;
+  }
+  .footer__container{
     flex-direction: column-reverse;
     align-items: flex-start;
-    padding: 20px 16px;
+    
   }
-  .footer__link_container {
+
+  .footer__paragraph{
+    padding:0 16px;
+  }
+  .footer__links-item-container{
     display: flex;
     justify-content: space-between;
   }
-
-  .footer__link {
+  
+  .footer__links {
     display: flex;
     flex-direction: column;
   }
