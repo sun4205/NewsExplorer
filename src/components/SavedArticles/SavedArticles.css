@@ -16,6 +16,7 @@
 }
 
 .savedArticles__numberSaved {
+  font-family: "roboto-slab", Arial, sans-serif;
   max-width: 530px;
   height: 92px;
   font-weight: 400;

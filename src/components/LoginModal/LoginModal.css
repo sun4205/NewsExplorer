@@ -8,12 +8,25 @@
 }
 
 .signup-text{
+    font-family: "roboto", Arial, sans-serif;
     font-weight: 400;
     font-size: 12px;
     line-height: 100%;
     color:#2f71e5;
     outline: none;
     border: none;
+}
+
+
+
+.error-message{
+    color: #FF0000;
+    margin: 0;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 100%;
+    min-height: 14px; 
+    display: block;
 }
 
 

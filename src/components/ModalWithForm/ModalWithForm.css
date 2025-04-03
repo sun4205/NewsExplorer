@@ -49,8 +49,7 @@ button {
   margin: 0;
   font-weight: 900;
   font-size: 24px;
-  line-height: 100%;
-  margin-bottom: 22px;
+  line-height: 100%; 
   color: #1a1b22;
 }
 
@@ -61,17 +60,18 @@ button {
 }
 
 .modal__label {
-  font-family: "Inter",Arial, sans-serif;
+  font-family: "inter",Arial, sans-serif;
   font-weight: 400;
   font-size: 12px;
   line-height: 100%;
   letter-spacing: 0;
   color: #2f71e5;
+  margin-top: 22px;
   
 }
 
 .modal__input {
-  font-family: "Inter",Arial, sans-serif;
+  font-family: "inter",Arial, sans-serif;
   display: block;
   font-weight: 400;
   font-size: 14px;
@@ -81,7 +81,7 @@ button {
   border-bottom: 1px solid #000;
   outline: none;
   margin-top: 9px;
-  margin-bottom: 39px;
+  margin-bottom: 31px;
   width: 100%;
   padding: 0;
   padding-bottom: 5px;
@@ -114,7 +114,7 @@ button {
 }
 
 .modal_submit {
-  font-family: "Inter",Arial, sans-serif;
+  font-family: "inter",Arial, sans-serif;
   outline: none;
   border: none;
   background: none; 
