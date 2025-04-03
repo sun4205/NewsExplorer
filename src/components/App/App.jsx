@@ -15,6 +15,7 @@ import SavedArticlesContext from "../../contexts/SavedArticlesContext";
 import SavedArticles from "../SavedArticles/SavedArticles";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import About from "../About/About";
+import useDebounce from "../../hooks/useDebounce";
 import RegisterMessage from "../RegisterMessage/RegisterMessage";
 
 function App() {
@@ -75,7 +76,7 @@ function App() {
       .authorize(email, password)
       .then((data) => {
         if (data.token) {
-          token.setToken(data.token);
+          localStorage.setItem("jwt", data.token); 
           setJwt(data.token);
           setIsLoggedIn(true);
           console.log("Login successful!.");
@@ -93,7 +94,7 @@ function App() {
   };
 
   useEffect(() => {
-    const jwtFromStorage = token.getToken();
+    const jwtFromStorage = localStorage.getItem("jwt");
     console.log("JWT from storage:", jwtFromStorage);
 
     if (!jwtFromStorage) {
@@ -124,11 +125,17 @@ function App() {
     console.log("Received data in handleNewsSaved:", data);
     console.log("data.id:", data.data.id);
 
-    const { id, source, title, publishedAt, description, urlToImage } =
+    const { id, source, title, formattedDate, description, urlToImage } =
       data.data;
 
     const storedArticles =
       JSON.parse(localStorage.getItem("savedArticles")) || [];
+
+      const isDuplicate = storedArticles.some((article) => article.articleId === id);
+      if (isDuplicate) {
+        console.log("Article is already saved, skipping...");
+        return; 
+      } 
 
     const storedKeywords =
       JSON.parse(localStorage.getItem("savedKeywords")) || [];
@@ -144,46 +151,34 @@ function App() {
         articleId: id,
         source: source?.name,
         title,
-        date: publishedAt,
+        date: formattedDate,
         description,
         image: urlToImage,
         keywords: updatedKeywords,
       })
       .then((updatedData) => {
-        console.log("updateddataa", updatedData);
-        console.log("Save successful:", updatedData);
-        console.log("Keywords:", updatedData.keywords);
-        console.log(
-          "Is keywords an array?",
-          Array.isArray(updatedData.keywords)
-        );
+        
         const newSavedArticles = [...storedArticles, updatedData];
         console.log("newsSavedArticles", newSavedArticles);
 
         localStorage.setItem("savedArticles", JSON.stringify(newSavedArticles));
 
         return setSavedArticles(newSavedArticles);
-        console.log("newsSavedArticles", newSavedArticles);
       })
       .catch(console.error);
   };
 
   const handleRemoveArticle = (articleId) => {
+    console.log("Before deletion, savedArticles:", savedArticles);
+
     api
-      .removeNewsCardSved(articleId)
+      .removeNewsCardSved(articleId, jwt)
       .then(() => {
-        const storedArticles =
-          JSON.parse(localStorage.getItem("savedArticles")) || [];
-
-        const updatedArticles = storedArticles.filter(
-          (article) => article.articleId !== articleId
+        setSavedArticles((prevArticles) =>
+          prevArticles.filter((article) => article.articleId !== articleId)
         );
-
-        localStorage.setItem("savedArticles", JSON.stringify(updatedArticles));
-
-        setSavedArticles(updatedArticles);
       })
-      .catch(console.error);
+      .catch((err) => console.error("Failed to delete article:", err));
   };
 
   const handleSearchSubmit = (values) => {
@@ -207,12 +202,27 @@ function App() {
     );
   };
 
-  useEffect(() => {
-    newsapi.getNewsCards(query).then((data) => {
-      console.log("Fetched news data:", data);
-      setNewsItems({ ...data, articles: data.articles || [] });
-    });
-  }, [query]);
+  // useEffect(() => {
+  //   if (query) {
+  //     newsapi.getNewsCards(query).then((data) => {
+  //       console.log("Fetched news data:", data);
+  //       setNewsItems({ ...data, articles: data.articles || [] });
+  //       localStorage.setItem("newsItems", JSON.stringify(newsData));
+  //       setNewsItems(newsData);
+  //     });
+  //   }
+  // }, [query]);
+  // const debouncedQuery= useDebounce(query, 500);
+  // useEffect(() => {
+  //     if (debouncedQuery) {
+  //       getNewsCards(debouncedQuery)
+  //         .then((data) => {
+  //           console.log("Fetched news data:", data);
+  //           handleSearchSubmit({ query: debouncedQuery, data });
+  //         })
+  //         .catch((err) => console.error("Error fetching news:", err));
+  //     }
+  //   }, [debouncedQuery]); 
 
   useEffect(() => {
     const storedSavedArticles =
@@ -222,11 +232,24 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const savedQuary = localStorage.getItem("query");
-    if (savedQuary) {
-      setQuery(savedQuary);
+    const storedNews = JSON.parse(localStorage.getItem("newsItems"));
+    if (storedNews?.articles?.length > 0) {
+      setNewsItems(storedNews);
+    }
+
+    const savedQuery = localStorage.getItem("query");
+    if (savedQuery) {
+      setQuery(savedQuery);
     }
   }, []);
+
+  useEffect(() => {
+    console.log("Updated savedArticles:", savedArticles);
+
+    if (savedArticles.length === 0) {
+      console.log("No saved articles available.");
+    }
+  }, [savedArticles]);
 
   return (
     <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
@@ -269,6 +292,7 @@ function App() {
                     <SavedArticles
                       savedArticles={savedArticles}
                       handleRemoveArticle={handleRemoveArticle}
+                      setSavedArticles={setSavedArticles}
                     />
                   </ProtectedRoute>
                 }
