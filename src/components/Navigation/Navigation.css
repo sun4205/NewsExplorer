@@ -26,7 +26,7 @@
   cursor: pointer;
   border: none;
   color: white;
-  font-weight: 700;
+  font-weight: 500;
   background-color: transparent;
   position: relative;
   outline: none;
@@ -81,7 +81,7 @@
   width: 100%;
   font-size: 20px;
   cursor: pointer;
-  font-weight: 700;
+  font-weight: 500;
   border: none;
   display: flex;
   position: relative;
@@ -122,7 +122,7 @@
 
 .navigation__savedArticle-nav {
   color: white;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 18px;
   line-height: 24px;
   letter-spacing: 0;
@@ -182,7 +182,7 @@
   border-radius: 50px;
   border: 2px solid #d1d2d6;
   color: white;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 18px;
   line-height: 24px;
   letter-spacing: 0;

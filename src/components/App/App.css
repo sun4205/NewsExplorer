@@ -6,7 +6,6 @@
 body,
 div {
   user-select: none;
- 
 }
 
 img {
@@ -33,5 +32,6 @@ img {
   overflow: auto;
   min-height: 100vh;
   display: flex;
-  width: 100vw;
+  flex-direction: column;
+  width: 100%;
 }
