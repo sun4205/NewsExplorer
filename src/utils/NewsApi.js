@@ -9,7 +9,7 @@ export const newsApiBaseUrl =
 
 function processNewsData(articles) {
   return articles.map((article) => {
-    console.log("Raw article data:", article);
+ 
     const rawDate = article?.publishedAt || null;
 
     let formattedDate = "no date";

@@ -76,7 +76,7 @@ function App() {
       .authorize(email, password)
       .then((data) => {
         if (data.token) {
-          localStorage.setItem("jwt", data.token); 
+          localStorage.setItem("jwt", data.token);
           setJwt(data.token);
           setIsLoggedIn(true);
           console.log("Login successful!.");
@@ -125,17 +125,23 @@ function App() {
     console.log("Received data in handleNewsSaved:", data);
     console.log("data.id:", data.data.id);
 
-    const { id, source, title, formattedDate, description, urlToImage } =
-      data.data;
+    const dataId = data.data.id;
+
+    const { id, source, title, date, description, image } = data.data;
 
     const storedArticles =
       JSON.parse(localStorage.getItem("savedArticles")) || [];
+    console.log("Stored articles:", storedArticles);
 
-      const isDuplicate = storedArticles.some((article) => article.articleId === id);
-      if (isDuplicate) {
-        console.log("Article is already saved, skipping...");
-        return; 
-      } 
+    const isDuplicate = storedArticles.some((article) => {
+      console.log("Checking article:", article); 
+      console.log("article.id:", article.id);   
+      return article.id === dataId;
+    });
+    if (isDuplicate) {
+      console.log("Article is already saved, skipping...");
+      return;
+    }
 
     const storedKeywords =
       JSON.parse(localStorage.getItem("savedKeywords")) || [];
@@ -145,19 +151,19 @@ function App() {
       : [...storedKeywords, query];
     localStorage.setItem("savedKeywords", JSON.stringify(updatedKeywords));
     setSavedArticles(updatedKeywords);
-
+    console.log("Calling savedNews function...");
     api
       .savedNews({
-        articleId: id,
-        source: source?.name,
+        id,
+        source,
         title,
-        date: formattedDate,
+        date,
         description,
-        image: urlToImage,
+        image,
         keywords: updatedKeywords,
       })
       .then((updatedData) => {
-        
+        console.log("savedNews API response:", updatedData);
         const newSavedArticles = [...storedArticles, updatedData];
         console.log("newsSavedArticles", newSavedArticles);
 
@@ -167,19 +173,22 @@ function App() {
       })
       .catch(console.error);
   };
-
-  const handleRemoveArticle = (articleId) => {
+  const handleRemoveArticle = (id) => {
     console.log("Before deletion, savedArticles:", savedArticles);
+    console.log("Clicked article ID:", id); 
+    const token = localStorage.getItem("jwt");
 
-    api
-      .removeNewsCardSved(articleId, jwt)
-      .then(() => {
-        setSavedArticles((prevArticles) =>
-          prevArticles.filter((article) => article.articleId !== articleId)
-        );
-      })
-      .catch((err) => console.error("Failed to delete article:", err));
-  };
+    if (!Array.isArray(savedArticles)) return;
+
+    api.removeNewsCardSaved(id, token)
+        .then(() => {
+            setSavedArticles((prevArticles) =>
+                prevArticles.filter((article) => article.id !== id)
+            );
+        })
+        .catch((err) => console.error("Failed to delete article:", err));
+};
+
 
   const handleSearchSubmit = (values) => {
     console.log("handleSearchSubmit called with:", values);
@@ -216,14 +225,15 @@ function App() {
     if (query) {
       asyncSubmit(() => {
         return new Promise((resolve, reject) => {
-          getNewsCards(query)
+          newsapi
+            .getNewsCards(query)
             .then((data) => {
               console.log("Fetched news data:", data);
-              setNewsItems(data); 
-              localStorage.setItem("newsItems", JSON.stringify(data));  
-              resolve();  
+              setNewsItems(data);
+              localStorage.setItem("newsItems", JSON.stringify(data));
+              resolve();
             })
-            .catch(reject);  
+            .catch(reject);
         });
       });
     }
@@ -255,6 +265,11 @@ function App() {
       console.log("No saved articles available.");
     }
   }, [savedArticles]);
+
+//   useEffect(() => {
+//     localStorage.removeItem("savedArticles");  
+//     setSavedArticles([]);  
+// }, []);  
 
   return (
     <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>

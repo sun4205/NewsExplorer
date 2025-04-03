@@ -14,7 +14,7 @@ function NewsCard({ data, handleNewsSaved, handleRemoveArticle }) {
   const [isSaved, setIsSaved] = useState(false);
   const location = useLocation();
 
-  console.log("Received data:", data);
+  // console.log("Received data:", data);
 
   const handleSaveClick = () => {
     console.log("saveddata", data);
@@ -56,7 +56,7 @@ function NewsCard({ data, handleNewsSaved, handleRemoveArticle }) {
           location.pathname === "/saveNews" ? (
             <div className="card__save-container">
               <button
-                onClick={() => handleRemoveArticle(data.articleId)}
+                onClick={() => handleRemoveArticle(data.id)}
                 className="card__save-btn card__save-btn-delete"
               ></button>
 
