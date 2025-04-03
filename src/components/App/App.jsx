@@ -207,22 +207,27 @@ function App() {
   //     newsapi.getNewsCards(query).then((data) => {
   //       console.log("Fetched news data:", data);
   //       setNewsItems({ ...data, articles: data.articles || [] });
-  //       localStorage.setItem("newsItems", JSON.stringify(newsData));
-  //       setNewsItems(newsData);
+  //       localStorage.setItem("newsItems", JSON.stringify(data));
+  //       setNewsItems(data);
   //     });
   //   }
   // }, [query]);
-  // const debouncedQuery= useDebounce(query, 500);
-  // useEffect(() => {
-  //     if (debouncedQuery) {
-  //       getNewsCards(debouncedQuery)
-  //         .then((data) => {
-  //           console.log("Fetched news data:", data);
-  //           handleSearchSubmit({ query: debouncedQuery, data });
-  //         })
-  //         .catch((err) => console.error("Error fetching news:", err));
-  //     }
-  //   }, [debouncedQuery]); 
+  useEffect(() => {
+    if (query) {
+      asyncSubmit(() => {
+        return new Promise((resolve, reject) => {
+          getNewsCards(query)
+            .then((data) => {
+              console.log("Fetched news data:", data);
+              setNewsItems(data); 
+              localStorage.setItem("newsItems", JSON.stringify(data));  
+              resolve();  
+            })
+            .catch(reject);  
+        });
+      });
+    }
+  }, [query]);
 
   useEffect(() => {
     const storedSavedArticles =

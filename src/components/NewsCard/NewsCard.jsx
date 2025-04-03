@@ -5,7 +5,7 @@ import savedBlue from "../../images/saved-btn-blue.svg";
 import deletebtn from "../../images/saved-btn-delete.svg";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import SavedArticlesContext from "../../contexts/SavedArticlesContext";
-import { useContext, useState,useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 function NewsCard({ data, handleNewsSaved, handleRemoveArticle }) {
@@ -13,16 +13,6 @@ function NewsCard({ data, handleNewsSaved, handleRemoveArticle }) {
   const { savedArticles, setSavedArticles } = useContext(SavedArticlesContext);
   const [isSaved, setIsSaved] = useState(false);
   const location = useLocation();
-
-  // useEffect(() => {
-  //   console.log("savedArticles:", savedArticles);  
-  //   console.log("data:", data);                 
-  //   if ( savedArticles.some((article) => article.id === data.id)) {
-  //     setIsSaved(true);
-  //   } else {
-  //     setIsSaved(false);
-  //   }
-  // }, [savedArticles, data.id]);
 
   console.log("Received data:", data);
 
@@ -53,13 +43,26 @@ function NewsCard({ data, handleNewsSaved, handleRemoveArticle }) {
   return (
     <li className="card">
       <div className="card__image-control">
-        <img className="card__image" src={data?.urlToImage} alt={data?.title} />
+        <img
+          className="card__image"
+          src={
+            location.pathname === "/saveNews" && data?.image
+              ? data.image
+              : data.image
+          }
+          alt={data?.title}
+        />
         {currentUser ? (
-          location.pathname === "/savedNews" ? (
-            <button
-              onClick={() => handleRemoveArticle(data.id)}
-              className="card__save-btn card__save-btn-delete"
-            ></button>
+          location.pathname === "/saveNews" ? (
+            <div className="card__save-container">
+              <button
+                onClick={() => handleRemoveArticle(data.articleId)}
+                className="card__save-btn card__save-btn-delete"
+              ></button>
+
+              <div className="card__image__keywords">{data.keywords}</div>
+              <div className="card__image__remove">Remove from saved</div>
+            </div>
           ) : (
             <button
               onClick={handleSaveClick}
@@ -69,14 +72,21 @@ function NewsCard({ data, handleNewsSaved, handleRemoveArticle }) {
             ></button>
           )
         ) : (
-          <button className="card__save-btn card__save-btn--signin">
-            <span className="card__sign-in-text">Sign in to save articles</span>
-          </button>
+          <div>
+            <button className="card__save-btn card__save-btn--default"></button>
+            <button className="card__save-btn card__save-btn--signin">
+              <span className="card__sign-in-text">
+                Sign in to save articles
+              </span>
+            </button>
+          </div>
         )}
       </div>
 
       <div className="card__info">
-        <p className="card__date">{data?.publishedAt}</p>
+        <p className="card__date">
+          {location.pathname === "/saveNews" ? data?.date : data?.date}
+        </p>
         <p className="card__title">{data?.title}</p>
         <p className="card__description">{data?.description}</p>
         <p className="card__source">{data?.source?.name}</p>

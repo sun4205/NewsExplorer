@@ -52,16 +52,21 @@ function savedNews({ articleId, source, title, date, description, image, keyword
     });
 }
 
-const removeNewsCardSved = (id, token) => {
-  return fetch(`${baseUrl}/saveNews/${id}`, {
+const removeNewsCardSved = (articleId, token) => {
+  
+  return fetch(`${baseUrl}/saveNews/${articleId}`, {
     method: "DELETE",
     headers: {
-      Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
   })
-    .then((res) => res.json())
-    .catch((err) => console.log(err));
+  .then((res) => {
+    if (!res.ok) {
+      return Promise.reject(`Error: ${res.status}`);
+    }
+    return res.json();
+  });
 };
 
 export { checkResponse, savedNews, removeNewsCardSved };
