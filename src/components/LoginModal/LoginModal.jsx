@@ -15,7 +15,7 @@ function LoginModal({
 
   
 
-  const { values, handleChange } = useForm({
+  const { values, error,handleBlur, handleChange } = useForm({
     email: "",
     password: "",
   });
@@ -67,15 +67,16 @@ function LoginModal({
           placeholder="Enter Email"
           value={values.email}
           onChange={handleChange}
-          //  onBlur={handleBlur} 
+          onBlur={handleBlur}
         />
+         {error.email && <span className="error-message">{error.email}</span>}
       </label>
 
       <label htmlFor="password" className="modal__label">
         Password
         <input
           type="password"
-          className="modal__input"
+          className="modal__input modal__input_signin_password"
           id="password"
           name="password"
           placeholder="Enter Password"

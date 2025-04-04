@@ -1,8 +1,52 @@
 import { useState } from "react";
+import { checkEmailAvailable } from "../utils/api";
 
 export function useForm(initialValues) {
   const [values, setValues] = useState(initialValues);
   const [error, setError] = useState({});
+  const [submitError, setSubmitError] = useState("");
+
+  //   const handleChange = (e) => {
+  //     const { name, value } = e.target;
+  //     setValues((prevValues) => ({
+  //       ...prevValues,
+  //       [name]: value,
+  //     }));
+  //   };
+
+  // const handleBlur = (e) => {
+  //   const { name, value } = e.target;
+  //   if (name === "email") {
+  //     validateEmail(value);
+  //   }
+  // };
+
+  //   const validateEmail = (value) => {
+  //     if (value === "") {
+  //       setError((prevErrors) => ({
+  //         ...prevErrors,
+  //         email: "",
+  //       }));
+  //     } else if (!/\S+@\S+\.\S+/.test(value)) {
+  //       setError((prevErrors) => ({
+  //         ...prevErrors,
+  //         email: "Invalid Email address",
+  //       }));
+  //     } else {
+  //       const existingUser = users.find((user) => user.email === value);
+  //       if (existingUser) {
+  //         setError((prevErrors) => ({
+  //           ...prevErrors,
+  //           email: "This email is not available",
+  //         }));
+  //       } else {
+  //         setError((prevErrors) => ({
+  //           ...prevErrors,
+  //           email: "",
+  //         }));
+  //       }
+  //     }
+  //   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -12,40 +56,51 @@ export function useForm(initialValues) {
     }));
   };
 
-  
-const handleBlur = (e) => {
-  const { name, value } = e.target;
-  if (name === "email") {
-    validateEmail(value);
-  }
-};
+  const handleBlur = async (e) => {
+    const { name, value } = e.target;
+    if (name === "email") {
+      validateEmail(value);
+    }
+  };
 
-  const validateEmail = (value) => {
-    if (value === "") {
+  const validateEmail = async (value) => {
+    if (!value) {
       setError((prevErrors) => ({
         ...prevErrors,
         email: "",
       }));
-    } else if (!/\S+@\S+\.\S+/.test(value)) {
+      return;
+    }
+
+    if (!/\S+@\S+\.\S+/.test(value)) {
       setError((prevErrors) => ({
         ...prevErrors,
         email: "Invalid Email address",
       }));
-    } else {
-      const existingUser = users.find((user) => user.email === value);
-      if (existingUser) {
-        setError((prevErrors) => ({
-          ...prevErrors,
-          email: "This email is not available",
-        }));
-      } else {
-        setError((prevErrors) => ({
-          ...prevErrors,
-          email: "",
-        }));
-      }
+      return;
     }
+
+    setError((prevErrors) => ({
+      ...prevErrors,
+      email: "",
+    }));
+
+    console.log("Calling checkEmailAvailable with email:", value);
+
+    checkEmailAvailable(value)
+      .then((response) => {
+        console.log("Email check response:", response);
+        if (!response.available) {
+          console.log("Email is not available"); 
+          setSubmitError("This email is not available");
+        } else {
+          setSubmitError("");
+        }
+      })
+      .catch((err) => {
+        console.error("Email check failed", err);
+      });
   };
 
-  return { values, error, handleBlur, handleChange, setValues };
+  return {  values, error, handleBlur, handleChange, submitError, setValues };
 }

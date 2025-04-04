@@ -1,4 +1,4 @@
-import React, { useRef} from "react";
+import React, { useRef } from "react";
 import "./ModalWithForm.css";
 import close from "../../images/close.svg";
 import useEscapeKey from "../../hooks/useEscapeKey";
@@ -13,6 +13,7 @@ function ModalWithForm({
   onSecondaryClick,
   secondaryButtonText,
   isFilled,
+  submitError,
 }) {
   const modalRef = useRef(null);
   useEscapeKey(!!activeModal, closeActiveModal, modalRef);
@@ -34,6 +35,7 @@ function ModalWithForm({
         <form onSubmit={onSubmit} className="modal__form">
           {children}
           <div className="modal__button-container">
+          {submitError && <span className="error-message error-message_signup">{submitError}</span>}
             <button
               type="submit"
               className={`modal__submit ${

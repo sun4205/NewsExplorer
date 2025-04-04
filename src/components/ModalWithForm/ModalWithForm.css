@@ -67,12 +67,13 @@ button {
   letter-spacing: 0;
   color: #2f71e5;
   margin-top: 22px;
+  display: block;
   
 }
 
 .modal__input {
   font-family: "inter",Arial, sans-serif;
-  display: block;
+  box-sizing: border-box;
   font-weight: 400;
   font-size: 14px;
   line-height: 100%;
@@ -81,12 +82,20 @@ button {
   border-bottom: 1px solid #000;
   outline: none;
   margin-top: 9px;
-  margin-bottom: 31px;
+  margin-bottom: 0;
   width: 100%;
   padding: 0;
   padding-bottom: 5px;
 }
 
+.modal__input_username{
+  margin-bottom: 32px;
+}
+
+
+.modal__input_signin_password{
+  margin-bottom: 40px;
+}
 
 
 .modal__login-text {
@@ -119,7 +128,25 @@ button {
   border: none;
   background: none; 
   cursor: pointer; 
+  margin-top: 16px;
 }
+
+
+.error-message{
+  margin-top: 5px;
+  color: #FF0000;
+  margin: 0;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  min-height: 14px; 
+  display: block;
+}
+
+.error-message_signup{
+  margin-bottom: 5px;
+}
+
 
 .modal__submit_without-border{
   margin-top: 16px;
@@ -136,6 +163,7 @@ button {
   line-height: 24px;
   letter-spacing: 0;
   color:#ffffff;
+  margin-top: 32px;
  
 }
 
@@ -150,10 +178,12 @@ button {
   line-height: 24px;
   letter-spacing: 0;
   color:#b6bcbf;
+  /* margin-top: 32px; */
 }
 
 
 .error-text {
+  margin-top: 8px;
   font-weight: 400;
   font-size: 12px;
   line-height: 100;
