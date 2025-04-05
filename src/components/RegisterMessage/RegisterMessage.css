@@ -7,19 +7,24 @@
 }
 
 .modal__register_title {
+  font-family: "roboto", Arial, sans-serif;
   font-weight: 900;
   font-size: 24px;
   line-height: 100%;
   letter-spacing: 0;
   color: black;
+  margin-bottom: 14px;
 }
 
 .modal__register_btn {
+  font-family: "inter", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
   border: none;
   width: 66px;
   padding: 5px 0;
   cursor: pointer;
-  text-align: center;
+  text-align: left;
   display: inline-block;
   background-color: transparent;
 }

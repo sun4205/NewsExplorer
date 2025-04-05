@@ -8,7 +8,20 @@ export const register = (email, password, username) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password, username }),
-  }).then(checkResponse);
+  }).then((res) => {
+    if (!res.ok) {
+      return res.json().then((data) => {
+        return Promise.reject(data);
+      });
+    }
+
+    return res.json().then((data) => {
+      return {
+        ...data,
+        success: true,
+      };
+    });
+  });
 };
 
 export const authorize = (email, password) => {

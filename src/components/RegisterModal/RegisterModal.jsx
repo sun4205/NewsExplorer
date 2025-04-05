@@ -12,42 +12,19 @@ function RegisterModal({
   modalRef,
   buttonText,
 }) {
-  const { values, handleChange } = useForm({
+  const { values, error, handleBlur,handleChange,submitError  } = useForm({
     email: "",
     password: "",
     username: "",
   });
 
   const [isSuccess, setIsSuccess] = useState(false);
-  const [errorEmail, setErrorEmail] = useState("");
 
   const isFilled = values.email.trim() !== "" && values.password.trim() !== "";
-
-  const handleEmailError = (email) => {
-    const checkValid = isValidEmail(email);
-    if (!checkValid) {
-      setErrorEmail("Invalid email address");
-    } else {
-      setErrorEmail("");
-    }
-  };
-
-  const isValidEmail = (email) => {
-    const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    return regex.test(email);
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted with values:", values);
-
-    if (!isValidEmail(values.email)) {
-      setErrorEmail("Invalid email address");
-      console.log("Email error:", errorEmail);
-      return;
-    } else {
-      setErrorEmail("");
-    }
 
     handleRegisterSubmit({
       email: values.email,
@@ -55,11 +32,12 @@ function RegisterModal({
       username: values.username,
     })
       .then((res) => {
+        console.log("Raw register response:", res);
         if (res.success) {
           setIsSuccess(true);
           setActiveModal("registerSuccess");
         } else {
-          console.log("Registration failed:", res.message);
+          console.log("Registration failed:", res?.message || "Unknown error");
         }
       })
       .catch((err) => console.error("Registration failed:", err));
@@ -88,6 +66,7 @@ function RegisterModal({
           modalRef={modalRef}
           closeActiveModal={closeActiveModal}
           isFilled={isFilled}
+          submitError={submitError} 
         >
           <label htmlFor="email" className="modal__label">
             Email
@@ -99,9 +78,9 @@ function RegisterModal({
               placeholder="Enter Email"
               value={values.email || ""}
               onChange={handleChange}
-              onBlur={(e) => handleEmailError(e.target.value)}
+              onBlur={handleBlur}
             />
-            {errorEmail && <span className="error-text">{errorEmail}</span>}
+           {error.email && <span className="error-message">{error.email}</span>}
           </label>
 
           <label htmlFor="password" className="modal__label">
@@ -113,7 +92,7 @@ function RegisterModal({
               name="password"
               placeholder="Enter Password"
               value={values.password}
-              onChange={handleChange}             
+              onChange={handleChange}
             />
           </label>
 
@@ -121,7 +100,7 @@ function RegisterModal({
             Username
             <input
               type="username"
-              className="modal__input"
+              className="modal__input modal__input_username"
               id="username"
               name="username"
               placeholder="Enter your username"
