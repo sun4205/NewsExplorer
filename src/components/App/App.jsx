@@ -38,6 +38,9 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // const queryParams = new URLSearchParams(location.search);
+  // const urlQuery = queryParams.get("query");
+
   const openLoginModal = () => {
     console.log("opening login modal ");
     setActiveModal("login");
@@ -79,15 +82,36 @@ function App() {
           localStorage.setItem("jwt", data.token);
           setJwt(data.token);
           setIsLoggedIn(true);
-          console.log("Login successful!.");
-          getUserInformation(data.token).then((userInfo) => {
-            setCurrentUser(userInfo);
-            console.log("User info updated:", userInfo);
-            const redirectPath = location.state?.from?.pathname || "/";
-            console.log("redirectPath", redirectPath);
-            navigate(redirectPath);
-            closeActiveModal();
-          });
+          console.log("Login successful!");
+
+          getUserInfo(data.token)
+            .then((userInfo) => {
+              setCurrentUser(userInfo);
+              console.log("User info updated:", userInfo);
+
+              api
+                .getSavedArticles({ token: data.token })
+                .then((articles) => {
+                  setSavedArticles(articles);
+                  console.log("Saved articles:", articles);
+                })
+                .catch(console.error);
+
+              api
+                .getSavedKeywords({ token: data.token })
+                .then((keywords) => {
+                  setSavedKeywords(keywords);
+                  console.log("Saved keywords:", keywords);
+                })
+                .catch(console.error);
+
+              const redirectPath = location.state?.from?.pathname || "/";
+              console.log("redirectPath", redirectPath);
+              navigate(redirectPath);
+
+              closeActiveModal();
+            })
+            .catch(console.error);
         }
       })
       .catch(console.error);
@@ -120,38 +144,18 @@ function App() {
     console.log("User logged out successfully.");
   };
 
+ 
   const handleNewsSaved = (data) => {
     const token = localStorage.getItem("jwt");
-    console.log("Received data in handleNewsSaved:", data);
-    console.log("data.id:", data.data.id);
-
-    const dataId = data.data.id;
-
-    const { id, source, title, date, description, image } = data.data;
-
-    const storedArticles =
-      JSON.parse(localStorage.getItem("savedArticles")) || [];
-    console.log("Stored articles:", storedArticles);
-
-    const isDuplicate = storedArticles.some((article) => {
-      console.log("Checking article:", article); 
-      console.log("article.id:", article.id);   
-      return article.id === dataId;
-    });
-    if (isDuplicate) {
-      console.log("Article is already saved, skipping...");
+    if (!token) {
+      console.log("No token found, user is not logged in.");
       return;
     }
-
-    const storedKeywords =
-      JSON.parse(localStorage.getItem("savedKeywords")) || [];
-
-    const updatedKeywords = storedKeywords.includes(query)
-      ? storedKeywords
-      : [...storedKeywords, query];
-    localStorage.setItem("savedKeywords", JSON.stringify(updatedKeywords));
-    setSavedArticles(updatedKeywords);
-    console.log("Calling savedNews function...");
+  
+    console.log("Received data in handleNewsSaved:", data);
+  
+    const { id, source, title, date, description, image } = data.data;
+  
     api
       .savedNews({
         id,
@@ -160,41 +164,47 @@ function App() {
         date,
         description,
         image,
-        keywords: updatedKeywords,
+        token,
       })
-      .then((updatedData) => {
-        console.log("savedNews API response:", updatedData);
-        const newSavedArticles = [...storedArticles, updatedData];
-        console.log("newsSavedArticles", newSavedArticles);
-
-        localStorage.setItem("savedArticles", JSON.stringify(newSavedArticles));
-
-        return setSavedArticles(newSavedArticles);
+      .then((response) => {
+        console.log("savedNews API response:", response);
+        
+        const keywordsToSave = [query];
+        api
+          .SaveKeywords({ token, keywords: keywordsToSave })
+          .then(() => {
+            console.log("SaveKeywords API called successfully!");
+          })
+          .catch((err) => {
+            console.error("Error calling SaveKeywords:", err);
+          });
       })
-      .catch(console.error);
+      .catch((error) => {
+        console.error("Error calling savedNews API:", error);
+      });
   };
+  
+
+
   const handleRemoveArticle = (id) => {
     console.log("Before deletion, savedArticles:", savedArticles);
-    console.log("Clicked article ID:", id); 
+    console.log("Clicked article ID:", id);
     const token = localStorage.getItem("jwt");
-
-    if (!Array.isArray(savedArticles)) return;
-
-    api.removeNewsCardSaved(id, token)
-        .then(() => {
-            setSavedArticles((prevArticles) =>
-                prevArticles.filter((article) => article.id !== id)
-            );
-        })
-        .catch((err) => console.error("Failed to delete article:", err));
-};
-
+  
+    api.removeNewsCardSaved(id, token) 
+      .then(() => {
+        setSavedArticles((prevArticles) =>
+          prevArticles.filter((article) => article.id !== id)
+        );
+      })
+      .catch((err) => console.error("Failed to delete article:", err));
+  };
+  
 
   const handleSearchSubmit = (values) => {
     console.log("handleSearchSubmit called with:", values);
     if (values.query.length < 3) return;
 
-    localStorage.setItem("query", values.query);
     asyncSubmit(() =>
       newsapi.getNewsCards(values.query).then((data) => {
         console.log("Fetched news data:", data);
@@ -203,73 +213,26 @@ function App() {
     );
   };
 
-  const handleRegisterSubmit = (values) => {
-    asyncSubmit(() =>
-      auth.register(values.email, values.password, values.username).then(() => {
-        handleLogin(values.email, values.password, () => {});
-      })
-    );
+  const handleRegisterSubmit = ({ email, password, username }) => {
+    return auth.register(email, password, username);
   };
 
-  // useEffect(() => {
-  //   if (query) {
-  //     newsapi.getNewsCards(query).then((data) => {
-  //       console.log("Fetched news data:", data);
-  //       setNewsItems({ ...data, articles: data.articles || [] });
-  //       localStorage.setItem("newsItems", JSON.stringify(data));
-  //       setNewsItems(data);
-  //     });
-  //   }
-  // }, [query]);
   useEffect(() => {
     if (query) {
-      asyncSubmit(() => {
-        return new Promise((resolve, reject) => {
-          newsapi
-            .getNewsCards(query)
-            .then((data) => {
-              console.log("Fetched news data:", data);
-              setNewsItems(data);
-              localStorage.setItem("newsItems", JSON.stringify(data));
-              resolve();
-            })
-            .catch(reject);
-        });
+      newsapi.getNewsCards(query).then((data) => {
+        console.log("Fetched news data:", data);
+        setNewsItems({ ...data, articles: data.articles || [] });
+        localStorage.setItem("newsItems", JSON.stringify(data));
+        setNewsItems(data);
       });
     }
   }, [query]);
+ 
 
-  useEffect(() => {
-    const storedSavedArticles =
-      JSON.parse(localStorage.getItem("savedArticles")) || [];
-    console.log("Loaded savedArticles from localStorage:", storedSavedArticles);
-    setSavedArticles(storedSavedArticles);
-  }, []);
-
-  useEffect(() => {
-    const storedNews = JSON.parse(localStorage.getItem("newsItems"));
-    if (storedNews?.articles?.length > 0) {
-      setNewsItems(storedNews);
-    }
-
-    const savedQuery = localStorage.getItem("query");
-    if (savedQuery) {
-      setQuery(savedQuery);
-    }
-  }, []);
-
-  useEffect(() => {
-    console.log("Updated savedArticles:", savedArticles);
-
-    if (savedArticles.length === 0) {
-      console.log("No saved articles available.");
-    }
-  }, [savedArticles]);
-
-//   useEffect(() => {
-//     localStorage.removeItem("savedArticles");  
-//     setSavedArticles([]);  
-// }, []);  
+  //   useEffect(() => {
+  //     localStorage.removeItem("savedArticles");
+  //     setSavedArticles([]);
+  // }, []);
 
   return (
     <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
@@ -300,6 +263,7 @@ function App() {
                         newsItems={newsItems}
                         handleNewsSaved={handleNewsSaved}
                         isLoading={isLoading}
+                       
                       />
                     )}
                   </>

@@ -89,12 +89,12 @@ button {
 }
 
 .modal__input_username{
-  margin-bottom: 32px;
+  margin-bottom: 39px;
 }
 
 
 .modal__input_signin_password{
-  margin-bottom: 40px;
+  margin-bottom: 39px;
 }
 
 
@@ -111,6 +111,7 @@ button {
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin: 0;
 }
 
 .modal__signin {
@@ -128,7 +129,7 @@ button {
   border: none;
   background: none; 
   cursor: pointer; 
-  margin-top: 16px;
+ 
 }
 
 
@@ -163,7 +164,7 @@ button {
   line-height: 24px;
   letter-spacing: 0;
   color:#ffffff;
-  margin-top: 32px;
+ 
  
 }
 
@@ -178,7 +179,7 @@ button {
   line-height: 24px;
   letter-spacing: 0;
   color:#b6bcbf;
-  /* margin-top: 32px; */
+ 
 }
 
 

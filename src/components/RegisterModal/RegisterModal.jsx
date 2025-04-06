@@ -20,7 +20,9 @@ function RegisterModal({
 
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const isFilled = values.email.trim() !== "" && values.password.trim() !== "";
+  const isFilled = (values.email.trim() !== "" || values.password.trim() !== "");
+
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();

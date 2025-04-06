@@ -5,10 +5,11 @@ import ShowMore from "../ShowMore/ShowMore";
 import Preloader from "../Preloader/Preloader";
 import { useState } from "react";
 
-function Main({ isLoading, newsItems, handleNewsSaved, handleRemoveArticle }) {
+function Main({ isLoading, newsItems, handleNewsSaved, handleRemoveArticle,urlQuery }) {
   const [renderedCards, setRenderedCards] = useState(3);
 
-  console.log("newsItems in Main:", newsItems);
+  // console.log("newsItems in Main:", newsItems);
+  // console.log("mainurlQuery:", urlQuery);
 
   const handleShowMore = () => {
     setRenderedCards((prev) => Math.min(prev + 3, 9));
@@ -31,6 +32,7 @@ function Main({ isLoading, newsItems, handleNewsSaved, handleRemoveArticle }) {
                 data={item}
                 handleNewsSaved={() => handleNewsSaved({ data: item })}
                 handleRemoveArticle={handleRemoveArticle}
+               
               />
             ))
           )  : (<div className="main__notFound-container">

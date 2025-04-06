@@ -1,16 +1,21 @@
 import "./SearchForm.css";
+import { useState, useEffect } from "react";
+import { getNewsCards } from "../../utils/NewsApi";
+import useDebounce  from "../../hooks/useDebounce";
 
 function SearchForm({ handleSearchSubmit, query, setQuery }) {
+  
   const handleInputChange = (e) => {
     setQuery(e.target.value);
   };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (query.trim() === "") return;
     handleSearchSubmit({ query });
   };
-
+  // 
   return (
     <div className="searchForm__container">
       <h1 className="searchForm__title">What's going on in the world?</h1>
@@ -22,7 +27,7 @@ function SearchForm({ handleSearchSubmit, query, setQuery }) {
         <label className="searchForm__label">
           <input
             className="searchForm__input"
-            type="text"
+            type="search"
             id="search__input"
             name="search__input"
             placeholder="Enter Topic"

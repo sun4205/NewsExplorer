@@ -8,7 +8,39 @@ function request(url, options) {
   return fetch(url, options).then(checkResponse);
 }
 
-function savedNews({ id, source, title, date, description, image, keywords }) {
+function getSavedNews({token}){
+  return request(`${baseUrl}/saveNews`,{
+    method:"GET",
+    headers:{
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+
+function getSaveKeywords({token}){
+  return request(`${baseUrl}/keywords`,{
+    method:"GET",
+    headers:{
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+function SaveKeywords({token,keywords}){
+  return request(`${baseUrl}/keywords`,{
+    method:"POST",
+    headers:{
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ keywords }),
+  });
+}
+
+function savedNews({ id, source, title, date, description, image}) {
   console.log("Sending fetch request...");
   console.log("ID being sent:", id);
   console.log("Data being sent:", {
@@ -18,10 +50,11 @@ function savedNews({ id, source, title, date, description, image, keywords }) {
     date,
     description,
     image,
-    keywords,
   });
+ 
 
   const token = localStorage.getItem("jwt");
+  console.log("token:", token);
 
   return request(`${baseUrl}/saveNews`, {
     method: "POST",
@@ -36,7 +69,6 @@ function savedNews({ id, source, title, date, description, image, keywords }) {
       date,
       description,
       image,
-      keywords,
     }),
   });
     
@@ -52,5 +84,15 @@ const removeNewsCardSaved = (id, token) => {
   });
   }
 
+  function checkEmailAvailable(email) {
+    return request(`${baseUrl}/users/check-email?email=${encodeURIComponent(email)}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
+  
 
-export { checkResponse, savedNews, removeNewsCardSaved };
+
+export { checkResponse, savedNews, removeNewsCardSaved, checkEmailAvailable, getSavedNews, getSaveKeywords,SaveKeywords};

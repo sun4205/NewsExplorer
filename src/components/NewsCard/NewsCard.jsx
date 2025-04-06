@@ -19,19 +19,23 @@ function NewsCard({ data, handleNewsSaved, handleRemoveArticle }) {
   const handleSaveClick = () => {
     console.log("saveddata", data);
     console.log("dataid", data.id);
+    if (!data) {
+      console.error("data is null or undefined");
+      return;
+    }
+
     if (!isSaved) {
       setSavedArticles((prevSavedArticles) => {
         const updatedArticles = [...prevSavedArticles, data];
         console.log("savedupdatedarticles:", updatedArticles);
         return updatedArticles;
       });
-
       handleNewsSaved(data);
       setIsSaved(true);
     } else {
       setSavedArticles((prevSavedArticles) => {
         const updatedArticles = prevSavedArticles.filter(
-          (article) => article.id !== data.id
+          (article) => article && article.id !== data.id
         );
         console.log("updated:", updatedArticles);
         return updatedArticles;
@@ -40,6 +44,7 @@ function NewsCard({ data, handleNewsSaved, handleRemoveArticle }) {
       setIsSaved(false);
     }
   };
+
   return (
     <li className="card">
       <div className="card__image-control">
@@ -47,8 +52,8 @@ function NewsCard({ data, handleNewsSaved, handleRemoveArticle }) {
           className="card__image"
           src={
             location.pathname === "/saveNews" && data?.image
-              ? data.image
-              : data.image
+              ? data?.image
+              : data?.image
           }
           alt={data?.title}
         />
@@ -60,7 +65,9 @@ function NewsCard({ data, handleNewsSaved, handleRemoveArticle }) {
                 className="card__save-btn card__save-btn-delete"
               ></button>
 
-              <div className="card__image__keywords">{data.keywords}</div>
+              <div className="card__image__keywords">
+                <span className="card__image__keyword"></span>
+              </div>
               <div className="card__image__remove">Remove from saved</div>
             </div>
           ) : (
