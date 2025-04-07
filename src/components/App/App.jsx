@@ -34,12 +34,10 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [jwt, setJwt] = useState(token.getToken());
   const [savedArticles, setSavedArticles] = useState([]);
+  const [keywords, setKeywords] = useState([]);
 
   const navigate = useNavigate();
   const location = useLocation();
-
-  // const queryParams = new URLSearchParams(location.search);
-  // const urlQuery = queryParams.get("query");
 
   const openLoginModal = () => {
     console.log("opening login modal ");
@@ -60,16 +58,6 @@ function App() {
       .finally(() => setIsLoading(false));
   }
 
-  function getUserInformation(token) {
-    return auth
-      .getUserInfo(token)
-      .then((user) => {
-        setIsLoggedIn(true);
-        setCurrentUser(user);
-      })
-      .catch(console.error);
-  }
-
   const handleLogin = ({ email, password }) => {
     if (!email || !password) {
       return;
@@ -88,34 +76,24 @@ function App() {
             .then((userInfo) => {
               setCurrentUser(userInfo);
               console.log("User info updated:", userInfo);
-
-              api
-                .getSavedArticles({ token: data.token })
-                .then((articles) => {
-                  setSavedArticles(articles);
-                  console.log("Saved articles:", articles);
-                })
-                .catch(console.error);
-
-              api
-                .getSavedKeywords({ token: data.token })
-                .then((keywords) => {
-                  setSavedKeywords(keywords);
-                  console.log("Saved keywords:", keywords);
-                })
-                .catch(console.error);
-
-              const redirectPath = location.state?.from?.pathname || "/";
-              console.log("redirectPath", redirectPath);
-              navigate(redirectPath);
-
-              closeActiveModal();
             })
             .catch(console.error);
         }
       })
       .catch(console.error);
   };
+
+  useEffect(() => {
+    if (!jwt) return;
+
+    api
+      .getSavedNews({ token: jwt })
+      .then((articles) => {
+        setSavedArticles(articles);
+        console.log("Saved get articles:", articles);
+      })
+      .catch(console.error);
+  }, [jwt]);
 
   useEffect(() => {
     const jwtFromStorage = localStorage.getItem("jwt");
@@ -144,18 +122,18 @@ function App() {
     console.log("User logged out successfully.");
   };
 
- 
   const handleNewsSaved = (data) => {
     const token = localStorage.getItem("jwt");
     if (!token) {
       console.log("No token found, user is not logged in.");
       return;
     }
-  
+
     console.log("Received data in handleNewsSaved:", data);
-  
-    const { id, source, title, date, description, image } = data.data;
-  
+    console.log("query", query);
+
+    const { id, source, title, date, description, image, keywords } = data.data;
+
     api
       .savedNews({
         id,
@@ -165,33 +143,23 @@ function App() {
         description,
         image,
         token,
+        keywords,
       })
       .then((response) => {
         console.log("savedNews API response:", response);
-        
-        const keywordsToSave = [query];
-        api
-          .SaveKeywords({ token, keywords: keywordsToSave })
-          .then(() => {
-            console.log("SaveKeywords API called successfully!");
-          })
-          .catch((err) => {
-            console.error("Error calling SaveKeywords:", err);
-          });
       })
       .catch((error) => {
         console.error("Error calling savedNews API:", error);
       });
   };
-  
-
 
   const handleRemoveArticle = (id) => {
     console.log("Before deletion, savedArticles:", savedArticles);
     console.log("Clicked article ID:", id);
     const token = localStorage.getItem("jwt");
-  
-    api.removeNewsCardSaved(id, token) 
+
+    api
+      .removeNewsCardSaved(id, token)
       .then(() => {
         setSavedArticles((prevArticles) =>
           prevArticles.filter((article) => article.id !== id)
@@ -199,7 +167,22 @@ function App() {
       })
       .catch((err) => console.error("Failed to delete article:", err));
   };
-  
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwt");
+    console.log("Token from localStorage:", token);
+    if (!token) return;
+
+    api
+      .getSavedNews(token)
+      .then((articles) => {
+        console.log("Fetched get saved articles:", articles);
+        setSavedArticles(articles);
+      })
+      .catch((err) => {
+        console.error("Error fetching saved articles", err);
+      });
+  }, []);
 
   const handleSearchSubmit = (values) => {
     console.log("handleSearchSubmit called with:", values);
@@ -207,6 +190,7 @@ function App() {
 
     asyncSubmit(() =>
       newsapi.getNewsCards(values.query).then((data) => {
+        console.log("querydata", values.query);
         console.log("Fetched news data:", data);
         setNewsItems(data);
       })
@@ -216,18 +200,14 @@ function App() {
   const handleRegisterSubmit = ({ email, password, username }) => {
     return auth.register(email, password, username);
   };
-
   useEffect(() => {
     if (query) {
       newsapi.getNewsCards(query).then((data) => {
         console.log("Fetched news data:", data);
         setNewsItems({ ...data, articles: data.articles || [] });
-        localStorage.setItem("newsItems", JSON.stringify(data));
-        setNewsItems(data);
       });
     }
   }, [query]);
- 
 
   //   useEffect(() => {
   //     localStorage.removeItem("savedArticles");
@@ -263,7 +243,6 @@ function App() {
                         newsItems={newsItems}
                         handleNewsSaved={handleNewsSaved}
                         isLoading={isLoading}
-                       
                       />
                     )}
                   </>
@@ -277,6 +256,7 @@ function App() {
                       savedArticles={savedArticles}
                       handleRemoveArticle={handleRemoveArticle}
                       setSavedArticles={setSavedArticles}
+                      keywords={keywords}
                     />
                   </ProtectedRoute>
                 }

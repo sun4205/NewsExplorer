@@ -7,9 +7,8 @@ export const newsApiBaseUrl =
     ? "https://nomoreparties.co/news/v2/everything"
     : "https://newsapi.org/v2/everything";
 
-function processNewsData(articles) {
+function processNewsData(articles, query) {
   return articles.map((article) => {
- 
     const rawDate = article?.publishedAt || null;
 
     let formattedDate = "no date";
@@ -28,6 +27,7 @@ function processNewsData(articles) {
       date: formattedDate,
       description: article?.description || "no description",
       image: article?.urlToImage || "no image",
+      keywords: [query],
     };
   });
 }
@@ -44,7 +44,7 @@ export const getNewsCards = (query) => {
     .then(checkResponse)
     .then((data) => {
       if (data.articles) {
-        const processedData = processNewsData(data.articles);
+        const processedData = processNewsData(data.articles, query);
         console.log("Processed news data:", processedData);
         return processedData;
       }

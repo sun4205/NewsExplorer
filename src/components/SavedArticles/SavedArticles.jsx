@@ -1,28 +1,42 @@
 import "./savedArticles.css";
 import NewsCard from "../NewsCard/NewsCard";
-import { useContext, useEffect } from "react";
+import React, { useEffect, useState, useContext} from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
+
+
 
 
 function SavedArticles({
   savedArticles,
   handleRemoveArticle,
- setSavedArticles
+ setSavedArticles,
+ fetchKeywords,
+ keywords,
 }) {
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
+  
  
   console.log("savedArticles:", savedArticles);
+  console.log("Keywords:", keywords);
 
-  
-  const allKeywords = [...new Set( (savedArticles || []) 
-  .filter(item => item && item.keywords) 
-  .flatMap(item => item.keywords)
-)];
 
-const keywordsText = allKeywords.length > 2  
-  ? `${allKeywords.slice(0, 2).join(", ")} and ${allKeywords.length - 2} others`  
-  : allKeywords.join(", ");  
+const allKeywords = savedArticles
+  .map((item) => item.keywords)      
+  .flat()                            
+  .filter(Boolean);                   
 
+
+const uniqueKeywords = [...new Set(allKeywords)];
+
+console.log("All Unique Keywords:", uniqueKeywords);
+
+
+const keywordsText =
+  uniqueKeywords.length > 2
+    ? `${uniqueKeywords.slice(0, 2).join(", ")} and ${uniqueKeywords.length - 2} others`
+    : uniqueKeywords.join(", ");
+
+console.log("keywordsText:", keywordsText);
 
   
   if (!currentUser) {

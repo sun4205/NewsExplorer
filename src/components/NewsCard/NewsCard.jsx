@@ -66,7 +66,7 @@ function NewsCard({ data, handleNewsSaved, handleRemoveArticle }) {
               ></button>
 
               <div className="card__image__keywords">
-                <span className="card__image__keyword"></span>
+                <span className="card__image__keyword">{data?.keywords}</span>
               </div>
               <div className="card__image__remove">Remove from saved</div>
             </div>
