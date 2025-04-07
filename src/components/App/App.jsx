@@ -229,6 +229,7 @@ function App() {
             setQuery={setQuery}
             openLoginModal={openLoginModal}
             handleLogOut={handleLogOut}
+            closeActiveModal={closeActiveModal}
           />
 
           <div className="page-content">

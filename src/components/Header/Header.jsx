@@ -10,6 +10,7 @@ function Header({
   query,
   setQuery,
   openLoginModal,
+  closeActiveModal,
   handleLogOut,
 }) {
   console.log("Header!");
@@ -26,6 +27,7 @@ function Header({
         <Navigation
           openLoginModal={openLoginModal}
           handleLogOut={handleLogOut}
+          closeActiveModal={closeActiveModal}
         />
       </header>
 

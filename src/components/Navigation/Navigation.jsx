@@ -3,8 +3,10 @@ import "./Navigation.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
+import NewsExplorer from "../../images/NewsExplorer.svg";
+import close from "../../images/close.svg";
 
-function Navigation({ openLoginModal, handleLogOut }) {
+function Navigation({ openLoginModal, handleLogOut, closeActiveModal }) {
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -19,8 +21,8 @@ function Navigation({ openLoginModal, handleLogOut }) {
 
   const handleHomeClick = () => {
     console.log("Navigating to Home");
-    navigate("/"); 
-    setIsMobileMenuOpen(false);  
+    navigate("/");
+    setIsMobileMenuOpen(false);
   };
 
   const handleSavedNews = () => {
@@ -31,50 +33,64 @@ function Navigation({ openLoginModal, handleLogOut }) {
 
   return (
     <div className="navigation">
-      <button className="navigation__mobile-menu" onClick={toggleMobileMenu}>       
-      </button>
-      <nav className={`navigation__nav ${isMobileMenuOpen ? "open" : ""}`}>
       <button
-        onClick={handleHomeClick}
-        type="button"
-        className={`navigation__home-btn ${savedNewsPage ? "font-black" : ""} ${isMobileMenuOpen ? "show-mobile" : ""}`}
-      >
-        Home
-      </button>
-      {!currentUser ? (
+        className="navigation__mobile-menu"
+        onClick={toggleMobileMenu}
+      ></button>
+      <nav className={`navigation__nav ${isMobileMenuOpen ? "open" : ""}`}>
+        <img src={NewsExplorer} className="navigation__logo" />
         <button
+          onClick={() => {
+            closeActiveModal();
+          }}
           type="button"
-          onClick={openLoginModal}
-          className="navigation__signIn-btn"
+          className="modal__close"
+        ><img src={close} className="modal__close-btn" alt="close_button" /></button>
+        <button
+          onClick={handleHomeClick}
+          type="button"
+          className={`navigation__home-btn ${
+            savedNewsPage ? "font-black" : ""
+          } ${isMobileMenuOpen ? "show-mobile" : ""}`}
         >
-          Sign In
+          Home
         </button>
-      ) : (
-        <div className="navigation__loggedIn-control">
+        {!currentUser ? (
           <button
-            onClick={handleSavedNews}
             type="button"
-            className={`navigation__savedArticle-nav ${
-              savedNewsPage ? "font-black" : ""
-            }`}
+            onClick={openLoginModal}
+            className="navigation__signIn-btn"
           >
-            Saved Articles
+            Sign In
           </button>
-
-          <div
-            className={`navigation__username ${
-              savedNewsPage ? "font-black" : ""
-            }`}
-          >
-            {currentUser.username}
+        ) : (
+          <div className="navigation__loggedIn-control">
             <button
-              onClick={handleLogOut}
+              onClick={handleSavedNews}
               type="button"
-              className={`navigation__logout ${savedNewsPage ? 'logout-black' :'logout-white'}`}
-            ></button>
+              className={`navigation__savedArticle-nav ${
+                savedNewsPage ? "font-black" : ""
+              }`}
+            >
+              Saved Articles
+            </button>
+
+            <div
+              className={`navigation__username ${
+                savedNewsPage ? "font-black" : ""
+              }`}
+            >
+              {currentUser.username}
+              <button
+                onClick={handleLogOut}
+                type="button"
+                className={`navigation__logout ${
+                  savedNewsPage ? "logout-black" : "logout-white"
+                }`}
+              ></button>
+            </div>
           </div>
-        </div>
-      )}
+        )}
       </nav>
     </div>
   );
