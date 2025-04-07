@@ -25,6 +25,10 @@ function Navigation({ openLoginModal, handleLogOut, closeActiveModal }) {
     setIsMobileMenuOpen(false);
   };
 
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   const handleSavedNews = () => {
     console.log("Navigating to Saved News");
     navigate("/saveNews");
@@ -41,11 +45,11 @@ function Navigation({ openLoginModal, handleLogOut, closeActiveModal }) {
         <img src={NewsExplorer} className="navigation__logo" />
         <button
           onClick={() => {
-            closeActiveModal();
+            closeMobileMenu();
           }}
-          type="button"
-          className="modal__close"
-        ><img src={close} className="modal__close-btn" alt="close_button" /></button>
+        >
+          <img src={close} className="modal__close-btn" alt="close_button" />
+        </button>
         <button
           onClick={handleHomeClick}
           type="button"
