@@ -91,4 +91,7 @@
 }
 
 @media screen and (max-width: 320px) {
+  .savedArticles__container {
+   padding: 8px 16px 16px;
+}
 }

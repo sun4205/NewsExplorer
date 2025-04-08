@@ -16,7 +16,7 @@ function Navigation({ openLoginModal, handleLogOut, closeActiveModal }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
+    setIsMobileMenuOpen(prevState => !prevState); 
   };
 
   const handleHomeClick = () => {
@@ -26,6 +26,7 @@ function Navigation({ openLoginModal, handleLogOut, closeActiveModal }) {
   };
 
   const closeMobileMenu = () => {
+    console.log("click")
     setIsMobileMenuOpen(false);
   };
 
@@ -38,18 +39,22 @@ function Navigation({ openLoginModal, handleLogOut, closeActiveModal }) {
   return (
     <div className="navigation">
       <button
-        className="navigation__mobile-menu"
+        className={`navigation__mobile-menu ${
+          currentUser && savedNewsPage ? "black" : ""
+        }`}
         onClick={toggleMobileMenu}
       ></button>
-      <nav className={`navigation__nav ${isMobileMenuOpen ? "open" : ""}`}>
-        <img src={NewsExplorer} className="navigation__logo" />
-        <button
+      <nav className={`navigation__nav navigation__nav__mobile ${isMobileMenuOpen ? "open" : ""}`} >
+        <div className="navigation__mobile-header">
+         <img src={NewsExplorer} className="navigation__logo" />
+         <button
           onClick={() => {
             closeMobileMenu();
           }}
-        >
-          <img src={close} className="modal__close-btn" alt="close_button" />
-        </button>
+          >
+          <img src={close} className="navigation__nav-btn" alt="close_button" />
+         </button>
+        </div>
         <button
           onClick={handleHomeClick}
           type="button"

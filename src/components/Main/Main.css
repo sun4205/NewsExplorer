@@ -70,6 +70,19 @@
 
 @media screen and (max-width: 320px) {
   .main {
-    padding: 32px 16px 16px 16px;
+    padding: 24px 16px 16px 16px;
   }
+  
+.main__cards-list {
+  display: flex;  
+  justify-content: center;
+  align-items: center;
+}
+
+
+.main__cards-list--row {
+  justify-content: center;
+  align-items: center;
+}
+
 }

@@ -13,7 +13,8 @@
   cursor: pointer;
 }
 
-.navigation__logo{
+.navigation__logo {
+  display: none;
   width: 135px;
   height: 27px;
 }
@@ -24,6 +25,22 @@
   gap: 24px;
   overflow: hidden;
   padding: 0;
+}
+
+.navigation__nav__mobile {
+  display: none;
+}
+
+.navigation__nav.open {
+  display: flex;
+}
+
+.navigation__nav-btn {
+  display: none;
+}
+
+.navigation__mobile-header {
+  display: none;
 }
 
 .navigation__home-btn {
@@ -121,8 +138,13 @@
 
 .navigation__loggedIn-control {
   display: flex;
+
   justify-content: center;
   align-items: center;
+}
+
+.navigation__mobile-menu.black {
+  background-image: url("../../images/menublack.svg");
 }
 
 .navigation__savedArticle-nav {
@@ -263,6 +285,16 @@
     display: flex;
     flex-direction: column;
   }
+
+  .navigation__nav {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .navigation__mobile-menu {
+    display: none;
+  }
+
   .navigation__home-btn {
     margin: 0;
     padding: 0;
@@ -275,18 +307,14 @@
 }
 
 @media screen and (max-width: 320px) {
-  
-  /* .navigation__home-btn:not(.show-mobile) {
-    display: none;
-  } */
   .navigation__mobile-menu {
     display: block;
   }
-  .navigation__nav {
-    background-image: url("../../images/NewsExplorer.svg");
-    background-repeat: no-repeat;     
-    background-position: center;      
-    background-size: contain; 
+  .navigation__nav__mobile {
+    display: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
     background: #1a1b22;
     position: fixed;
     top: 0px;
@@ -294,13 +322,24 @@
     right: 0;
     bottom: 0;
     width: 100%;
-    height: 230px;    
-    display: flex;
+    height: 230px;
     flex-direction: column;
     z-index: 10;
     color: white;
-    overflow: auto; 
-    padding:30px 0
+    overflow: auto;
+    padding: 16px;
+  }
+  .navigation__logo {
+    display: block;
+    width: 140px;
+  }
+
+  .navigation__mobile-header {
+    display: block;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid white;
+    padding: 0 0 15px 0;
   }
   .navigation__nav.open {
     display: flex;
@@ -308,5 +347,31 @@
 
   .navigation__nav button {
     display: block;
+  }
+
+  .navigation__home-btn {
+    text-align: left;
+    margin-left: 18px;
+  }
+
+  .navigation__home-btn::after {
+    display: none;
+  }
+
+  .navigation__nav-btn {
+    display: block;
+    top: 10px;
+    right: 10px;
+    width: 25px;
+  }
+
+  .navigation__signIn-btn {
+    width: 288px;
+    margin-top: 22px;
+  }
+
+  .navigation__mobile-menu .black {
+    display: block;
+    background-image: url("../../images/menublack.svg");
   }
 }
