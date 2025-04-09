@@ -1,3 +1,9 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 .searchForm__container {
   display: flex;
   flex-direction: column;
@@ -35,8 +41,6 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  border-radius: 50px;
-  margin: 0 auto;
 }
 .searchForm__label {
   position: relative;
@@ -48,6 +52,8 @@ input {
 }
 
 .searchForm__input {
+  max-width: 100%;
+  width: 100%;
   background-color: white;
   border: none;
   width: 544px;
@@ -57,6 +63,8 @@ input {
 }
 
 .searchForm__btn {
+  max-width: 100%;
+  width: 100%;
   background-color: #2f71e5;
   width: 168px;
   height: 56px;
@@ -66,7 +74,6 @@ input {
   background-position: center;
   outline: none;
   padding: 0 24px;
-
   color: white;
   border-radius: 50px;
   font-weight: 500;
@@ -83,6 +90,10 @@ input {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+
+  .searchForm_controls {
+    flex-direction: column;
   }
 
   .searchForm__title {

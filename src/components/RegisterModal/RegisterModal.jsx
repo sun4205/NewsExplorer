@@ -1,5 +1,5 @@
 import "./RegisterModal.css";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import RegisterMessage from "../RegisterMessage/RegisterMessage";
 import { useForm } from "../../hooks/useForm";
@@ -9,10 +9,9 @@ function RegisterModal({
   closeActiveModal,
   handleRegisterSubmit,
   setActiveModal,
-  modalRef,
-  buttonText,
+  modalRef,  
 }) {
-  const { values, error, handleBlur,handleChange,submitError  } = useForm({
+  const { values, error, handleBlur, handleChange, submitError } = useForm({
     email: "",
     password: "",
     username: "",
@@ -20,9 +19,7 @@ function RegisterModal({
 
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const isFilled = (values.email.trim() !== "" || values.password.trim() !== "");
-
-  
+  const isFilled = values.email.trim() !== "" || values.password.trim() !== "";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -68,7 +65,8 @@ function RegisterModal({
           modalRef={modalRef}
           closeActiveModal={closeActiveModal}
           isFilled={isFilled}
-          submitError={submitError} 
+          submitError={submitError}
+          className="modal modal--register"
         >
           <label htmlFor="email" className="modal__label">
             Email
@@ -82,7 +80,9 @@ function RegisterModal({
               onChange={handleChange}
               onBlur={handleBlur}
             />
-           {error.email && <span className="error-message">{error.email}</span>}
+            {error.email && (
+              <span className="error-message">{error.email}</span>
+            )}
           </label>
 
           <label htmlFor="password" className="modal__label">

@@ -7,25 +7,16 @@ import { useForm } from "../../hooks/useForm";
 function LoginModal({
   activeModal,
   closeActiveModal,
-  buttonText,
   handleLogin,
   setActiveModal,
   modalRef,
 }) {
-
-  
-
-  const { values, error,handleBlur, handleChange } = useForm({
+  const { values, error, handleBlur, handleChange } = useForm({
     email: "",
     password: "",
   });
 
   const isFilled = values.email.trim() !== "" || values.password.trim() !== "";
-
-  //  const handleEmailError = (event) => {
-  //    const { name, value } = event.target;
-        
-  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -53,9 +44,9 @@ function LoginModal({
       onSubmit={handleSubmit}
       modalRef={modalRef}
       closeActiveModal={closeActiveModal}
-     
       isFilled={isFilled}
       ref={modalRef}
+      className="modal modal--login"
     >
       <label htmlFor="email" className="modal__label">
         Email
@@ -69,7 +60,7 @@ function LoginModal({
           onChange={handleChange}
           onBlur={handleBlur}
         />
-         {error.email && <span className="error-message">{error.email}</span>}
+        {error.email && <span className="error-message">{error.email}</span>}
       </label>
 
       <label htmlFor="password" className="modal__label">
@@ -82,7 +73,6 @@ function LoginModal({
           placeholder="Enter Password"
           value={values.password}
           onChange={handleChange}
-          //  onBlur={handleBlur} 
         />
       </label>
     </ModalWithForm>

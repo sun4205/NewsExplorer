@@ -22,7 +22,6 @@ button {
   visibility: visible;
 }
 
-
 .modal__content {
   background-color: #fff;
   position: relative;
@@ -33,23 +32,25 @@ button {
   border-radius: 16px;
 }
 
-.modal__close {  
+.modal__close {
   border: none;
   background: none;
 }
 
-.modal__close-btn{
-  position: absolute;  
+.modal__close-btn {
+  position: absolute;
   width: 40px;
-  height: 40px;   
-  top:-46px;
-  right:-41px;
+  height: 40px;
+  top: -46px;
+  right: -41px;
+  background-color: white;
 }
 .modal__title {
+  font-family: "roboto", Arial, sans-serif;
   margin: 0;
   font-weight: 900;
   font-size: 24px;
-  line-height: 100%; 
+  line-height: 100%;
   color: #1a1b22;
 }
 
@@ -60,7 +61,7 @@ button {
 }
 
 .modal__label {
-  font-family: "inter",Arial, sans-serif;
+  font-family: "inter", Arial, sans-serif;
   font-weight: 400;
   font-size: 12px;
   line-height: 100%;
@@ -68,11 +69,10 @@ button {
   color: #2f71e5;
   margin-top: 22px;
   display: block;
-  
 }
 
 .modal__input {
-  font-family: "inter",Arial, sans-serif;
+  font-family: "inter", Arial, sans-serif;
   box-sizing: border-box;
   font-weight: 400;
   font-size: 14px;
@@ -88,15 +88,13 @@ button {
   padding-bottom: 5px;
 }
 
-.modal__input_username{
+.modal__input_username {
   margin-bottom: 39px;
 }
 
-
-.modal__input_signin_password{
+.modal__input_signin_password {
   margin-bottom: 39px;
 }
-
 
 .modal__login-text {
   margin: 0;
@@ -120,40 +118,36 @@ button {
   border-radius: 20%;
   border: none;
   background-color: transparent;
- 
 }
 
 .modal_submit {
-  font-family: "inter",Arial, sans-serif;
+  font-family: "inter", Arial, sans-serif;
   outline: none;
   border: none;
-  background: none; 
-  cursor: pointer; 
- 
+  background: none;
+  cursor: pointer;
 }
 
-
-.error-message{
+.error-message {
   margin-top: 5px;
-  color: #FF0000;
+  color: #ff0000;
   margin: 0;
   font-weight: 400;
   font-size: 12px;
   line-height: 100%;
-  min-height: 14px; 
+  min-height: 14px;
   display: block;
 }
 
-.error-message_signup{
+.error-message_signup {
   margin-bottom: 5px;
 }
 
-
-.modal__submit_without-border{
+.modal__submit_without-border {
   margin-top: 16px;
 }
 
-.modal__submit.modal__submit--filled {  
+.modal__submit.modal__submit--filled {
   width: 360px;
   height: 64px;
   background-color: #2f71e5;
@@ -163,9 +157,7 @@ button {
   font-size: 18px;
   line-height: 24px;
   letter-spacing: 0;
-  color:#ffffff;
- 
- 
+  color: #ffffff;
 }
 
 .modal__submit--empty {
@@ -178,57 +170,46 @@ button {
   font-size: 18px;
   line-height: 24px;
   letter-spacing: 0;
-  color:#b6bcbf;
- 
+  color: #b6bcbf;
 }
-
 
 .error-text {
   margin-top: 8px;
   font-weight: 400;
   font-size: 12px;
   line-height: 100;
-  color:#ff0000;
+  color: #ff0000;
 }
-
-
 
 @media screen and (max-width: 768px) {
-.modal__content{
-  max-width: 430px;
-  padding:34px 36px 28px 36px;
-}
+  .modal__content {
+    max-width: 430px;
 
+    padding: 34px 36px 28px 36px;
+  }
 }
-
 
 @media screen and (max-width: 320px) {
-
-  .modal__content {   
-    padding: 16px 17px 120px 17px;   
+  .modal__content {
+    padding: 16px 17px 120px 17px;
   }
 
-  
-.modal__label {
-  margin-top:14px ;
- 
+  .modal__label {
+    margin-top: 14px;
+  }
+  .modal {
+    position: fixed;
+    top: -340px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #0000004d;
+    position: absolute;
+    z-index: 999;
+  }
 
-}
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #0000004d;
-  position:absolute;
-  top:-320px;
-  z-index: 999;
-
-}
-
-.modal__close-btn{
-  top:20px;
-  left:13px; 
-}
+  .modal__close-btn {
+    top: 20px;
+    left: 13px;
+  }
 }
