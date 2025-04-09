@@ -5,8 +5,7 @@
 
 .navigation__mobile-menu {
   display: none;
-  background-image: url("../../images/menu.svg");
-  background-color: white;
+  background-image: url("../../images/menubar.svg");  
   width: 100%;
   width: 24px;
   height: 24px;
