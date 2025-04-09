@@ -23,7 +23,7 @@ function Header({
       className={`header__container ${savedNewsPage ? "no-background" : ""}`}
     >
       <header className={`header ${savedNewsPage ? "no-background" : ""}`}>
-        <img src={savedNewsPage ? NewsExplorerblack : NewsExplorer} />
+        <img src={savedNewsPage ? NewsExplorerblack : NewsExplorer} className="header__logo"/>
         <Navigation
           openLoginModal={openLoginModal}
           handleLogOut={handleLogOut}

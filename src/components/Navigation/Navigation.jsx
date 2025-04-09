@@ -16,7 +16,7 @@ function Navigation({ openLoginModal, handleLogOut, closeActiveModal }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(prevState => !prevState); 
+    setIsMobileMenuOpen((prevState) => !prevState);
   };
 
   const handleHomeClick = () => {
@@ -26,7 +26,7 @@ function Navigation({ openLoginModal, handleLogOut, closeActiveModal }) {
   };
 
   const closeMobileMenu = () => {
-    console.log("click")
+    console.log("click");
     setIsMobileMenuOpen(false);
   };
 
@@ -35,7 +35,6 @@ function Navigation({ openLoginModal, handleLogOut, closeActiveModal }) {
     navigate("/saveNews");
     setIsMobileMenuOpen(false);
   };
-
   return (
     <div className="navigation">
       <button
@@ -44,17 +43,19 @@ function Navigation({ openLoginModal, handleLogOut, closeActiveModal }) {
         }`}
         onClick={toggleMobileMenu}
       ></button>
-      <nav className={`navigation__nav navigation__nav__mobile ${isMobileMenuOpen ? "open" : ""}`} >
+
+      <nav className={`navigation__nav  ${isMobileMenuOpen ? "open" : ""}`}>
         <div className="navigation__mobile-header">
-         <img src={NewsExplorer} className="navigation__logo" />
-         <button
-          onClick={() => {
-            closeMobileMenu();
-          }}
-          >
-          <img src={close} className="navigation__nav-btn" alt="close_button" />
-         </button>
+          <img src={NewsExplorer} className="navigation__logo" alt="logo" />
+          <button onClick={closeMobileMenu}>
+            <img
+              src={close}
+              className="navigation__nav-btn"
+              alt="close_button"
+            />
+          </button>
         </div>
+
         <button
           onClick={handleHomeClick}
           type="button"
@@ -64,7 +65,8 @@ function Navigation({ openLoginModal, handleLogOut, closeActiveModal }) {
         >
           Home
         </button>
-        {!currentUser ? (
+
+        {!currentUser && (
           <button
             type="button"
             onClick={openLoginModal}
@@ -72,7 +74,9 @@ function Navigation({ openLoginModal, handleLogOut, closeActiveModal }) {
           >
             Sign In
           </button>
-        ) : (
+        )}
+
+        {currentUser && (
           <div className="navigation__loggedIn-control">
             <button
               onClick={handleSavedNews}

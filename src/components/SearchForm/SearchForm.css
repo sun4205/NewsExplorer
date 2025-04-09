@@ -134,8 +134,10 @@ input {
   }
    
 .searchForm__btn {
-  left:200px;
+ 
   width: 160px;
+  top:0px;
+  left:200px;
 }
 }
 
