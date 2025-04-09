@@ -9,6 +9,7 @@
   justify-content: center;
   align-items: center;
   visibility: hidden;
+  z-index: 100;
 }
 
 button {
@@ -30,6 +31,7 @@ button {
   box-sizing: border-box;
   width: 100%;
   border-radius: 16px;
+  z-index: 100;
 }
 
 .modal__close {
@@ -43,7 +45,8 @@ button {
   height: 40px;
   top: -46px;
   right: -41px;
-  background-color: white;
+  border: 1px solid red;
+  z-index: 100;
 }
 .modal__title {
   font-family: "roboto", Arial, sans-serif;
@@ -209,7 +212,7 @@ button {
   }
 
   .modal__close-btn {
-    top: 20px;
-    left: 13px;
+    top: -10px;
+    left: 250px;
   }
 }
