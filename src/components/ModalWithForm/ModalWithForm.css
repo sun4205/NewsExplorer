@@ -9,7 +9,7 @@
   justify-content: center;
   align-items: center;
   visibility: hidden;
-  z-index: 100;
+  z-index: 1000;
 }
 
 button {
@@ -37,16 +37,22 @@ button {
 .modal__close {
   border: none;
   background: none;
+  border: 1px solid red;
+  width: 40px;
+  height: 40px;
+  top: 10px;
+  left: 400px;
+  position: absolute;
 }
 
 .modal__close-btn {
-  position: absolute;
+  /* position: absolute; */
   width: 40px;
   height: 40px;
   top: -46px;
   right: -41px;
   border: 1px solid red;
-  z-index: 100;
+  z-index:  1010;
 }
 .modal__title {
   font-family: "roboto", Arial, sans-serif;
