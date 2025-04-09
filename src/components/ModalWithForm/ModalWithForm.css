@@ -35,14 +35,16 @@ button {
 }
 
 .modal__close {
+  background-image: url("../../images/close.svg");
   border: none;
   background: none;
   border: 1px solid red;
   width: 40px;
   height: 40px;
-  top: 10px;
-  left: 400px;
+  top: -4px;
+  right:10px;
   position: absolute;
+  z-index:  1010;
 }
 
 .modal__close-btn {
@@ -50,7 +52,7 @@ button {
   width: 40px;
   height: 40px;
   top: -46px;
-  right: -41px;
+  right: -60px;
   border: 1px solid red;
   z-index:  1010;
 }

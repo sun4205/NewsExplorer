@@ -4,17 +4,24 @@ import { getNewsCards } from "../../utils/NewsApi";
 import useDebounce  from "../../hooks/useDebounce";
 
 function SearchForm({ handleSearchSubmit, query, setQuery }) {
-  
+  const debouncedQuery = useDebounce(query, 500);
+  console.log("querytype:", query);
+  console.log("debouncedQuery:", debouncedQuery); 
   const handleInputChange = (e) => {
     setQuery(e.target.value);
   };
 
+  useEffect(() => {
+    if (debouncedQuery.trim().length < 3) return;
+    console.log("debouncedQuery triggered:", debouncedQuery);
+    handleSearchSubmit({ query: debouncedQuery });
+  }, [debouncedQuery, handleSearchSubmit]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (query.trim() === "") return;
-    handleSearchSubmit({ query });
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (query.trim() === "") return;
+  //   handleSearchSubmit({ query });
+  // };
   // 
   return (
     // <div className="searchForm__container">
@@ -64,7 +71,7 @@ function SearchForm({ handleSearchSubmit, query, setQuery }) {
         </label>
         <button
         type="button"
-        onClick={handleSubmit}
+        onClick={() => handleSearchSubmit({ query })}
         className="searchForm__btn"
         >
         Search

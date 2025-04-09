@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
     const [debouncedValue, setDebouncedValue] = useState(value);
 
     useEffect(() => {
+      console.log("inside debounce effect:", value);
         const timerID = setTimeout(() => {
+          console.log("debounce set:", value);
           setDebouncedValue(value);
         }, delay);
     

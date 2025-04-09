@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useCallback  } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header";
@@ -184,10 +184,23 @@ function App() {
       });
   }, []);
 
-  const handleSearchSubmit = (values) => {
+  // const handleSearchSubmit = (values) => {
+  //   console.log("handleSearchSubmit called with:", values);
+  //   if (values.query.length < 3) return;
+
+  //   asyncSubmit(() =>
+  //     newsapi.getNewsCards(values.query).then((data) => {
+  //       console.log("querydata", values.query);
+  //       console.log("Fetched news data:", data);
+  //       setNewsItems(data);
+  //     })
+  //   );
+  // };
+
+  const handleSearchSubmit = useCallback((values) => {
     console.log("handleSearchSubmit called with:", values);
     if (values.query.length < 3) return;
-
+  
     asyncSubmit(() =>
       newsapi.getNewsCards(values.query).then((data) => {
         console.log("querydata", values.query);
@@ -195,7 +208,8 @@ function App() {
         setNewsItems(data);
       })
     );
-  };
+  }, []);
+  
 
   const handleRegisterSubmit = ({ email, password, username }) => {
     return auth.register(email, password, username);
