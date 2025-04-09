@@ -99,7 +99,9 @@ function NewsCard({ data, handleNewsSaved, handleRemoveArticle }) {
         <p className="card__source">{data?.source?.name}</p>
       </div>
     </li>
-  );
-}
+    
+
+)}
+
 
 export default NewsCard;

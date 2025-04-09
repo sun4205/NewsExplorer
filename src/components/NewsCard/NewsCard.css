@@ -60,7 +60,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
- 
 }
 
 .card__save-btn-delete {
@@ -68,15 +67,13 @@
   width: 40px;
   height: 40px;
   border-radius: 5px;
-
 }
 
 .card__save-btn-delete:hover {
   background-image: url("../../images/delete_dark.svg");
-  
 }
 
-.card__save-btn-delete:hover .card__image__remove{
+.card__save-btn-delete:hover .card__image__remove {
   display: flex;
   transform: translateX(10px);
   transition: transform 0.3s ease;
@@ -216,13 +213,13 @@
 @media screen and (max-width: 320px) {
   .card {
     width: 288px;
-}
+  }
 
-.card__image {
-  width: 288px;
-}
+  .card__image {
+    width: 288px;
+  }
 
-.card__image__remove {
- display: none;
-}
+  .card__image__remove {
+    display: none;
+  }
 }
