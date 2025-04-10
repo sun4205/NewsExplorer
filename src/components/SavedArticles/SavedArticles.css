@@ -49,11 +49,6 @@
   letter-spacing: 0;
   color: #1a1b22;
 }
-/* 
-.savedAricles__listContainer {
-  padding: 80px 104px;
-  background-color: #f5f6f7;
-} */
 
 .savedArticles__lists {
   display: flex;
@@ -92,6 +87,6 @@
 
 @media screen and (max-width: 320px) {
   .savedArticles__container {
-   padding: 8px 16px 16px;
-}
+    padding: 8px 16px 16px;
+  }
 }

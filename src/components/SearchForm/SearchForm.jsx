@@ -2,6 +2,7 @@ import "./SearchForm.css";
 import { useEffect } from "react";
 
 function SearchForm({ debouncedFetch, query, setQuery }) {
+
   const handleInputChange = (e) => {
     const value = e.target.value;
     setQuery(value);
@@ -10,6 +11,7 @@ function SearchForm({ debouncedFetch, query, setQuery }) {
       debouncedFetch(value);
     }
   };
+  
   useEffect(() => {
     return () => {
       debouncedFetch.cancel();

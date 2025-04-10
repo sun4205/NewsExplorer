@@ -6,7 +6,6 @@
 }
 
 .showmore__btn {
-  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,13 +23,12 @@
   font-weight: 500;
   line-height: 24px;
   letter-spacing: 0;
-  margin : 0 auto;
+  margin: 0 auto;
   margin-top: 56px;
-  
 }
 
-.showmore__btn:hover{
+.showmore__btn:hover {
   background-color: #e8e8e8;
-  color:#1a1b22;
+  color: #1a1b22;
   cursor: pointer;
 }
