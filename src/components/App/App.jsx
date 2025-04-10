@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header";
@@ -40,23 +40,12 @@ function App() {
   const location = useLocation();
 
   const openLoginModal = () => {
-    console.log("opening login modal ");
     setActiveModal("login");
   };
 
   const closeActiveModal = () => {
     setActiveModal("");
   };
-
-  function asyncSubmit(request) {
-    setIsLoading(true);
-    request()
-      .then(closeActiveModal)
-
-      .catch(console.error)
-
-      .finally(() => setIsLoading(false));
-  }
 
   const handleLogin = ({ email, password }) => {
     if (!email || !password) {
@@ -184,7 +173,6 @@ function App() {
       });
   }, []);
 
-  
   const debouncedFetch = useMemo(() => {
     return debounce((searchTerm) => {
       newsapi.getNewsCards(searchTerm).then((data) => {
@@ -192,12 +180,11 @@ function App() {
       });
     }, 1000);
   }, []);
-  
 
   const handleRegisterSubmit = ({ email, password, username }) => {
     return auth.register(email, password, username);
   };
-  
+
   return (
     <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
       <SavedArticlesContext.Provider

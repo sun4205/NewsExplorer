@@ -1,11 +1,7 @@
 import "./NewsCard.css";
-import savebtn from "../../images/savebtn.svg";
-import nature from "../../images/nature.svg";
-import savedBlue from "../../images/saved-btn-blue.svg";
-import deletebtn from "../../images/saved-btn-delete.svg";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import SavedArticlesContext from "../../contexts/SavedArticlesContext";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 function NewsCard({ data, handleNewsSaved, handleRemoveArticle }) {
@@ -14,11 +10,7 @@ function NewsCard({ data, handleNewsSaved, handleRemoveArticle }) {
   const [isSaved, setIsSaved] = useState(false);
   const location = useLocation();
 
-  // console.log("Received data:", data);
-
   const handleSaveClick = () => {
-    console.log("saveddata", data);
-    console.log("dataid", data.id);
     if (!data) {
       console.error("data is null or undefined");
       return;
@@ -48,48 +40,41 @@ function NewsCard({ data, handleNewsSaved, handleRemoveArticle }) {
   return (
     <li className="card">
       <div className="card__image-control">
-        <img
-          className="card__image"
-          src={
-            location.pathname === "/saveNews" && data?.image
-              ? data?.image
-              : data?.image
-          }
-          alt={data?.title}
-        />
-        {currentUser ? (
-          location.pathname === "/saveNews" ? (
-            <div className="card__save-container">
-              <button
-                onClick={() => handleRemoveArticle(data.id)}
-                className="card__save-btn card__save-btn-delete"
-              ></button>
+        <img className="card__image" src={data?.image} alt={data?.title} />
 
-              <div className="card__image__keywords">
-                <span className="card__image__keyword">{data?.keywords}</span>
+        <div className="card__button-overlay">
+          {currentUser ? (
+            location.pathname === "/saveNews" ? (
+              <div className="card__delete-keyword-container">
+                <button
+                  onClick={() => handleRemoveArticle(data.id)}
+                  className="card__save-btn card__save-btn-delete"
+                ></button>
+                <span className="card__image__remove">Remove from saved</span>
+                <div className="card__image__keywords">
+                  <span className="card__image__keyword">{data?.keywords}</span>
+                </div>
               </div>
-              <div className="card__image__remove">Remove from saved</div>
-            </div>
+            ) : (
+              <button
+                onClick={handleSaveClick}
+                className={`card__save-btn ${
+                  isSaved ? "card__save-btn--saved" : "card__save-btn--default"
+                }`}
+              ></button>
+            )
           ) : (
-            <button
-              onClick={handleSaveClick}
-              className={`card__save-btn ${
-                isSaved ? "card__save-btn--saved" : "card__save-btn--default"
-              }`}
-            ></button>
-          )
-        ) : (
-          <div>
-            <button className="card__save-btn card__save-btn--default"></button>
-            <button className="card__save-btn card__save-btn--signin">
-              <span className="card__sign-in-text">
-                Sign in to save articles
-              </span>
-            </button>
-          </div>
-        )}
+            <div className="card__sign-in-container">
+              <button className="card__save-btn card__save-btn--default"></button>
+              <button className="card__save-btn card__save-btn--signin">
+                <span className="card__sign-in-text">
+                  Sign in to save articles
+                </span>
+              </button>
+            </div>
+          )}
+        </div>
       </div>
-
       <div className="card__info">
         <p className="card__date">
           {location.pathname === "/saveNews" ? data?.date : data?.date}
@@ -99,9 +84,7 @@ function NewsCard({ data, handleNewsSaved, handleRemoveArticle }) {
         <p className="card__source">{data?.source?.name}</p>
       </div>
     </li>
-    
-
-)}
-
+  );
+}
 
 export default NewsCard;

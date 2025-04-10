@@ -1,6 +1,276 @@
 .card {
   display: flex;
   flex-direction: column;
+  width: 400px;
+  min-height: 576px;
+  border-radius: 20px;
+}
+
+.card__image-control {
+  position: relative;
+}
+
+.card__image {
+  width: 100%;
+  height: 272px;
+  min-height: 272px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 20px 20px 0 0;
+  display: block;
+}
+
+.card__button-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 70px;
+  padding: 15px;
+  z-index: 2;
+  display: flex;
+}
+
+.card__delete-keyword-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  overflow: visible;
+}
+
+.card__save-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  position: absolute;
+  cursor: pointer;
+  top: 12px;
+  right: 9px;
+  background-color: transparent;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.card__save-btn-delete {
+  background-image: url("../../images/saved-btn-delete.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  left: 330px;
+}
+
+.card__save-btn-delete:hover {
+  background-image: url("../../images/delete_dark.svg");
+}
+
+.card__image__remove {
+  box-sizing: border-box;
+  white-space: nowrap;
+  top: 0px;
+  left: 170px;
+  min-width: 150px;
+  height: 40px;
+  background-color: white;
+  color: #000000;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 40px;
+  border-radius: 15px;
+  border-radius: 10px;
+  visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 5;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.card__delete-keyword-container:hover .card__image__remove {
+  visibility: visible;
+}
+
+.card__image__keywords {
+  width: 80px;
+  height: 40px;
+  background-color: white;
+  color: #000000;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 40px;
+  border-radius: 15px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 20px;
+}
+
+.card__image__keyword {
+  left: 50px;
+  top: -10px;
+}
+
+.card__save-btn--saved {
+  background-image: url("../../images/saved-btn-blue.svg");
+  width: 40px;
+  height: 40px;
+  color: #b6bcbf;
+  border-radius: 5px;
+  transition: none;
+}
+
+.card__save-btn--default {
+  background-image: url("../../images/savebtn.svg");
+  width: 40px;
+  height: 40px;
+  color: #b6bcbf;
+  border-radius: 5px;
+  transition: none;
+}
+
+.card__save-btn--default:hover {
+  background-image: url("../../images/save_dark.svg");
+}
+
+.card__save-btn:hover .card__sign-in-text {
+  display: flex;
+  transform: translateX(10px);
+  transition: transform 0.3s ease;
+}
+
+.card__sign-in-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.card__sign-in-text {
+  position: absolute;
+  right: 60px;
+  top: 1px;
+  width: 100%;
+  min-width: 182px;
+  height: 40px;
+  background-color: white;
+  color: #000000;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 40px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  padding-left: 0;
+}
+
+.card__info {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  text-align: left;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  height: 100%;
+  background-color: white;
+}
+
+.card__date {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #b6bcbf;
+  margin-bottom: 12px;
+  letter-spacing: 0;
+}
+
+.card__title {
+  font-family: "roboto-slab", Arial, sans-serif;
+  margin: 0;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 30px;
+  color: #1a1b22;
+  margin-bottom: 16px;
+  letter-spacing: 0;
+}
+
+.card__description {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #1a1b22;
+  margin-bottom: 18px;
+  letter-spacing: 0;
+}
+
+.card__source {
+  font-family: "roboto-slab", Arial, sans-serif;
+  margin: 0;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.4px;
+  line-height: 20px;
+  text-transform: uppercase;
+  color: #b6bcbf;
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    width: 224px;
+    min-height: 420px;
+  }
+
+  .card__image {
+    width: 224px;
+    height: 150px;
+  }
+
+  .card__title {
+    font-size: 22px;
+    line-height: 24px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .card {
+    width: 288px;
+  }
+
+  .card__image {
+    width: 288px;
+  }
+
+  .card__image__remove {
+    display: none;
+  }
+}
+
+/* 
+.card__save-wrapper {
+  position: relative;
+} */
+
+/* .card__save-btn-delete:hover.card__image__remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+/* .card {
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   width: 400px;
   min-height: 576px;
@@ -60,6 +330,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  display: none;
 }
 
 .card__save-btn-delete {
@@ -72,13 +343,10 @@
 .card__save-btn-delete:hover {
   background-image: url("../../images/delete_dark.svg");
 }
-
-.card__save-btn-delete:hover .card__image__remove {
-  display: flex;
-  transform: translateX(10px);
-  transition: transform 0.3s ease;
+.card__save-btn-delete:hover + .card__image__remove {
+  display: flex;  
+  transform: translateX(10px);  
 }
-
 .card__save-btn {
   width: 40px;
   height: 40px;
@@ -222,4 +490,4 @@
   .card__image__remove {
     display: none;
   }
-}
+} */

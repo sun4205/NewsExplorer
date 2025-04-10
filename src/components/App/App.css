@@ -2,17 +2,16 @@
   box-sizing: border-box;
   max-width: 100%;
   margin: 0;
-  padding:0;
-  /* outline: 1px dotted red; */
+  padding: 0;
 }
 
 body,
 div {
   user-select: none;
-  /* overflow-x: hidden; */
 }
 
-img, svg {
+img,
+svg {
   max-width: 100%;
   height: auto;
   object-fit: contain;
