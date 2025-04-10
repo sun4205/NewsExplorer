@@ -9,7 +9,7 @@ function RegisterModal({
   closeActiveModal,
   handleRegisterSubmit,
   setActiveModal,
-  modalRef,  
+  modalRef,
 }) {
   const { values, error, handleBlur, handleChange, submitError } = useForm({
     email: "",
@@ -23,7 +23,6 @@ function RegisterModal({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted with values:", values);
 
     handleRegisterSubmit({
       email: values.email,
@@ -31,7 +30,6 @@ function RegisterModal({
       username: values.username,
     })
       .then((res) => {
-        console.log("Raw register response:", res);
         if (res.success) {
           setIsSuccess(true);
           setActiveModal("registerSuccess");

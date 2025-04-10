@@ -2,16 +2,13 @@ import React from "react";
 import close from "../../images/close.svg";
 import "./RegisterMessage.css";
 
-function RegisterMessage({
-  activeModal,
-  closeActiveModal,
-  setActiveModal,
-  modalRef,
-}) {
+function RegisterMessage({ closeActiveModal, setActiveModal }) {
   return (
     <div className="modal modal_opened">
       <div className="modal__content modal__register_msg">
-        <h2 className="modal__title modal__register_title">Registration Successfully Completed!</h2>
+        <h2 className="modal__title modal__register_title">
+          Registration Successfully Completed!
+        </h2>
         <button
           onClick={() => {
             console.log("closeActiveModal called");
@@ -24,7 +21,7 @@ function RegisterMessage({
         </button>
         <button
           onClick={() => {
-            setActiveModal("login"); 
+            setActiveModal("login");
           }}
           type="button"
           className="signup-text modal__register_btn"
