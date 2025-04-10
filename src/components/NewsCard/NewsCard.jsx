@@ -32,7 +32,6 @@ function NewsCard({ data, handleNewsSaved, handleRemoveArticle }) {
         console.log("updated:", updatedArticles);
         return updatedArticles;
       });
-
       setIsSaved(false);
     }
   };
