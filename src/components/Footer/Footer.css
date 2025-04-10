@@ -86,4 +86,8 @@
   .footer__link-gitHub {
     margin-left: auto;
   }
+
+  .footer__paragraph__mobile{
+    margin-top: 20px;
+  }
 }

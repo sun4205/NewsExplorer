@@ -1,6 +1,7 @@
 .navigation {
   position: relative;
   display: flex;
+  overflow: hidden;
 }
 
 .navigation__mobile-menu {

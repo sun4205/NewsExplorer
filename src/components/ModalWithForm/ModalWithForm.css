@@ -9,7 +9,7 @@
   justify-content: center;
   align-items: center;
   visibility: hidden;
-  z-index: 1000;
+  z-index: 1000;  
 }
 
 button {
@@ -24,38 +24,30 @@ button {
 }
 
 .modal__content {
-  background-color: #fff;
-  position: relative;
+  background-color: #fff;  
   padding: 34px 36px 36px 36px;
   max-width: 430px;
   box-sizing: border-box;
   width: 100%;
   border-radius: 16px;
   z-index: 100;
+  position: relative;
+  
 }
 
 .modal__close {
-  background-image: url("../../images/close.svg");
   border: none;
   background: none;
-  border: 1px solid red;
-  width: 40px;
-  height: 40px;
-  top: -4px;
-  right:10px;
-  position: absolute;
-  z-index:  1010;
 }
 
-.modal__close-btn {
-  /* position: absolute; */
+.modal__close-btn{
+  position: absolute;  
   width: 40px;
-  height: 40px;
-  top: -46px;
-  right: -60px;
-  border: 1px solid red;
-  z-index:  1010;
+  height: 40px;   
+  top:-46px;
+  right:-41px;
 }
+
 .modal__title {
   font-family: "roboto", Arial, sans-serif;
   margin: 0;
