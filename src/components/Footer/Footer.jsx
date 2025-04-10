@@ -1,10 +1,9 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link} from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import "./Footer.css";
 import github from "../../images/Vector.svg";
 
-function Footer() {
-  const location = useLocation();
+function Footer() { 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 320);
 
   useEffect(() => {

@@ -13,7 +13,6 @@ function Header({
   closeActiveModal,
   handleLogOut,
 }) {
- 
   const location = useLocation();
 
   const savedNewsPage = location.pathname === "/saveNews";
@@ -23,7 +22,10 @@ function Header({
       className={`header__container ${savedNewsPage ? "no-background" : ""}`}
     >
       <header className={`header ${savedNewsPage ? "no-background" : ""}`}>
-        <img src={savedNewsPage ? NewsExplorerblack : NewsExplorer} className="header__logo"/>
+        <img
+          src={savedNewsPage ? NewsExplorerblack : NewsExplorer}
+          className="header__logo"
+        />
         <Navigation
           openLoginModal={openLoginModal}
           handleLogOut={handleLogOut}

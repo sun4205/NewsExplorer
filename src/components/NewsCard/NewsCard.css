@@ -241,6 +241,11 @@
     font-size: 22px;
     line-height: 24px;
   }
+
+  .card__save-btn-delete{
+    left:148px;
+  }
+
 }
 
 @media screen and (max-width: 320px) {
@@ -250,6 +255,14 @@
 
   .card__image {
     width: 288px;
+  }
+
+  .card__button-overlay {
+    width: 288px;
+  }
+
+  .card__save-btn-delete{
+    left:190px;
   }
 
   .card__image__remove {

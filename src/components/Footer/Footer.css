@@ -43,8 +43,7 @@
 }
 
 @media screen and (max-width: 320px) {
-  .footer {
-    display: flex;
+  .footer {   
     justify-content: left;
   }
   .footer__mobile {
