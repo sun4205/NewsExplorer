@@ -6,14 +6,14 @@ import SearchForm from "../SearchForm/SearchForm";
 import Navigation from "../Navigation/Navigation";
 
 function Header({
-  handleSearchSubmit,
+  debouncedFetch,
   query,
   setQuery,
   openLoginModal,
   closeActiveModal,
   handleLogOut,
 }) {
-  console.log("Header!");
+ 
   const location = useLocation();
 
   const savedNewsPage = location.pathname === "/saveNews";
@@ -35,7 +35,7 @@ function Header({
         <SearchForm
           query={query}
           setQuery={setQuery}
-          handleSearchSubmit={handleSearchSubmit}
+          debouncedFetch={debouncedFetch}
         />
       )}
     </div>

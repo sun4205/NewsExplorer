@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useCallback  } from "react";
+import React, { useEffect, useState,useMemo } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header";
@@ -15,8 +15,8 @@ import SavedArticlesContext from "../../contexts/SavedArticlesContext";
 import SavedArticles from "../SavedArticles/SavedArticles";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import About from "../About/About";
-import useDebounce from "../../hooks/useDebounce";
 import RegisterMessage from "../RegisterMessage/RegisterMessage";
+import debounce from "lodash.debounce";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -184,50 +184,20 @@ function App() {
       });
   }, []);
 
-  // const handleSearchSubmit = (values) => {
-  //   console.log("handleSearchSubmit called with:", values);
-  //   if (values.query.length < 3) return;
-
-  //   asyncSubmit(() =>
-  //     newsapi.getNewsCards(values.query).then((data) => {
-  //       console.log("querydata", values.query);
-  //       console.log("Fetched news data:", data);
-  //       setNewsItems(data);
-  //     })
-  //   );
-  // };
-
-  const handleSearchSubmit = useCallback((values) => {
-    console.log("handleSearchSubmit called with:", values);
-    if (values.query.length < 3) return;
   
-    asyncSubmit(() =>
-      newsapi.getNewsCards(values.query).then((data) => {
-        console.log("querydata", values.query);
-        console.log("Fetched news data:", data);
+  const debouncedFetch = useMemo(() => {
+    return debounce((searchTerm) => {
+      newsapi.getNewsCards(searchTerm).then((data) => {
         setNewsItems(data);
-      })
-    );
+      });
+    }, 1000);
   }, []);
   
 
   const handleRegisterSubmit = ({ email, password, username }) => {
     return auth.register(email, password, username);
   };
-  useEffect(() => {
-    if (query) {
-      newsapi.getNewsCards(query).then((data) => {
-        console.log("Fetched news data:", data);
-        setNewsItems({ ...data, articles: data.articles || [] });
-      });
-    }
-  }, [query]);
-
-  //   useEffect(() => {
-  //     localStorage.removeItem("savedArticles");
-  //     setSavedArticles([]);
-  // }, []);
-
+  
   return (
     <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
       <SavedArticlesContext.Provider
@@ -238,7 +208,7 @@ function App() {
       >
         <div className="page">
           <Header
-            handleSearchSubmit={handleSearchSubmit}
+            debouncedFetch={debouncedFetch}
             query={query}
             setQuery={setQuery}
             openLoginModal={openLoginModal}
