@@ -1,43 +1,29 @@
-.or-text{
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 100%;
-    color:#000000;
-    outline: none;
-    border: none;
+.or-text {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  color: #000000;
+  outline: none;
+  border: none;
 }
 
-.signup-text{
-    font-family: "roboto", Arial, sans-serif;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 100%;
-    color:#2f71e5;
-    outline: none;
-    border: none;
+.signup-text {
+  font-family: "roboto", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  color: #2f71e5;
+  outline: none;
+  border: none;
 }
 
-
-
-.error-message{
-    margin-top: 8px;
-    color: #FF0000;
-    margin: 0;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 100%;
-    min-height: 14px; 
-    display: block;
-}
-
-
-@media screen and (max-width: 768px) {
-
-
-}
-
-
-@media screen and (max-width: 320px) {
-
-
+.error-message {
+  margin-top: 8px;
+  color: #ff0000;
+  margin: 0;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  min-height: 14px;
+  display: block;
 }

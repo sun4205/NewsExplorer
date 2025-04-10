@@ -29,6 +29,7 @@ function LoginModal({
   };
 
   useEscapeKey(!!activeModal, closeActiveModal, modalRef);
+  
   return (
     <ModalWithForm
       isOpen={activeModal === "login"}
