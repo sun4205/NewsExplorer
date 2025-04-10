@@ -2,7 +2,6 @@
   position: relative;
   display: flex;
   overflow: hidden;
-  
 }
 
 .navigation__mobile-menu {
@@ -15,10 +14,8 @@
   cursor: pointer;
 }
 
-.navigation__logo {
-  display: none;
-  width: 135px;
-  height: 27px;
+.navigation__mobile-menu.black {
+  background-image: url("../../images/menublack.svg");
 }
 
 .navigation__nav {
@@ -28,20 +25,26 @@
   overflow: visible;
   padding: 0;
 }
-
+/* 
 .navigation__nav__mobile {
   display: none;
-}
+} */
 
 .navigation__nav.open {
   display: flex;
 }
 
-.navigation__nav-btn {
+.navigation__mobile-header {
   display: none;
 }
 
-.navigation__mobile-header {
+.navigation__logo {
+  display: none;
+  width: 135px;
+  height: 27px;
+}
+
+.navigation__nav-btn {
   display: none;
 }
 
@@ -143,10 +146,6 @@
 
   justify-content: center;
   align-items: center;
-}
-
-.navigation__mobile-menu.black {
-  background-image: url("../../images/menublack.svg");
 }
 
 .navigation__savedArticle-nav {
@@ -308,6 +307,11 @@
     display: block;
   }
 
+  .navigation__mobile-menu .black {
+    display: block;
+    background-image: url("../../images/menublack.svg");
+  }
+
   .navigation__nav {
     display: none;
     background-repeat: no-repeat;
@@ -327,9 +331,10 @@
     overflow: auto;
     padding: 16px;
   }
-  .navigation__logo {
+
+  .navigation__nav.open {
+    display: flex;
     display: block;
-    width: 140px;
   }
 
   .navigation__mobile-header {
@@ -339,13 +344,17 @@
     border-bottom: 1px solid white;
     padding: 0 0 15px 0;
   }
-  .navigation__nav.open {
-    display: flex;
+
+  .navigation__logo {
     display: block;
+    width: 140px;
   }
 
-  .navigation__nav button {
+  .navigation__nav-btn {
     display: block;
+    top: 10px;
+    right: 10px;
+    width: 25px;
   }
 
   .navigation__home-btn {
@@ -358,11 +367,8 @@
     display: none;
   }
 
-  .navigation__nav-btn {
-    display: block;
-    top: 10px;
-    right: 10px;
-    width: 25px;
+  .navigation__home-btn.font-black {
+    color: white;
   }
 
   .navigation__signIn-btn {
@@ -374,20 +380,11 @@
     display: none;
   }
 
-  .navigation__home-btn.font-black {
-    color: white;
-  }
-
   .navigation__loggedIn-control {
     margin-top: 40px;
   }
 
-  .navigation__mobile-menu .black {
-    display: block;
-    background-image: url("../../images/menublack.svg");
-  }
-
-  .navigation__nav__mobile.open .font-black {
+  .navigation__savedArticle-nav.font-black {
     color: white;
   }
 
@@ -398,9 +395,5 @@
 
   .navigation__logout.logout-black {
     background-image: url("../../images/logout.svg");
-  }
-
-  .navigation__savedArticle-nav.font-black {
-    color: white;
   }
 }

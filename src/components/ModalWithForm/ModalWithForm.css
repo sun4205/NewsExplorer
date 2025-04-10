@@ -9,7 +9,7 @@
   justify-content: center;
   align-items: center;
   visibility: hidden;
-  z-index: 1000;  
+  z-index: 1000;
 }
 
 button {
@@ -19,12 +19,8 @@ button {
   cursor: pointer;
 }
 
-.modal_opened {
-  visibility: visible;
-}
-
 .modal__content {
-  background-color: #fff;  
+  background-color: #fff;
   padding: 34px 36px 36px 36px;
   max-width: 430px;
   box-sizing: border-box;
@@ -32,20 +28,6 @@ button {
   border-radius: 16px;
   z-index: 100;
   position: relative;
-  
-}
-
-.modal__close {
-  border: none;
-  background: none;
-}
-
-.modal__close-btn{
-  position: absolute;  
-  width: 40px;
-  height: 40px;   
-  top:-46px;
-  right:-41px;
 }
 
 .modal__title {
@@ -57,10 +39,95 @@ button {
   color: #1a1b22;
 }
 
+.modal__close {
+  border: none;
+  background: none;
+}
+
+.modal_opened {
+  visibility: visible;
+}
+
+.modal__close-btn {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: -46px;
+  right: -41px;
+}
+
 .modal__form {
   display: flex;
   flex-direction: column;
   width: 100%;
+}
+
+.modal__button-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 0;
+}
+
+.error-message {
+  margin-top: 5px;
+  color: #ff0000;
+  margin: 0;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  min-height: 14px;
+  display: block;
+}
+
+.error-message_signup {
+  margin-bottom: 5px;
+}
+
+.modal_submit {
+  font-family: "inter", Arial, sans-serif;
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.modal__submit.modal__submit--filled {
+  width: 360px;
+  height: 64px;
+  background-color: #2f71e5;
+  border-radius: 50px;
+  border: none;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0;
+  color: #ffffff;
+}
+
+.modal__submit--empty {
+  width: 360px;
+  height: 64px;
+  background-color: #e6e8eb;
+  border-radius: 50px;
+  border: none;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0;
+  color: #b6bcbf;
+}
+
+.modal__signin {
+  width: 358px;
+  height: 64px;
+  border-radius: 20%;
+  border: none;
+  background-color: transparent;
+}
+
+.modal__submit_without-border {
+  margin-top: 16px;
 }
 
 .modal__label {
@@ -99,107 +166,14 @@ button {
   margin-bottom: 39px;
 }
 
-.modal__login-text {
-  margin: 0;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 20px;
-  color: #00000080;
-  margin-left: 12px;
-}
-
-.modal__button-container {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  margin: 0;
-}
-
-.modal__signin {
-  width: 358px;
-  height: 64px;
-  border-radius: 20%;
-  border: none;
-  background-color: transparent;
-}
-
-.modal_submit {
-  font-family: "inter", Arial, sans-serif;
-  outline: none;
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-
-.error-message {
-  margin-top: 5px;
-  color: #ff0000;
-  margin: 0;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 100%;
-  min-height: 14px;
-  display: block;
-}
-
-.error-message_signup {
-  margin-bottom: 5px;
-}
-
-.modal__submit_without-border {
-  margin-top: 16px;
-}
-
-.modal__submit.modal__submit--filled {
-  width: 360px;
-  height: 64px;
-  background-color: #2f71e5;
-  border-radius: 50px;
-  border: none;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 24px;
-  letter-spacing: 0;
-  color: #ffffff;
-}
-
-.modal__submit--empty {
-  width: 360px;
-  height: 64px;
-  background-color: #e6e8eb;
-  border-radius: 50px;
-  border: none;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 24px;
-  letter-spacing: 0;
-  color: #b6bcbf;
-}
-
-.error-text {
-  margin-top: 8px;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 100;
-  color: #ff0000;
-}
-
 @media screen and (max-width: 768px) {
   .modal__content {
     max-width: 430px;
-
     padding: 34px 36px 28px 36px;
   }
 }
 
 @media screen and (max-width: 320px) {
-  .modal__content {
-    padding: 16px 17px 120px 17px;
-  }
-
-  .modal__label {
-    margin-top: 14px;
-  }
   .modal {
     position: fixed;
     top: -320px;
@@ -209,6 +183,14 @@ button {
     background-color: #0000004d;
     position: absolute;
     z-index: 999;
+  }
+
+  .modal__content {
+    padding: 16px 17px 120px 17px;
+  }
+
+  .modal__label {
+    margin-top: 14px;
   }
 
   .modal__close-btn {
