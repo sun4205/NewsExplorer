@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 
 const useEscapeKey = (isActive, closeActiveModal, modalRef) => {
+  
   useEffect(() => {
     if (!isActive) return;
 

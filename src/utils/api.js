@@ -19,20 +19,7 @@ function getSavedNews({ token }) {
 }
 
 function savedNews({ id, source, title, date, description, image, keywords }) {
-  console.log("Sending fetch request...");
-  console.log("ID being sent:", id);
-  console.log("Data being sent:", {
-    id,
-    source,
-    title,
-    date,
-    description,
-    image,
-    keywords,
-  });
-
   const token = localStorage.getItem("jwt");
-  console.log("token:", token);
 
   return request(`${baseUrl}/saveNews`, {
     method: "POST",
@@ -76,6 +63,7 @@ function checkEmailAvailable(email) {
 
 export {
   checkResponse,
+  request,
   savedNews,
   removeNewsCardSaved,
   checkEmailAvailable,

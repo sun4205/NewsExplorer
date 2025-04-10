@@ -5,5 +5,4 @@ const SavedArticlesContext = React.createContext({
   setSavedArticles: () => {},
 });
 
-
 export default SavedArticlesContext;

@@ -34,7 +34,6 @@ function processNewsData(articles, query) {
 
 export const getNewsCards = (query) => {
   if (!query) {
-    console.error("query is empty");
     return Promise.reject(new Error("You must enter a search query"));
   }
 

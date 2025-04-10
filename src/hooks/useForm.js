@@ -6,48 +6,6 @@ export function useForm(initialValues) {
   const [error, setError] = useState({});
   const [submitError, setSubmitError] = useState("");
 
-  //   const handleChange = (e) => {
-  //     const { name, value } = e.target;
-  //     setValues((prevValues) => ({
-  //       ...prevValues,
-  //       [name]: value,
-  //     }));
-  //   };
-
-  // const handleBlur = (e) => {
-  //   const { name, value } = e.target;
-  //   if (name === "email") {
-  //     validateEmail(value);
-  //   }
-  // };
-
-  //   const validateEmail = (value) => {
-  //     if (value === "") {
-  //       setError((prevErrors) => ({
-  //         ...prevErrors,
-  //         email: "",
-  //       }));
-  //     } else if (!/\S+@\S+\.\S+/.test(value)) {
-  //       setError((prevErrors) => ({
-  //         ...prevErrors,
-  //         email: "Invalid Email address",
-  //       }));
-  //     } else {
-  //       const existingUser = users.find((user) => user.email === value);
-  //       if (existingUser) {
-  //         setError((prevErrors) => ({
-  //           ...prevErrors,
-  //           email: "This email is not available",
-  //         }));
-  //       } else {
-  //         setError((prevErrors) => ({
-  //           ...prevErrors,
-  //           email: "",
-  //         }));
-  //       }
-  //     }
-  //   };
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues((prevValues) => ({
@@ -85,13 +43,11 @@ export function useForm(initialValues) {
       email: "",
     }));
 
-    console.log("Calling checkEmailAvailable with email:", value);
-
     checkEmailAvailable(value)
       .then((response) => {
         console.log("Email check response:", response);
         if (!response.available) {
-          console.log("Email is not available"); 
+          console.log("Email is not available");
           setSubmitError("This email is not available");
         } else {
           setSubmitError("");
@@ -102,5 +58,5 @@ export function useForm(initialValues) {
       });
   };
 
-  return {  values, error, handleBlur, handleChange, submitError, setValues };
+  return { values, error, handleBlur, handleChange, submitError, setValues };
 }
