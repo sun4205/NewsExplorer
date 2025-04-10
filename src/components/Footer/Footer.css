@@ -1,9 +1,11 @@
-.footer {
+.footer {  
+  width: 100%;   
   padding: 30px 60px 26px 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  box-sizing: border-box;
 }
 
 .footer__container {
@@ -37,6 +39,7 @@
 }
 
 @media screen and (max-width: 768px) {
+
 }
 
 @media screen and (max-width: 320px) {

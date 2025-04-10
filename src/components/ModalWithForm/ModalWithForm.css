@@ -202,7 +202,7 @@ button {
   }
   .modal {
     position: fixed;
-    top: -340px;
+    top: -320px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -212,7 +212,7 @@ button {
   }
 
   .modal__close-btn {
-    top: -10px;
+    top: -40px;
     left: 250px;
   }
 }

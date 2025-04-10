@@ -3,6 +3,7 @@
   padding: 80px;
   align-items: center;
   background-color: white;
+  width: 100%;
 }
 
 .about__mypicture {
@@ -42,7 +43,7 @@
 
 @media screen and (max-width: 768px) {
   .about {
-    padding: 61px 40px;
+    padding: 61px 5px;
     display: flex;
   }
 
@@ -53,9 +54,10 @@
   }
 
   .about__mypicture {
-    width: 232px;
-    height: 232px;
-    margin-right: 32px;
+    width: 220px;
+    height: 220px;
+    margin-right: 5px;
+    margin-left: 0;
   }
 }
 
@@ -70,9 +72,8 @@
   .about__mypicture {
     margin-right: 0;
   }
-  
-.about__author-title {
-    
-     margin-bottom: 16px;
-}
+
+  .about__author-title {
+    margin-bottom: 16px;
+  }
 }
