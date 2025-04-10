@@ -73,33 +73,22 @@ function App() {
   };
 
   useEffect(() => {
-    if (!jwt) return;
-
-    api
-      .getSavedNews({ token: jwt })
-      .then((articles) => {
-        setSavedArticles(articles);
-        console.log("Saved get articles:", articles);
-      })
-      .catch(console.error);
-  }, [jwt]);
-
-  useEffect(() => {
-    const jwtFromStorage = localStorage.getItem("jwt");
-    console.log("JWT from storage:", jwtFromStorage);
-
-    if (!jwtFromStorage) {
-      console.log("No JWT found. Logging out.");
+    if (!jwt) {
       setCurrentUser(null);
       setIsLoggedIn(false);
       return;
     }
 
-    auth.getUserInfo(jwtFromStorage).then((userInfo) => {
-      setCurrentUser(userInfo);
-      setIsLoggedIn(true);
-      console.log("userInfo", userInfo);
-    });
+    setIsLoading(true);
+
+    Promise.all([auth.getUserInfo(jwt), api.getSavedNews({ token: jwt })])
+      .then(([userInfo, savedArticles]) => {
+        setCurrentUser(userInfo);
+        setIsLoggedIn(true);
+        setSavedArticles(savedArticles);
+      })
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   }, [jwt]);
 
   const handleLogOut = () => {
@@ -112,14 +101,10 @@ function App() {
   };
 
   const handleNewsSaved = (data) => {
-    const token = localStorage.getItem("jwt");
-    if (!token) {
+    if (!jwt) {
       console.log("No token found, user is not logged in.");
       return;
     }
-
-    console.log("Received data in handleNewsSaved:", data);
-    console.log("query", query);
 
     const { id, source, title, date, description, image, keywords } = data.data;
 
@@ -131,7 +116,7 @@ function App() {
         date,
         description,
         image,
-        token,
+        token: jwt,
         keywords,
       })
       .then((response) => {
@@ -143,8 +128,6 @@ function App() {
   };
 
   const handleRemoveArticle = (id) => {
-    console.log("Before deletion, savedArticles:", savedArticles);
-    console.log("Clicked article ID:", id);
     const token = localStorage.getItem("jwt");
 
     api
@@ -156,22 +139,6 @@ function App() {
       })
       .catch((err) => console.error("Failed to delete article:", err));
   };
-
-  useEffect(() => {
-    const token = localStorage.getItem("jwt");
-    console.log("Token from localStorage:", token);
-    if (!token) return;
-
-    api
-      .getSavedNews(token)
-      .then((articles) => {
-        console.log("Fetched get saved articles:", articles);
-        setSavedArticles(articles);
-      })
-      .catch((err) => {
-        console.error("Error fetching saved articles", err);
-      });
-  }, []);
 
   const debouncedFetch = useMemo(() => {
     return debounce((searchTerm) => {

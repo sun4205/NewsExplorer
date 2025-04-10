@@ -4,7 +4,7 @@ import me from "../../images/hanna.png";
 function About() {
   return (
     <div className="about">
-      <img src={me} alt={me} class="about__mypicture" />
+      <img src={me} alt="author Picture" class="about__mypicture" />
       <div className="about__author">
         <h2 className="about__author-title">About the Author</h2>
         <p className="about__author-description1">
