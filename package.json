@@ -2,7 +2,7 @@
   "name": "newsexplorer",
   "private": true,
   "version": "0.0.0",
-  "homepage":"https://sun4205.github.io/NewsExplorer",
+  "homepage":"https://sun4205.github.io/NewsExplorer/",
   "type": "module",
   
   "scripts": {
