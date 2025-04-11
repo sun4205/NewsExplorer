@@ -1,5 +1,6 @@
 import { request } from "./api";
-export const baseUrl = "http://localhost:3000";
+// export const baseUrl = "http://localhost:3000";
+const baseUrl = import.meta.env.VITE_BASE_URL;
 
 export const register = (email, password, username) => {
   return request(`${baseUrl}/signup`, {

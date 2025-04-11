@@ -2,10 +2,15 @@ import { checkResponse } from "./api";
 import { v4 as uuidv4 } from "uuid";
 import { format } from "date-fns";
 
+// export const newsApiBaseUrl =
+//   process.env.NODE_ENV === "production"
+//     ? "https://nomoreparties.co/news/v2/everything"
+//     : "https://newsapi.org/v2/everything";
+
 export const newsApiBaseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://nomoreparties.co/news/v2/everything"
-    : "https://newsapi.org/v2/everything";
+    ? "https://newsexplorer-express.onrender.com"
+    : "http://localhost:3000";
 
 function processNewsData(articles, query) {
   return articles.map((article) => {
