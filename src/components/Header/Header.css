@@ -43,12 +43,24 @@
 
   .header {
     width: 100%;
+    padding: 20px 40px;
+    overflow: hidden;
   }
 
   .header__logo {
     margin-right: 10px;
   }
 }
+
+/* 
+@media (min-width: 321px) and (max-width: 759px) {
+  
+.header {
+ padding:20px;
+ width: 100%;
+ overflow-y: hidden;
+}
+} */
 
 @media screen and (max-width: 320px) {
   .header__container {

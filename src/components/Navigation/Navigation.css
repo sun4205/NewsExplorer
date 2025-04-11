@@ -1,7 +1,6 @@
 .navigation {
   position: relative;
   display: flex;
-  overflow: hidden;
 }
 
 .navigation__mobile-menu {
@@ -25,10 +24,6 @@
   overflow: visible;
   padding: 0;
 }
-/* 
-.navigation__nav__mobile {
-  display: none;
-} */
 
 .navigation__nav.open {
   display: flex;
@@ -63,7 +58,7 @@
   content: "";
   position: absolute;
   left: 50%;
-  bottom: -20px;
+  bottom: -17px;
   width: 0;
   height: 3px;
   background-color: white;
@@ -143,7 +138,6 @@
 
 .navigation__loggedIn-control {
   display: flex;
-
   justify-content: center;
   align-items: center;
 }
@@ -188,7 +182,7 @@
   content: "";
   position: absolute;
   left: 50%;
-  bottom: -26px;
+  bottom: -29px;
   width: 0;
   height: 3px;
   background-color: #1a1b22;
@@ -300,6 +294,25 @@
     margin-left: 0;
     margin-right: 16px;
   }
+}
+
+@media (min-width: 320px) and (max-width: 759px) {
+  .navigation__nav {
+    gap: 10px;
+    margin: 0;
+  }
+  /* 
+  .navigation__home-btn {
+    margin: 0;
+  } */
+
+  .navigation__loggedIn-control {
+    margin-left: 5px;
+  }
+
+  /* .navigation__savedArticle-nav {
+    margin-right: 0;
+  } */
 }
 
 @media screen and (max-width: 320px) {
