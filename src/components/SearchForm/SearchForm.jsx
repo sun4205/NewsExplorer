@@ -2,16 +2,15 @@ import "./SearchForm.css";
 import { useEffect } from "react";
 
 function SearchForm({ debouncedFetch, query, setQuery }) {
-
   const handleInputChange = (e) => {
     const value = e.target.value;
     setQuery(value);
-
-    if (value.trim().length >= 3) {
-      debouncedFetch(value);
-    }
   };
-  
+
+  const handleSearchSubmit = ({ query }) => {
+    debouncedFetch(query);
+  };
+
   useEffect(() => {
     return () => {
       debouncedFetch.cancel();

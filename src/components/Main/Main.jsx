@@ -5,7 +5,13 @@ import ShowMore from "../ShowMore/ShowMore";
 import Preloader from "../Preloader/Preloader";
 import { useState } from "react";
 
-function Main({ isLoading, newsItems, handleNewsSaved, handleRemoveArticle }) {
+function Main({
+  isLoading,
+  newsItems,
+  handleNewsSaved,
+  handleRemoveArticle,
+  isSearched,
+}) {
   const [renderedCards, setRenderedCards] = useState(3);
 
   const handleShowMore = () => {
@@ -27,7 +33,7 @@ function Main({ isLoading, newsItems, handleNewsSaved, handleRemoveArticle }) {
                   : "main__cards-list--column"
               }`}
             >
-              {newsItems.length > 0 ? (
+              {!isSearched || isLoading ? null : newsItems.length > 0 ? (
                 newsItems
                   .slice(0, renderedCards)
                   .map((item) => (

@@ -35,6 +35,7 @@ function App() {
   const [jwt, setJwt] = useState(token.getToken());
   const [savedArticles, setSavedArticles] = useState([]);
   const [keywords, setKeywords] = useState([]);
+  const [isSearched, setIsSearched] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -123,8 +124,11 @@ function App() {
 
   const debouncedFetch = useMemo(() => {
     return debounce((searchTerm) => {
+      setIsLoading(true);
       newsapi.getNewsCards(searchTerm).then((data) => {
         setNewsItems(data);
+        setIsSearched(true);
+        setIsLoading(false);
       });
     }, 1000);
   }, []);
@@ -182,6 +186,7 @@ function App() {
                         newsItems={newsItems}
                         handleNewsSaved={handleNewsSaved}
                         isLoading={isLoading}
+                        isSearched={isSearched}
                       />
                     )}
                   </>
