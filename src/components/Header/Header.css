@@ -20,7 +20,7 @@
   height: 80px;
   display: flex;
   align-items: center;
-  padding: 20px 80px;
+  padding: 20px 100px;
   max-width: 100%;
   justify-content: space-between;
   background-color: rgba(9, 7, 7, 0.4);
@@ -32,13 +32,17 @@
 }
 
 @media screen and (max-width: 768px) {
+  .header.no-background {
+    padding: 20px 40px;
+  }
+
   .header__container {
     max-width: 768px;
     width: 100%;
   }
+
   .header {
-    padding: 20px 30px;
-    max-width: 100%;
+    width: 100%;
   }
 
   .header__logo {

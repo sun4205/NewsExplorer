@@ -72,25 +72,6 @@ function App() {
       .catch(console.error);
   };
 
-  useEffect(() => {
-    if (!jwt) {
-      setCurrentUser(null);
-      setIsLoggedIn(false);
-      return;
-    }
-
-    setIsLoading(true);
-
-    Promise.all([auth.getUserInfo(jwt), api.getSavedNews({ token: jwt })])
-      .then(([userInfo, savedArticles]) => {
-        setCurrentUser(userInfo);
-        setIsLoggedIn(true);
-        setSavedArticles(savedArticles);
-      })
-      .catch(console.error)
-      .finally(() => setIsLoading(false));
-  }, [jwt]);
-
   const handleLogOut = () => {
     token.removeToken();
     setIsLoggedIn(false);
@@ -151,6 +132,25 @@ function App() {
   const handleRegisterSubmit = ({ email, password, username }) => {
     return auth.register(email, password, username);
   };
+
+  useEffect(() => {
+    if (!jwt) {
+      setCurrentUser(null);
+      setIsLoggedIn(false);
+      return;
+    }
+
+    setIsLoading(true);
+
+    Promise.all([auth.getUserInfo(jwt), api.getSavedNews({ token: jwt })])
+      .then(([userInfo, savedArticles]) => {
+        setCurrentUser(userInfo);
+        setIsLoggedIn(true);
+        setSavedArticles(savedArticles);
+      })
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
+  }, [jwt]);
 
   return (
     <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>

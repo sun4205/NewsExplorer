@@ -1,6 +1,6 @@
 .savedArticles__container {
   display: flex;
-  padding: 60px 104px;
+  padding: 60px 100px;
   flex-direction: column;
   background-color: #f5f6f7;
 }
@@ -57,9 +57,14 @@
   padding: 0;
   gap: 20px;
   list-style-type: none;
+  justify-content: flex-start;
 }
 
 @media screen and (max-width: 768px) {
+  .savedArticles__container {
+    padding: 32px 40px;
+  }
+
   .savedArticles__title {
     font-size: 14px;
     line-height: 24px;
@@ -88,5 +93,6 @@
 @media screen and (max-width: 320px) {
   .savedArticles__container {
     padding: 8px 16px 16px;
+    gap: 4px;
   }
 }
