@@ -52,16 +52,6 @@
   }
 }
 
-/* 
-@media (min-width: 321px) and (max-width: 759px) {
-  
-.header {
- padding:20px;
- width: 100%;
- overflow-y: hidden;
-}
-} */
-
 @media screen and (max-width: 320px) {
   .header__container {
     max-width: 320px;

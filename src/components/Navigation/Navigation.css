@@ -301,18 +301,10 @@
     gap: 10px;
     margin: 0;
   }
-  /* 
-  .navigation__home-btn {
-    margin: 0;
-  } */
 
   .navigation__loggedIn-control {
     margin-left: 5px;
   }
-
-  /* .navigation__savedArticle-nav {
-    margin-right: 0;
-  } */
 }
 
 @media screen and (max-width: 320px) {
