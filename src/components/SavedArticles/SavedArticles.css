@@ -1,6 +1,7 @@
 .savedArticles__container {
   display: flex;
   padding: 60px 100px;
+  min-height: 950px;
   flex-direction: column;
   background-color: #f5f6f7;
 }
