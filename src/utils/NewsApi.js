@@ -6,11 +6,7 @@ import { format } from "date-fns";
 //   process.env.NODE_ENV === "production"
 //     ? "https://nomoreparties.co/news/v2/everything"
 //     : "https://newsapi.org/v2/everything";
-
-export const newsApiBaseUrl =
-  process.env.NODE_ENV === "production"
-    ? "https://newsexplorer-express.onrender.com"
-    : "http://localhost:3000";
+export const newsApiBaseUrl = import.meta.env.VITE_BASE_URL;
 
 function processNewsData(articles, query) {
   return articles.map((article) => {
