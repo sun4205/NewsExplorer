@@ -62,7 +62,8 @@ function App() {
           setIsLoggedIn(true);
           console.log("Login successful!");
 
-          getUserInfo(data.token)
+          auth
+            .getUserInfo(data.token)
             .then((userInfo) => {
               setCurrentUser(userInfo);
               console.log("User info updated:", userInfo);
