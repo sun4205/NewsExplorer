@@ -28,12 +28,12 @@ function Main({
           <section className="main__cards">
             <ul
               className={`main__cards-list ${
-                newsItems.length > 0
+                newsItems?.length > 0
                   ? "main__cards-list--row"
                   : "main__cards-list--column"
               }`}
             >
-              {!isSearched || isLoading ? null : newsItems.length > 0 ? (
+              {!isSearched || isLoading ? null : newsItems?.length > 0 ? (
                 newsItems
                   .slice(0, renderedCards)
                   .map((item) => (
@@ -54,7 +54,7 @@ function Main({
                 </div>
               )}
             </ul>
-            {renderedCards < 9 && renderedCards < newsItems.length && (
+            {renderedCards < 9 && renderedCards < newsItems?.length && (
               <ShowMore onClick={handleShowMore} />
             )}
           </section>
