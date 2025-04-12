@@ -2,7 +2,14 @@ import { checkResponse } from "./api";
 import { v4 as uuidv4 } from "uuid";
 import { format } from "date-fns";
 
-export const newsApiBaseUrl = import.meta.env.VITE_BASE_URL;
+// export const newsApiBaseUrl = import.meta.env.VITE_BASE_URL;
+
+
+export const newsApiBaseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://nomoreparties.co/news/v2/everything"
+    : "https://newsapi.org/v2/everything";
+
 
 function processNewsData(articles, query) {
   return articles.map((article) => {
@@ -36,7 +43,7 @@ export const getNewsCards = (query) => {
 
   const API_KEY = import.meta.env.VITE_API_KEY;
 
-  return fetch(`${newsApiBaseUrl}?q=${query}`)
+  return fetch(`${newsApiBaseUrl}?q=${query}&apiKey=${API_KEY}`)
     .then(checkResponse)
     .then((data) => {
       if (data.articles) {
