@@ -1,13 +1,12 @@
 .about {
   display: flex;
-  padding: 80px;
-  align-items: center;
+  padding: 80px 104px; 
   background-color: white;
   width: 100%;
 }
 
 .about__mypicture {
-  width: 464px;
+  max-width: 464px;
   height: 464px;
   width: 100%;
   background-color: transparent;
@@ -17,22 +16,28 @@
 .about__author {
   display: flex;
   flex-direction: column;
+  margin-top: 51px;
+ 
 }
 
 .about__author-title {
-  font-family: "roboto", Arial, sans-serif;
-  margin: 0;
+  font-family: "roboto", Arial, sans-serif; 
   font-weight: 400;
   font-size: 40px;
   line-height: 46px;
   margin-bottom: 24px;
 }
 
-.about__author-description1 {
+.about__author-descriptions{  
+  max-width: 600px;
+  max-height: 120px;
+}
+
+.about__author-description1 {  
+  margin-bottom: 16px;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  margin-bottom: 24px;
 }
 
 .about__author-description2 {
@@ -43,20 +48,26 @@
 
 @media screen and (max-width: 768px) {
   .about {
-    padding: 61px 5px;
+    padding: 40px 40px 61px 40px;
     display: flex;
+    max-height: 354px;
+  }
+
+  
+  .about__author {
+    margin: 0;
   }
 
   .about__author-title {
     font-size: 30px;
-    line-height: 40px;
-    margin-top: 24px;
+    line-height: 40px; 
+    margin-bottom: 16px;  
   }
 
   .about__mypicture {
-    width: 220px;
-    height: 220px;
-    margin-right: 5px;
+    width: 232px;
+    height: 232px;
+    margin-right: 32px;
     margin-left: 0;
   }
 }

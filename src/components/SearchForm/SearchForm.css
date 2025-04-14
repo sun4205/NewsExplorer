@@ -8,9 +8,9 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 32px 100px;
+  justify-content: left;
+  align-items: left;
+  padding: 80px 416px;
   width: 100%;
   height: 100%;
   background-color: rgba(11, 10, 10, 0.6);
@@ -19,22 +19,25 @@
 .searchForm__title {
   font-family: "roboto-slab", Arial, sans-serif;
   color: white;
+  max-width: 608px;
+  max-height: 128px;
   font-weight: 400;
   font-size: 60px;
   line-height: 64px;
-  margin: 0 0 38px 0;
-  padding: 0 0 0 20px;
+  margin: 0 0 32px 0;
+  padding:0;  
   text-align: left;
 }
 
 .searchForm__description {
   color: white;
+  max-width: 608px;
+  max-height: 24px;
   font-weight: 400;
-  font-size: 18px;
-  margin-bottom: 48px;
+  font-size: 18px; 
   line-height: 24px;
-  margin: 0 0 64px 0;
-  padding: 0 0 0 20px;
+  margin: 0 0 88px 0;
+ padding:0;
   text-align: left;
 }
 
@@ -58,8 +61,8 @@ input {
   width: 100%;
   background-color: white;
   border: none;
-  width: 544px;
-  height: 56px;
+  width: 608px;
+  height: 64px;
   border-radius: 50px;
   padding: 0 160px 0 20px;
 }
@@ -69,7 +72,7 @@ input {
   width: 100%;
   background-color: #2f71e5;
   width: 168px;
-  height: 56px;
+  height: 64px;
   border: none;
   background-size: cover;
   background-repeat: no-repeat;
@@ -82,7 +85,7 @@ input {
   font-size: 18px;
   line-height: 24px;
   letter-spacing: 0;
-  margin-left: -140px;
+  margin-left: -159px;
   z-index: 1;
 }
 
@@ -92,16 +95,18 @@ input {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding:38px 156px 48px 160px;
+    max-height: 334px;
   }
 
   .searchForm__title {
     font-size: 36px;
     line-height: 40px;
-    margin: 0 0 16px 0;
-    padding: 0 0 0 20px;
+    margin: 0 0 16px 0;    
   }
 
   .searchForm__description {
+    font-family: "roboto_400", Arial, sans-serif;
     font-weight: 400;
     font-size: 18px;
     margin-bottom: 48px;
@@ -116,14 +121,15 @@ input {
   }
 
   .searchForm__input {
-    width: 450px;
+    width: 448px;
     height: 56px;
   }
 
   .searchForm__btn {
-    width: 148px;
+    width: 160px;
     top: 0px;
-    left: 200px;
+    left: 100px;
+    height: 56px;
   }
 }
 

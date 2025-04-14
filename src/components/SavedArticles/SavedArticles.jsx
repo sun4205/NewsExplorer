@@ -28,6 +28,7 @@ function SavedArticles({ savedArticles, handleRemoveArticle }) {
 
   return (
     <div className="savedArticles__container">
+      <div className="savedArticles__info">
       <p className="savedArticles__title">Saved articles</p>
       <p className="savedArticles__numberSaved">
         {currentUser.username}, you have {savedArticles.length} saved articles
@@ -36,7 +37,8 @@ function SavedArticles({ savedArticles, handleRemoveArticle }) {
         By keywords:{" "}
         <span className="savedArticles__keywords">{keywordsText}</span>
       </p>
-
+      </div>
+      <div className="savedArticles__lists_container">
       <ul className="savedArticles__lists">
         {savedArticles.map((item, index) => (
           <NewsCard
@@ -47,6 +49,7 @@ function SavedArticles({ savedArticles, handleRemoveArticle }) {
           />
         ))}
       </ul>
+      </div>
     </div>
   );
 }

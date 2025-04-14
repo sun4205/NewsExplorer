@@ -1,9 +1,13 @@
 .savedArticles__container {
   display: flex;
-  padding: 60px 100px;
+  padding: 0 0 62px 0;
   min-height: 950px;
   flex-direction: column;
   background-color: #f5f6f7;
+}
+.savedArticles__info{
+  padding: 40px 624px 56px 104px;
+  background-color: white;
 }
 
 .savedArticles__title {
@@ -39,7 +43,7 @@
   color: #1a1b22;
   flex-direction: left;
   margin-top: 30px;
-  margin-bottom: 56px;
+ 
 }
 
 .savedArticles__kewords {
@@ -49,6 +53,10 @@
   line-height: 24px;
   letter-spacing: 0;
   color: #1a1b22;
+}
+
+.savedArticles__lists_container{
+  padding: 62px 106px 102px 62px;
 }
 
 .savedArticles__lists {
@@ -63,7 +71,11 @@
 
 @media screen and (max-width: 768px) {
   .savedArticles__container {
-    padding: 32px 40px;
+    padding: 0 40px 32px 40px;
+  }
+
+  .savedArticles__info {
+    padding-top: 24px;
   }
 
   .savedArticles__title {
@@ -79,7 +91,7 @@
 
   .savedArticles__by {
     margin-top: 16px;
-    margin-bottom: 32px;
+    margin-bottom: 64px;
   }
 
   .savedAricles__listContainer {

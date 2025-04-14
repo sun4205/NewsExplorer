@@ -12,3 +12,8 @@
   font-family: "inter";
   src: url("./fonts/inter-400-regular.woff") format("woff");
 }
+
+@font-face {
+  font-family: "roboto_400";
+  src: url("./fonts/inter-400-regular.woff") format("woff");
+}

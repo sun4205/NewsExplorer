@@ -32,3 +32,11 @@
   color: #1a1b22;
   cursor: pointer;
 }
+
+
+@media screen and (max-width: 768px) {
+  
+.showmore__btn {
+  margin-top: 32px;
+}
+}

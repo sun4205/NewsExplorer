@@ -226,6 +226,7 @@
   line-height: 20px;
   text-transform: uppercase;
   color: #b6bcbf;
+  margin-bottom: 24px;
 }
 
 @media screen and (max-width: 768px) {
@@ -240,11 +241,13 @@
   }
 
   .card__info {
+    padding: 16px;
     height: 100%;
     overflow: hidden;
   }
 
   .card__title {
+    font-family: "roboto-slab", Arial, sans-serif;
     font-weight: 400;
     font-size: 22px;
     line-height: 24px;
@@ -261,6 +264,11 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-bottom: 12px;
+  }
+  
+  .card__source {
+    margin-bottom: 16px;
   }
 
   .card__save-btn-delete {
