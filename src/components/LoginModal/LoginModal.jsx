@@ -53,7 +53,8 @@ function LoginModal({
         Email
         <input
           type="email"
-          className="modal__input"
+          className={`modal__input ${values.email.trim() !== "" ? "filled" : ""}`}
+          
           id="email"
           name="email"
           placeholder="Enter Email"
@@ -64,11 +65,11 @@ function LoginModal({
         {error.email && <span className="error-message">{error.email}</span>}
       </label>
 
-      <label htmlFor="password" className="modal__label">
+      <label htmlFor="password" className="modal__label modal__label_password">
         Password
         <input
           type="password"
-          className="modal__input modal__input_signin_password"
+          className={`modal__input modal__input_signin_password ${values.password.trim() !== "" ? "filled" : ""}`}
           id="password"
           name="password"
           placeholder="Enter Password"

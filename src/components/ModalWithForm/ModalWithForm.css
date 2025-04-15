@@ -21,7 +21,7 @@ button {
 
 .modal__content {
   background-color: #fff;
-  padding: 34px 36px 36px 36px;
+  padding: 34px 36px 28px 36px;
   max-width: 430px;
   box-sizing: border-box;
   width: 100%;
@@ -141,6 +141,11 @@ button {
   display: block;
 }
 
+.modal__label_password {
+  margin-top:31px;
+}
+
+
 .modal__input {
   font-family: "inter", Arial, sans-serif;
   box-sizing: border-box;
@@ -149,21 +154,35 @@ button {
   line-height: 100%;
   color: #000000;
   border: none;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   outline: none;
-  margin-top: 9px;
+  margin-top: 10px;
   margin-bottom: 0;
   width: 100%;
   padding: 0;
-  padding-bottom: 5px;
+  padding-bottom: 10px;
+}
+
+
+.modal__input.filled {
+  border-bottom: 1px solid #000000; 
+}
+
+.modal__label_username{
+  margin-top: 31px;
 }
 
 .modal__input_username {
   margin-bottom: 39px;
 }
 
-.modal__input_signin_password {
-  margin-bottom: 39px;
+.modal__input_signup_password {
+  margin-bottom: 0;
+  margin-top: 10px;
+}
+
+.modal__input_signin_password{
+  margin-bottom: 43px;
 }
 
 @media screen and (max-width: 768px) {

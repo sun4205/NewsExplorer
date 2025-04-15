@@ -5,12 +5,11 @@
 }
 
 .searchForm__container {
-  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: left;
-  align-items: left;
-  padding: 80px 416px;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 0;
   width: 100%;
   height: 100%;
   background-color: rgba(11, 10, 10, 0.6);
@@ -19,7 +18,7 @@
 .searchForm__title {
   font-family: "roboto-slab", Arial, sans-serif;
   color: white;
-  max-width: 608px;
+  width: 608px;
   max-height: 128px;
   font-weight: 400;
   font-size: 60px;
@@ -31,7 +30,7 @@
 
 .searchForm__description {
   color: white;
-  max-width: 608px;
+  width: 608px;
   max-height: 24px;
   font-weight: 400;
   font-size: 18px; 
@@ -88,6 +87,16 @@ input {
   margin-left: -159px;
   z-index: 1;
 }
+
+.searchForm__btn:hover{
+  background-color: #558ae6;
+}
+
+
+.searchForm__btn:focus{
+  background-color: #1a5dd0;
+}
+
 
 @media screen and (max-width: 768px) {
   .searchForm__container {

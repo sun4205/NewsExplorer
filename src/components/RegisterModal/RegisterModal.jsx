@@ -19,7 +19,7 @@ function RegisterModal({
 
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const isFilled = values.email.trim() !== "" || values.password.trim() !== "";
+  const isFilled = values.email.trim() !== "" || values.password.trim() !== "" || values.username.trim() !== "" ;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -70,7 +70,7 @@ function RegisterModal({
             Email
             <input
               type="email"
-              className="modal__input"
+              className={`modal__input ${values.email.trim() !== "" ? "filled" : ""}`}
               id="email"
               name="email"
               placeholder="Enter Email"
@@ -83,11 +83,11 @@ function RegisterModal({
             )}
           </label>
 
-          <label htmlFor="password" className="modal__label">
+          <label htmlFor="password" className="modal__label modal__label_password">
             Password
             <input
               type="password"
-              className="modal__input"
+              className={`modal__input modal__input_signup_password ${values.password.trim() !== "" ? "filled" : ""}`}
               id="password"
               name="password"
               placeholder="Enter Password"
@@ -96,11 +96,11 @@ function RegisterModal({
             />
           </label>
 
-          <label htmlFor="username" className="modal__label">
+          <label htmlFor="username" className="modal__label modal__label_username">
             Username
             <input
               type="username"
-              className="modal__input modal__input_username"
+              className={`modal__input modal__input_username ${values.username.trim() !==""? "filled" : ""}`}
               id="username"
               name="username"
               placeholder="Enter your username"
