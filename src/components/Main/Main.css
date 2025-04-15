@@ -1,7 +1,7 @@
 .main {
   width: 100%;
   padding: 80px 104px;
-  height: 974px;
+  /* height: 974px; */
   background-color: #f5f6f7;
 }
 
@@ -60,7 +60,7 @@
 @media screen and (max-width: 768px) {
   .main {
     padding: 40px;
-    height: 654px;
+    /* height: 654px; */
   }
 
   .main__title {
@@ -77,6 +77,7 @@
 
 @media screen and (max-width: 320px) {
   .main {
+    height: 100%;
     padding: 24px 16px 16px 16px;
   }
 

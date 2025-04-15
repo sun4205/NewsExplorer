@@ -280,6 +280,10 @@
     display: flex;
     flex-direction: column;
   }
+  
+  .navigation__nav {
+    gap:16px;
+  }
 
   .navigation__mobile-menu {
     display: none;
