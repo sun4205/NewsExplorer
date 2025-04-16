@@ -280,9 +280,9 @@
     display: flex;
     flex-direction: column;
   }
-  
+
   .navigation__nav {
-    gap:16px;
+    gap: 16px;
   }
 
   .navigation__mobile-menu {
@@ -300,25 +300,15 @@
   }
 }
 
-@media (min-width: 320px) and (max-width: 759px) {
-  .navigation__nav {
-    gap: 10px;
-    margin: 0;
-  }
-
-  .navigation__loggedIn-control {
-    margin-left: 5px;
-  }
-}
-
 @media screen and (max-width: 320px) {
   .navigation__mobile-menu {
     display: block;
   }
 
-  .navigation__mobile-menu .black {
-    display: block;
+  .navigation__mobile-menu.black {
+   
     background-image: url("../../images/menublack.svg");
+    
   }
 
   .navigation__nav {
@@ -338,12 +328,11 @@
     z-index: 10;
     color: white;
     overflow: auto;
-    padding: 16px;
+    padding: 16px 16px 24px 16px;
   }
 
   .navigation__nav.open {
-    display: flex;
-    display: block;
+   width: 100%;
   }
 
   .navigation__mobile-header {
@@ -366,10 +355,10 @@
     width: 25px;
   }
 
-  .navigation__home-btn {
+  .navigation__home-btn.show-mobile {
     text-align: left;
-    margin-left: 18px;
-    margin-top: 20px;
+    align-items: flex-start;   
+   
   }
 
   .navigation__home-btn::after {
@@ -382,27 +371,44 @@
 
   .navigation__signIn-btn {
     width: 288px;
-    margin-top: 40px;
+    margin-top: 45px;
+    margin-bottom: 0;
   }
 
   .navigation__signIn-btn::after {
     display: none;
   }
 
-  .navigation__loggedIn-control {
-    margin-top: 40px;
+  .navigation__loggedIn-control{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;   
+    width: 320px;
   }
+  
+.navigation__savedArticle-nav {
+  margin-right: 0;
+  margin-bottom: 16px;
+}
 
   .navigation__savedArticle-nav.font-black {
     color: white;
+    justify-content: left;
   }
 
-  .navigation__username.font-black {
+  
+.navigation__username { 
+  width: 288px;
+}
+
+  .navigation__username.font-black {   
     color: white;
     border: 2px solid white;
+    margin-top: 10px;
+    justify-content: center;
   }
 
-  .navigation__logout.logout-black {
+  .navigation__logout.logout-black {   
     background-image: url("../../images/logout.svg");
   }
 }

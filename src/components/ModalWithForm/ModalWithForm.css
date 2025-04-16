@@ -32,7 +32,7 @@ button {
 
 .modal__title {
   font-family: "roboto", Arial, sans-serif;
-  margin: 0;
+  margin-bottom: 0;
   font-weight: 900;
   font-size: 24px;
   line-height: 100%;
@@ -60,6 +60,7 @@ button {
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin:0;
 }
 
 .modal__button-container {
@@ -200,20 +201,37 @@ button {
     right: 0;
     bottom: 0;
     background-color: #0000004d;
+    align-items: flex-start; 
     position: absolute;
     z-index: 999;
   }
 
   .modal__content {
-    padding: 16px 17px 120px 17px;
+    padding: 16px 16px 200px 16px;   
+    margin-top: 380px; 
   }
 
   .modal__label {
-    margin-top: 14px;
+    margin-top: 0;
   }
+  
+.modal__label_password {
+  margin-top:30px;
+}
+
+
+.modal__label_username{
+  margin-top: 30px;
+}
+
 
   .modal__close-btn {
     top: -40px;
-    left: 250px;
+    left: 270px;
   }
+
+  
+.modal__input_signin_password{
+  margin-bottom: 23px;
+}
 }

@@ -1,8 +1,8 @@
-*,
+/* *,
 *::before,
 *::after {
   box-sizing: border-box;
-}
+} */
 
 .searchForm__container {
   display: flex;
@@ -103,7 +103,7 @@ input {
     display: flex;
     flex-direction: column;    
     padding:38px 156px 48px 160px;
-    max-height: 334px;
+    height: 334px;
   }
 
   .searchForm__title {
@@ -146,20 +146,25 @@ input {
     padding: 30px 16px 0 16px;
     justify-content: center;
     align-items: center;
+    height: 480px;
   }
 
   .searchForm__title {
+    width: 285px;
     font-weight: 400;
     font-size: 36px;
     line-height: 40px;
     letter-spacing: 0;
+    margin-bottom: 16px;
   }
 
   .searchForm__description {
-    font-weight: 300;
+    width: 288px;
+    font-weight: 400;
     font-size: 18px;
     line-height: 24px;
     letter-spacing: 0;
+    margin-bottom: 122px;
   }
 
   .searchForm__controls {
@@ -176,8 +181,9 @@ input {
   .searchForm__btn {
     width: 320px;
     height: 56px;
-    margin-top: 20px;
+    margin-top: 16px;
     margin-left: 0;
     width: 100%;
+    margin-bottom: 32px;
   }
 }
