@@ -2,17 +2,9 @@ import "./Header.css";
 import NewsExplorer from "../../images/NewsExplorer.svg";
 import NewsExplorerblack from "../../images/NewsExplorerblack.svg";
 import { useLocation } from "react-router-dom";
-import SearchForm from "../SearchForm/SearchForm";
 import Navigation from "../Navigation/Navigation";
 
-function Header({
-  debouncedFetch,
-  query,
-  setQuery,
-  openLoginModal,
-  closeActiveModal,
-  handleLogOut,
-}) {
+function Header({ openLoginModal, closeActiveModal, handleLogOut }) {
   const location = useLocation();
 
   const savedNewsPage = location.pathname === "/saveNews";
@@ -32,14 +24,6 @@ function Header({
           closeActiveModal={closeActiveModal}
         />
       </header>
-
-      {location.pathname === "/" && (
-        <SearchForm
-          query={query}
-          setQuery={setQuery}
-          debouncedFetch={debouncedFetch}
-        />
-      )}
     </div>
   );
 }

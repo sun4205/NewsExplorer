@@ -1,7 +1,6 @@
 .main {
   width: 100%;
   padding: 80px 104px;
-  /* height: 974px; */
   background-color: #f5f6f7;
 }
 
@@ -60,7 +59,7 @@
 @media screen and (max-width: 768px) {
   .main {
     padding: 40px;
-    /* height: 654px; */
+    height: 654px;
   }
 
   .main__title {
@@ -68,11 +67,11 @@
     line-height: 34px;
     margin-bottom: 32px;
     height: 34px;
-    font-weight: 400; 
-  }  
-.main__cards-list {
-  gap:8px;
-}
+    font-weight: 400;
+  }
+  .main__cards-list {
+    gap: 8px;
+  }
 }
 
 @media screen and (max-width: 320px) {

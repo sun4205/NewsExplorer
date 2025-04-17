@@ -18,19 +18,20 @@ function SearchForm({ debouncedFetch, query, setQuery }) {
   }, [debouncedFetch]);
 
   return (
-    <div className="searchForm__container">
-      <h1 className="searchForm__title">What's going on in the world?</h1>
-      <p className="searchForm__description">
+    <form className="search-form">
+    <div className="search-form__container">
+      <h1 className="search-form__title">What's going on in the world?</h1>
+      <p className="search-form__description">
         Find the latest news on any topic and save them in your personal
         account.
       </p>
-      <div className="searchForm__controls">
-        <label className="searchForm__label">
+      <div className="search-form__controls">
+        <label className="search-form__label">
           <input
-            className="searchForm__input"
+            className="search-form__input"
             type="search"
-            id="search__input"
-            name="search__input"
+            id="search-input"
+            name="search-input"
             placeholder="Enter Topic"
             value={query}
             onChange={handleInputChange}
@@ -39,12 +40,13 @@ function SearchForm({ debouncedFetch, query, setQuery }) {
         <button
           type="button"
           onClick={() => handleSearchSubmit({ query })}
-          className="searchForm__btn"
+          className="search-form__button"
         >
           Search
         </button>
       </div>
     </div>
+    </form>
   );
 }
 

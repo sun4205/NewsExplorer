@@ -17,6 +17,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import About from "../About/About";
 import RegisterMessage from "../RegisterMessage/RegisterMessage";
 import debounce from "lodash.debounce";
+import SearchForm from "../SearchForm/SearchForm";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -167,13 +168,17 @@ function App() {
       >
         <div className="page">
           <Header
-            debouncedFetch={debouncedFetch}
-            query={query}
-            setQuery={setQuery}
             openLoginModal={openLoginModal}
             handleLogOut={handleLogOut}
             closeActiveModal={closeActiveModal}
           />
+          {location.pathname === "/" && (
+            <SearchForm
+              query={query}
+              setQuery={setQuery}
+              debouncedFetch={debouncedFetch}
+            />
+          )}
 
           <div className="page-content">
             <Routes>
@@ -190,6 +195,7 @@ function App() {
                         isSearched={isSearched}
                       />
                     )}
+                    {location.pathname === "/" && <About />}
                   </>
                 }
               />
@@ -208,7 +214,7 @@ function App() {
               />
             </Routes>
           </div>
-          {location.pathname === "/" && <About />}
+          {/* {location.pathname === "/" && <About />} */}
           <Footer />
         </div>
 

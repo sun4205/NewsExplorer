@@ -2,15 +2,17 @@ import "./Main.css";
 import notFound from "../../images/not_found.svg";
 import NewsCard from "../NewsCard/NewsCard";
 import ShowMore from "../ShowMore/ShowMore";
+import About from "../About/About";
 import Preloader from "../Preloader/Preloader";
 import { useState } from "react";
 
-function Main({
+function Main({  
   isLoading,
   newsItems,
   handleNewsSaved,
   handleRemoveArticle,
   isSearched,
+  children,
 }) {
   const [renderedCards, setRenderedCards] = useState(3);
 
@@ -60,6 +62,7 @@ function Main({
           </section>
         </>
       )}
+      {children}
     </main>
   );
 }
