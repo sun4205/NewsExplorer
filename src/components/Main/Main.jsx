@@ -6,13 +6,13 @@ import About from "../About/About";
 import Preloader from "../Preloader/Preloader";
 import { useState } from "react";
 
-function Main({  
+function Main({
   isLoading,
   newsItems,
   handleNewsSaved,
   handleRemoveArticle,
-  isSearched,
-  children,
+  isSearched, 
+  query,
 }) {
   const [renderedCards, setRenderedCards] = useState(3);
 
@@ -21,13 +21,13 @@ function Main({
   };
 
   return (
-    <main className="main">
-      {isLoading ? (
-        <Preloader />
-      ) : (
-        <>
+    <div className="main">
+      {query && (
+        <section className="main__cards-section">
           <h2 className="main__title">Search results</h2>
-          <section className="main__cards">
+          {isLoading ? (
+            <Preloader />
+          ) : (
             <ul
               className={`main__cards-list ${
                 newsItems?.length > 0
@@ -47,23 +47,24 @@ function Main({
                     />
                   ))
               ) : (
-                <div className="main__notFound-container">
-                  <img src={notFound} alt=""></img>
-                  <p className="main__notFound">Nothing found</p>
-                  <p className="main__sorry">
-                    Sorry,but nothing matched your search terms
+                <div className="main__not-found">
+                  <img src={notFound} alt="Not found" />
+                  <p className="main__not-found-text">Nothing found</p>
+                  <p className="main__not-found-description">
+                    Sorry, but nothing matched your search terms
                   </p>
                 </div>
               )}
             </ul>
-            {renderedCards < 9 && renderedCards < newsItems?.length && (
-              <ShowMore onClick={handleShowMore} />
-            )}
-          </section>
-        </>
+          )}
+          {renderedCards < 9 && renderedCards < newsItems?.length && (
+            <ShowMore onClick={handleShowMore} />
+          )}
+        </section>
       )}
-      {children}
-    </main>
+
+      <About />
+    </div>
   );
 }
 

@@ -167,36 +167,34 @@ function App() {
         }}
       >
         <div className="page">
-          <Header
-            openLoginModal={openLoginModal}
-            handleLogOut={handleLogOut}
-            closeActiveModal={closeActiveModal}
-          />
-          {location.pathname === "/" && (
-            <SearchForm
-              query={query}
-              setQuery={setQuery}
-              debouncedFetch={debouncedFetch}
+          <header className="header-search-container">
+            <Header
+              openLoginModal={openLoginModal}
+              handleLogOut={handleLogOut}
+              closeActiveModal={closeActiveModal}
             />
-          )}
 
-          <div className="page-content">
+            {location.pathname === "/" && (
+              <SearchForm
+                query={query}
+                setQuery={setQuery}
+                debouncedFetch={debouncedFetch}
+              />
+            )}
+          </header>
+          <main>
             <Routes>
               <Route
                 path="/"
                 element={
-                  <>
-                    {query && (
-                      <Main
-                        newsData={newsData}
-                        newsItems={newsItems}
-                        handleNewsSaved={handleNewsSaved}
-                        isLoading={isLoading}
-                        isSearched={isSearched}
-                      />
-                    )}
-                    {location.pathname === "/" && <About query={query}/>}
-                  </>
+                  <Main
+                    newsData={newsData}
+                    newsItems={newsItems}
+                    handleNewsSaved={handleNewsSaved}
+                    isLoading={isLoading}
+                    isSearched={isSearched}
+                    query={query}
+                  />
                 }
               />
               <Route
@@ -213,8 +211,8 @@ function App() {
                 }
               />
             </Routes>
-          </div>
-          {/* {location.pathname === "/" && <About />} */}
+          </main>
+
           <Footer />
         </div>
 

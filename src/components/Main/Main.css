@@ -1,7 +1,11 @@
 .main {
   width: 100%;
-  padding: 80px 104px;
+  padding: 0;
   background-color: #f5f6f7;
+}
+
+.main__cards-section {
+  padding: 80px 104px;
 }
 
 .main__title {
@@ -30,14 +34,14 @@
   flex-direction: column;
 }
 
-.main__notFound-container {
+.main__not-found {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.main__notFound {
+.main__not-found-text {
   font-family: "roboto-slab", Arial, sans-serif;
   margin: 0;
   font-weight: 400;
@@ -48,7 +52,7 @@
   margin-bottom: 16px;
 }
 
-.main__sorry {
+.main__not-found-description {
   margin: 0;
   font-weight: 400;
   font-size: 18px;
@@ -58,8 +62,11 @@
 
 @media screen and (max-width: 768px) {
   .main {
+    padding: 0;
+  }
+
+  .main__cards-section {
     padding: 40px;
-    
   }
 
   .main__title {
@@ -77,6 +84,10 @@
 @media screen and (max-width: 320px) {
   .main {
     height: 100%;
+    padding: 0;
+  }
+
+  .main__cards-section {
     padding: 24px 16px 16px 16px;
   }
 

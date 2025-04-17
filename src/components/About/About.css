@@ -1,15 +1,14 @@
 .about {
   display: flex;
-  padding: 80px 216px 80px 104px; 
+  padding: 80px 216px 80px 104px;
   background-color: white;
   width: 100%;
- height: 624px;
+  height: 624px;
 }
 .about__spacer {
   height: 111px;
   background-color: white;
   display: none;
-
 }
 .about__mypicture {
   max-width: 464px;
@@ -22,23 +21,23 @@
 .about__author {
   display: flex;
   flex-direction: column;
-  margin-top: 51px; 
+  margin-top: 51px;
 }
 
 .about__author-title {
-  font-family: "roboto", Arial, sans-serif; 
+  font-family: "roboto", Arial, sans-serif;
   font-weight: 400;
   font-size: 40px;
   line-height: 46px;
   margin-bottom: 24px;
 }
 
-.about__author-descriptions{  
+.about__author-descriptions {
   max-width: 600px;
   /* max-height: 120px; */
 }
 
-.about__author-description1 {  
+.about__author-description1 {
   margin-bottom: 24px;
   font-weight: 400;
   font-size: 18px;
@@ -55,34 +54,31 @@
   .about {
     padding: 40px 40px 61px 40px;
     height: 354px;
-    display: flex;    
+    display: flex;
   }
 
   .about__spacer {
     display: block;
   }
 
-  
   .about__author {
     margin: 0;
   }
 
   .about__author-title {
     font-size: 30px;
-    line-height: 40px; 
-    margin-bottom: 16px;  
+    line-height: 40px;
+    margin-bottom: 16px;
   }
 
-  
-.about__author-description1 {  
-  margin-bottom: 24px;
-  font-size: 17px;  
-}
+  .about__author-description1 {
+    margin-bottom: 24px;
+    font-size: 17px;
+  }
 
-
-.about__author-description2 { 
-  font-size: 17px;   
-}
+  .about__author-description2 {
+    font-size: 17px;
+  }
 
   .about__mypicture {
     width: 232px;
@@ -98,7 +94,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
     margin: 0;
     height: 100%;
     width: 100%;
@@ -106,12 +102,22 @@
 
   .about__mypicture {
     margin-right: 0;
-    margin-bottom: 24px;    
+    margin-bottom: 24px;
   }
 
   .about__author-title {
     margin-bottom: 16px;
+    align-items: center;
   }
+
+  .about__author-description1 {
+    align-items: center;
+  }
+
+  .about__author-description2 {
+    align-items: center;
+  }
+
   .about__spacer {
     display: none;
   }
