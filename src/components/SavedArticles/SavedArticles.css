@@ -54,7 +54,7 @@
 }
 
 .savedArticles__lists_container {
-  padding: 62px 106px 102px 62px;
+  padding: 62px 106px 62px 102px;
 }
 
 .savedArticles__lists {
@@ -62,7 +62,7 @@
   flex-wrap: wrap;
   margin: 0;
   padding: 0;
-  gap: 20px;
+  gap: 16px;
   list-style-type: none;
   justify-content: flex-start;
 }
@@ -73,7 +73,7 @@
   }
 
   .savedArticles__info {
-    padding: 24px 392px 32px 40px;
+    padding: 24px 16px 32px 40px;
   }
 
   .savedArticles__title {
@@ -82,6 +82,8 @@
   }
 
   .savedArticles__numberSaved {
+    width: 336px;
+    height: 68px;
     font-size: 30px;
     line-height: 34px;
     margin-top: 16px;

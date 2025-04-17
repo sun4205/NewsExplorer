@@ -26,7 +26,6 @@
 .search-form__description {
   color: white;
   width: 608px;
-  max-height: 24px;
   font-weight: 400;
   font-size: 18px;
   line-height: 24px;
@@ -36,10 +35,9 @@
 }
 
 .search-form__controls {
-  /* width: 100%; */
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  width: 100%;
+  display: flex;  
+  justify-content: space-between;
   width: 608px;
 }
 
@@ -83,7 +81,9 @@ input {
   font-size: 18px;
   line-height: 24px;
   letter-spacing: 0;
-  margin: 0 10px;
+  /* margin: 0 10px; */
+  flex-shrink: 0;
+  margin-left: -167px;
   /* transform: translate(-50%, -50%); */
   z-index: 1;
 }
@@ -134,16 +134,16 @@ input {
   }
 
   .search-form__button {
-    width: 160px;
-    top: 33%;
-    left: 69%;
+    width: 160px;   
+    margin-left: 291px;
+    margin-top: -56px;
     height: 56px;
   }
 }
 
 @media screen and (max-width: 320px) {
   .search-form__container {
-    padding: 30px 16px 0 16px;
+    padding: 30px 16px 32px 16px;
     justify-content: center;
     align-items: center;
     height: 480px;
@@ -160,6 +160,7 @@ input {
 
   .search-form__description {
     width: 288px;
+    height: 72px;
     font-weight: 400;
     font-size: 18px;
     line-height: 24px;
@@ -182,9 +183,9 @@ input {
     width: 320px;
     height: 56px;
     margin-top: 16px;
-    width: 100%;
-    margin-bottom: 32px;
+    width: 100%;    
     right: 16px;
     top: 459px;
+    margin-left: -2px;
   }
 }

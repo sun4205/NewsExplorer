@@ -240,6 +240,11 @@
     height: 150px;
   }
 
+  
+.card__image__remove {
+  display: none;
+}
+
   .card__info {
     padding: 16px;
     height: 100%;

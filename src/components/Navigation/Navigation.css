@@ -149,9 +149,9 @@
   line-height: 24px;
   letter-spacing: 0;
   background-color: transparent;
-  border: none;
-  margin-left: 45px;
-  margin-right: 56px;
+  border: none;  
+  margin-left: 23px;
+  margin-right: 64px;
   cursor: pointer;
   position: relative;
 }
