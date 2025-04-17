@@ -1,8 +1,9 @@
 import "./About.css";
 import me from "../../images/hanna.png";
 
-function About() {
+function About({ query }) {
   return (
+    <>
     <div className="about">
       <img src={me} alt="author Picture" className="about__mypicture" />
       <div className="about__author">
@@ -20,6 +21,8 @@ function About() {
         </div>
       </div>
     </div>
+    {!query && <div className="about__spacer"></div>}
+    </>
   );
 }
 

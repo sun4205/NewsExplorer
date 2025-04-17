@@ -355,6 +355,10 @@
     width: 25px;
   }
 
+  .navigation__home-btn.logged-out-shift {
+    margin-top: 20px; 
+  }
+
   .navigation__home-btn.show-mobile {
     text-align: left;
     align-items: flex-start;   
@@ -367,6 +371,10 @@
 
   .navigation__home-btn.font-black {
     color: white;
+  }
+
+  .navigation__signIn-btn.logged-out-margin {
+    margin-top: 22px; 
   }
 
   .navigation__signIn-btn {

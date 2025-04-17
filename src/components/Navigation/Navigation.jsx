@@ -59,7 +59,7 @@ function Navigation({ openLoginModal, handleLogOut }) {
           type="button"
           className={`navigation__home-btn ${
             savedNewsPage ? "font-black" : ""
-          } ${isMobileMenuOpen ? "show-mobile" : ""}`}
+          } ${isMobileMenuOpen ? "show-mobile" : ""} ${!currentUser && isMobileMenuOpen ? "logged-out-shift" : ""}`}
         >
           Home
         </button>
@@ -68,7 +68,7 @@ function Navigation({ openLoginModal, handleLogOut }) {
           <button
             type="button"
             onClick={openLoginModal}
-            className="navigation__signIn-btn"
+            className={`navigation__signIn-btn ${!currentUser && isMobileMenuOpen ? "logged-out-margin" : ""}`}
           >
             Sign In
           </button>

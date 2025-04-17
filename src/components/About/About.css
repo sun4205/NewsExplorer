@@ -3,9 +3,14 @@
   padding: 80px 216px 80px 104px; 
   background-color: white;
   width: 100%;
-  /* height: 624px; */
+ height: 624px;
 }
+.about__spacer {
+  height: 111px;
+  background-color: white;
+  display: none;
 
+}
 .about__mypicture {
   max-width: 464px;
   /* height: 464px; */
@@ -17,8 +22,7 @@
 .about__author {
   display: flex;
   flex-direction: column;
-  margin-top: 51px;
- 
+  margin-top: 51px; 
 }
 
 .about__author-title {
@@ -37,21 +41,25 @@
 .about__author-description1 {  
   margin-bottom: 24px;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 24px;
 }
 
 .about__author-description2 {
   font-weight: 400;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 24px;
 }
 
 @media screen and (max-width: 768px) {
   .about {
     padding: 40px 40px 61px 40px;
-    display: flex;
-    /* max-height: 354px; */
+    height: 354px;
+    display: flex;    
+  }
+
+  .about__spacer {
+    display: block;
   }
 
   
@@ -64,6 +72,17 @@
     line-height: 40px; 
     margin-bottom: 16px;  
   }
+
+  
+.about__author-description1 {  
+  margin-bottom: 24px;
+  font-size: 17px;  
+}
+
+
+.about__author-description2 { 
+  font-size: 17px;   
+}
 
   .about__mypicture {
     width: 232px;
@@ -92,5 +111,8 @@
 
   .about__author-title {
     margin-bottom: 16px;
+  }
+  .about__spacer {
+    display: none;
   }
 }

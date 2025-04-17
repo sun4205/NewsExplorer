@@ -195,7 +195,7 @@ function App() {
                         isSearched={isSearched}
                       />
                     )}
-                    {location.pathname === "/" && <About />}
+                    {location.pathname === "/" && <About query={query}/>}
                   </>
                 }
               />
