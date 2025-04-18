@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Navigation.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
@@ -14,6 +14,20 @@ function Navigation({ openLoginModal, handleLogOut }) {
   const savedNewsPage = location.pathname.includes("/saveNews");
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.classList.add("menu-open");
+    } else {
+      document.body.classList.remove("menu-open");
+    }
+
+    console.log(document.body.classList);
+
+    return () => {
+      document.body.classList.remove("menu-open");
+    };
+  }, [isMobileMenuOpen]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen((prevState) => !prevState);
@@ -59,7 +73,9 @@ function Navigation({ openLoginModal, handleLogOut }) {
           type="button"
           className={`navigation__home-btn ${
             savedNewsPage ? "font-black" : ""
-          } ${isMobileMenuOpen ? "show-mobile" : ""} ${!currentUser && isMobileMenuOpen ? "logged-out-shift" : ""}`}
+          } ${isMobileMenuOpen ? "show-mobile" : ""} ${
+            !currentUser && isMobileMenuOpen ? "logged-out-shift" : ""
+          }`}
         >
           Home
         </button>
@@ -68,7 +84,9 @@ function Navigation({ openLoginModal, handleLogOut }) {
           <button
             type="button"
             onClick={openLoginModal}
-            className={`navigation__signIn-btn ${!currentUser && isMobileMenuOpen ? "logged-out-margin" : ""}`}
+            className={`navigation__signIn-btn ${
+              !currentUser && isMobileMenuOpen ? "logged-out-margin" : ""
+            }`}
           >
             Sign In
           </button>

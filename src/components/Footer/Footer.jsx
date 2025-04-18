@@ -4,7 +4,7 @@ import "./Footer.css";
 import github from "../../images/Vector.svg";
 
 function Footer() { 
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 320);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 325);
 
   useEffect(() => {
     const handleResize = () => {

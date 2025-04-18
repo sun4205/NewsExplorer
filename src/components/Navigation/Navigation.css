@@ -275,6 +275,7 @@
   background-image: url("../../images/logout.svg");
 }
 
+
 @media screen and (max-width: 768px) {
   .navigation {
     display: flex;
@@ -334,6 +335,11 @@
   .navigation__nav.open {
    width: 100%;
   }
+
+  body.menu-open {
+    background-color: rgba(0, 0, 0, 0.5)  !important;
+  }
+
 
   .navigation__mobile-header {
     display: block;
