@@ -9,8 +9,15 @@
 .about__wrapper {
   display: flex;
   max-width: 1200px;
-  margin: 0 auto;
-  /* align-items: flex-start; */
+  margin: 0 auto;     
+}
+ .about__mypicture-wrapper {
+  width: 100%;
+  max-width: 454px; 
+  height:454px;
+  display: flex;
+  justify-content: center;
+  
 }
 .about__spacer {
   height: 111px;
@@ -18,9 +25,7 @@
   display: none;
 }
 .about__mypicture {
-  max-width: 464px;
-  /* height: 464px; */
-  width: 100%;
+  width: 100%; 
   background-color: transparent;
   margin-right: 56px;
   height: auto;
@@ -118,6 +123,11 @@
   .about__wrapper {
     display: flex;
     flex-direction: column;
+  }
+  .about__mypicture-wrapper {    
+    height:300px;
+   
+    
   }
   .about__mypicture {
     width: 272px;

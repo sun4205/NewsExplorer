@@ -19,9 +19,8 @@
 
 .navigation__nav {
   display: flex;
-  margin-left: auto;
-  gap: 42px;
-  overflow: visible;
+  margin: 0 auto;
+  gap: 42px; 
   padding: 0;
 }
 

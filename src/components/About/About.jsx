@@ -1,12 +1,14 @@
 import "./About.css";
-import me from "../../images/hanna.png";
+import me from "../../images/me.png";
 
 function About({ query }) {
   return (
     <>
       <section className="about">
         <div className="about__wrapper">
+        <div className="about__mypicture-wrapper">
           <img src={me} alt="author" className="about__mypicture" />
+          </div>
           <div className="about__author">
             <h2 className="about__author-title">About the Author</h2>
             <div className="about__author-descriptions">

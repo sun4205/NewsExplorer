@@ -14,10 +14,12 @@ function Header({ openLoginModal, closeActiveModal, handleLogOut }) {
     //   className={`header__container ${savedNewsPage ? "no-background" : ""}`}
     // >
       <header className={`header ${savedNewsPage ? "no-background" : ""}`}>
+         <div className="header__logo-wrapper">
         <img
           src={savedNewsPage ? NewsExplorerblack : NewsExplorer}
           className="header__logo"
         />
+        </div>
         <Navigation
           openLoginModal={openLoginModal}
           handleLogOut={handleLogOut}

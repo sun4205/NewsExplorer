@@ -29,6 +29,19 @@
   background-color: white;
 }
 
+.header__logo-wrapper{
+  display: flex;
+  max-width: 138px;
+  height: 21px;
+  margin: right;     
+}
+
+.header__logo{
+  height: auto;
+  object-fit: cover;
+  flex-shrink: 1;
+}
+
 @media screen and (max-width: 768px) {
   /* .header__container {
     width: 100%;
