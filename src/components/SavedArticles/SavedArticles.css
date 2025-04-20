@@ -6,7 +6,7 @@
   background-color: #f5f6f7;
 }
 .saved-articles__info {
-  padding: 40px 624px 56px 104px;
+  padding: 40px 40px 56px 104px;
   background-color: white;
 }
 
@@ -84,7 +84,7 @@
   }
 
   .saved-articles__count {
-    width: 336px;
+    width: 288px;
     height: 68px;
     font-size: 30px;
     line-height: 34px;
@@ -121,7 +121,7 @@
   }
 
   .saved-articles__keywords-label {
-    margin-bottom: 32px;
+    margin-top: 0;
   }
 
   .saved-articles__list-wrapper {
