@@ -1,4 +1,4 @@
-.modal__register_msg {
+.modal__content--register {
   display: flex;
   flex-direction: column;
   justify-content: left;
@@ -6,7 +6,7 @@
   height: 182px;
 }
 
-.modal__register_title {
+.modal__title--register {
   font-family: "roboto", Arial, sans-serif;
   font-weight: 900;
   font-size: 24px;

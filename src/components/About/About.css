@@ -9,23 +9,18 @@
 .about__wrapper {
   display: flex;
   max-width: 1200px;
-  margin: 0 auto;     
+  margin: 0 auto;
 }
- .about__mypicture-wrapper {
+.about__mypicture-wrapper {
   width: 100%;
-  max-width: 454px; 
-  height:454px;
+  max-width: 454px;
+  height: 454px;
   display: flex;
   justify-content: center;
-  
 }
-.about__spacer {
-  height: 111px;
-  background-color: white;
-  display: none;
-}
+
 .about__mypicture {
-  width: 100%; 
+  width: 100%;
   background-color: transparent;
   margin-right: 56px;
   height: auto;
@@ -64,6 +59,12 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 24px;
+}
+
+.about__spacer {
+  height: 111px;
+  background-color: white;
+  display: none;
 }
 
 @media screen and (max-width: 768px) {
@@ -124,10 +125,8 @@
     display: flex;
     flex-direction: column;
   }
-  .about__mypicture-wrapper {    
-    height:300px;
-   
-    
+  .about__mypicture-wrapper {
+    height: 300px;
   }
   .about__mypicture {
     width: 272px;

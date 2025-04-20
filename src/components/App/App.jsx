@@ -14,7 +14,6 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 import SavedArticlesContext from "../../contexts/SavedArticlesContext";
 import SavedArticles from "../SavedArticles/SavedArticles";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-import About from "../About/About";
 import RegisterMessage from "../RegisterMessage/RegisterMessage";
 import debounce from "lodash.debounce";
 import SearchForm from "../SearchForm/SearchForm";

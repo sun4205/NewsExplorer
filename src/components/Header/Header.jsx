@@ -10,23 +10,19 @@ function Header({ openLoginModal, closeActiveModal, handleLogOut }) {
   const savedNewsPage = location.pathname === "/saveNews";
 
   return (
-    // <div
-    //   className={`header__container ${savedNewsPage ? "no-background" : ""}`}
-    // >
-      <header className={`header ${savedNewsPage ? "no-background" : ""}`}>
-         <div className="header__logo-wrapper">
+    <header className={`header ${savedNewsPage ? "no-background" : ""}`}>
+      <div className="header__logo-wrapper">
         <img
           src={savedNewsPage ? NewsExplorerblack : NewsExplorer}
           className="header__logo"
         />
-        </div>
-        <Navigation
-          openLoginModal={openLoginModal}
-          handleLogOut={handleLogOut}
-          closeActiveModal={closeActiveModal}
-        />
-      </header>
-    // </div>
+      </div>
+      <Navigation
+        openLoginModal={openLoginModal}
+        handleLogOut={handleLogOut}
+        closeActiveModal={closeActiveModal}
+      />
+    </header>
   );
 }
 

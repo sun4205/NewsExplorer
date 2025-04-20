@@ -1,11 +1,11 @@
-.showmore__container {
+.show-more {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
 }
 
-.showmore__btn {
+.show-more__btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,16 +27,14 @@
   margin-top: 56px;
 }
 
-.showmore__btn:hover {
+.show-more__btn:hover {
   background-color: #e8e8e8;
   color: #1a1b22;
   cursor: pointer;
 }
 
-
 @media screen and (max-width: 768px) {
-  
-.showmore__btn {
-  margin-top: 32px;
-}
+  .show-more__btn {
+    margin-top: 32px;
+  }
 }

@@ -5,8 +5,8 @@ import "./RegisterMessage.css";
 function RegisterMessage({ closeActiveModal, setActiveModal }) {
   return (
     <div className="modal modal_opened">
-      <div className="modal__content modal__register_msg">
-        <h2 className="modal__title modal__register_title">
+      <div className="modal__content modal__content--register">
+        <h2 className="modal__title modal__title--register">
           Registration Successfully Completed!
         </h2>
         <button

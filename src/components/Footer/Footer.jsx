@@ -27,7 +27,7 @@ function Footer() {
           </a>
         </div>
 
-        <div className="footer__icon-links">
+        <div className="footer__icon-link">
           <a
             className="footer__link-item"
             href="https://github.com/sun4205"

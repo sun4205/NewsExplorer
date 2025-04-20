@@ -27,28 +27,28 @@ function SavedArticles({ savedArticles, handleRemoveArticle }) {
   }
 
   return (
-    <div className="savedArticles__container">
-      <div className="savedArticles__info">
-      <p className="savedArticles__title">Saved articles</p>
-      <p className="savedArticles__numberSaved">
-        {currentUser.username}, you have {savedArticles.length} saved articles
-      </p>
-      <p className="savedArticles__by">
-        By keywords:{" "}
-        <span className="savedArticles__keywords">{keywordsText}</span>
-      </p>
+    <div className="saved-articles">
+      <div className="saved-articles__info">
+        <p className="saved-articles__title">Saved articles</p>
+        <p className="saved-articles__count">
+          {currentUser.username}, you have {savedArticles.length} saved articles
+        </p>
+        <p className="saved-articles__keywords-label">
+          By keywords:{" "}
+          <span className="saved-articles__keywords">{keywordsText}</span>
+        </p>
       </div>
-      <div className="savedArticles__lists_container">
-      <ul className="savedArticles__lists">
-        {savedArticles.map((item, index) => (
-          <NewsCard
-            key={index}
-            data={item}
-            handleNewsSaved={() => handleNewsSaved({ data: item })}
-            handleRemoveArticle={handleRemoveArticle}
-          />
-        ))}
-      </ul>
+      <div className="saved-articles__list-wrapper">
+        <ul className="saved-articles__list">
+          {savedArticles.map((item, index) => (
+            <NewsCard
+              key={index}
+              data={item}
+              handleNewsSaved={() => handleNewsSaved({ data: item })}
+              handleRemoveArticle={handleRemoveArticle}
+            />
+          ))}
+        </ul>
       </div>
     </div>
   );

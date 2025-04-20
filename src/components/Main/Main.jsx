@@ -11,7 +11,7 @@ function Main({
   newsItems,
   handleNewsSaved,
   handleRemoveArticle,
-  isSearched, 
+  isSearched,
   query,
 }) {
   const [renderedCards, setRenderedCards] = useState(3);

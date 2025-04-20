@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Navigation.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
@@ -14,20 +14,6 @@ function Navigation({ openLoginModal, handleLogOut }) {
   const savedNewsPage = location.pathname.includes("/saveNews");
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.classList.add("menu-open");
-    } else {
-      document.body.classList.remove("menu-open");
-    }
-
-    console.log(document.body.classList);
-
-    return () => {
-      document.body.classList.remove("menu-open");
-    };
-  }, [isMobileMenuOpen]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen((prevState) => !prevState);
@@ -49,6 +35,9 @@ function Navigation({ openLoginModal, handleLogOut }) {
   };
   return (
     <div className="navigation">
+      {isMobileMenuOpen && (
+        <div className="navigation__overlay" onClick={closeMobileMenu}></div>
+      )}
       <button
         className={`navigation__mobile-menu ${
           currentUser && savedNewsPage ? "black" : ""

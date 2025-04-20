@@ -29,7 +29,7 @@ function LoginModal({
   };
 
   useEscapeKey(!!activeModal, closeActiveModal, modalRef);
-  
+
   return (
     <ModalWithForm
       isOpen={activeModal === "login"}
@@ -53,8 +53,9 @@ function LoginModal({
         Email
         <input
           type="email"
-          className={`modal__input ${values.email.trim() !== "" ? "filled" : ""}`}
-          
+          className={`modal__input ${
+            values.email.trim() !== "" ? "filled" : ""
+          }`}
           id="email"
           name="email"
           placeholder="Enter Email"
@@ -69,7 +70,9 @@ function LoginModal({
         Password
         <input
           type="password"
-          className={`modal__input modal__input_signin_password ${values.password.trim() !== "" ? "filled" : ""}`}
+          className={`modal__input modal__input_signin_password ${
+            values.password.trim() !== "" ? "filled" : ""
+          }`}
           id="password"
           name="password"
           placeholder="Enter Password"

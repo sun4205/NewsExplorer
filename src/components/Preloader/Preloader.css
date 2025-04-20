@@ -1,4 +1,4 @@
-.preloader__container {
+.preloader {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,7 +8,7 @@
   height: 282px;
 }
 
-.circle-preloader {
+.preloader__circle {
   display: block;
   width: 74px;
   height: 74px;
@@ -25,7 +25,7 @@
   }
 }
 
-.preloader__paragraph {
+.preloader__text {
   font-weight: 400;
   font-size: 18px;
   line-height: 24px;

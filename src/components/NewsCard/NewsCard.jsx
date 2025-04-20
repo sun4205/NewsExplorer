@@ -44,14 +44,14 @@ function NewsCard({ data, handleNewsSaved, handleRemoveArticle }) {
         <div className="card__button-overlay">
           {currentUser ? (
             location.pathname === "/saveNews" ? (
-              <div className="card__delete-keyword-container">
+              <div className="card__actions">
                 <button
                   onClick={() => handleRemoveArticle(data.id)}
                   className="card__save-btn card__save-btn-delete"
                 ></button>
-                <span className="card__image__remove">Remove from saved</span>
-                <div className="card__image__keywords">
-                  <span className="card__image__keyword">{data?.keywords}</span>
+                <span className="card__remove-message">Remove from saved</span>
+                <div className="card__keywords">
+                  <span className="card__keyword">{data?.keywords}</span>
                 </div>
               </div>
             ) : (
@@ -63,7 +63,7 @@ function NewsCard({ data, handleNewsSaved, handleRemoveArticle }) {
               ></button>
             )
           ) : (
-            <div className="card__sign-in-container">
+            <div className="card__signin">
               <button className="card__save-btn card__save-btn--default"></button>
               <button className="card__save-btn card__save-btn--signin">
                 <span className="card__sign-in-text">

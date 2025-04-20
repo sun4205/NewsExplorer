@@ -1,7 +1,7 @@
 .main {
   width: 100%;
   padding: 0;
-  background-color: #f5f6f7;  
+  background-color: #f5f6f7;
 }
 
 .main__cards-section {
@@ -30,7 +30,7 @@
 }
 
 .main__cards-list--row {
-  flex-direction: row;   
+  flex-direction: row;
 }
 
 .main__cards-list--column {
