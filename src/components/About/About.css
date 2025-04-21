@@ -1,0 +1,154 @@
+.about {
+  display: flex;
+  padding: 80px 104px;
+  background-color: white;
+  max-width: 100%;
+  height: 624px;
+}
+
+.about__wrapper {
+  display: flex;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+.about__mypicture-wrapper {
+  width: 100%;
+  max-width: 454px;
+  height: 454px;
+  display: flex;
+  justify-content: center;
+}
+
+.about__mypicture {
+  width: 100%;
+  background-color: transparent;
+  margin-right: 56px;
+  height: auto;
+  object-fit: cover;
+  flex-shrink: 1;
+}
+
+.about__author {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+}
+
+.about__author-title {
+  font-family: "roboto", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 46px;
+  margin-bottom: 24px;
+}
+
+.about__author-descriptions {
+  max-width: 600px;
+  overflow-wrap: break-word;
+}
+
+.about__author-description1 {
+  margin-bottom: 24px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.about__author-description2 {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.about__spacer {
+  height: 111px;
+  background-color: white;
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .about {
+    padding: 40px 40px 61px 40px;
+    height: 354px;
+    display: flex;
+  }
+
+  .about__wrapper {
+    max-width: 700px;
+  }
+
+  .about__spacer {
+    display: block;
+  }
+
+  .about__author {
+    margin: 0;
+  }
+
+  .about__author-title {
+    font-size: 30px;
+    line-height: 40px;
+    margin-bottom: 16px;
+  }
+
+  .about__author-description1 {
+    margin-bottom: 24px;
+    font-size: 17px;
+  }
+
+  .about__author-description2 {
+    font-size: 17px;
+  }
+
+  .about__mypicture {
+    width: 232px;
+    height: 232px;
+    margin-right: 32px;
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .about {
+    padding: 32px 24px 128px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  .about__wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  .about__mypicture-wrapper {
+    height: 300px;
+  }
+  .about__mypicture {
+    width: 272px;
+    height: 272px;
+    margin-right: 0;
+    margin-bottom: 24px;
+  }
+
+  .about__author-title {
+    margin-bottom: 16px;
+    align-items: center;
+  }
+
+  .about__author-description1 {
+    align-items: center;
+  }
+
+  .about__author-description2 {
+    align-items: center;
+  }
+
+  .about__spacer {
+    display: none;
+  }
+}

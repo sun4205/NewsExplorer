@@ -1,0 +1,130 @@
+.saved-articles {
+  display: flex;
+  padding: 0 0 62px 0;
+  min-height: 950px;
+  flex-direction: column;
+  background-color: #f5f6f7;
+}
+.saved-articles__info {
+  padding: 40px 40px 56px 104px;
+  background-color: white;
+}
+
+.saved-articles__title {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0;
+  flex-direction: left;
+  color: rgba(26, 27, 34, 0.5);
+  margin: 0;
+}
+
+.saved-articles__count {
+  font-family: "roboto-slab", Arial, sans-serif;
+  max-width: 530px;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 46px;
+  letter-spacing: 0;
+  color: #1a1b22;
+  margin: 0;
+  flex-direction: left;
+  margin-top: 28px;
+}
+
+.saved-articles__keywords-label {
+  margin: 0;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0;
+  color: #1a1b22;
+  flex-direction: left;
+  margin-top: 30px;
+}
+
+.saved-articles__keywords {
+  margin: 0;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0;
+  color: #1a1b22;
+}
+
+.saved-articles__list-wrapper {
+  padding: 62px 106px 62px 102px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.saved-articles__list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding: 0;
+  gap: 16px;
+  list-style-type: none;
+  justify-content: flex-start;
+}
+
+@media screen and (max-width: 768px) {
+  .saved-articles {
+    padding: 0;
+  }
+
+  .saved-articles__info {
+    padding: 24px 16px 32px 40px;
+  }
+
+  .saved-articles__title {
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .saved-articles__count {
+    width: 288px;
+    height: 68px;
+    font-size: 30px;
+    line-height: 34px;
+    margin-top: 16px;
+  }
+
+  .saved-articles__keywords-label {
+    margin-top: 16px;
+  }
+
+  .saved-articles__list-wrapper {
+    padding: 32px 40px;
+  }
+
+  .saved-articles__list {
+    gap: 8px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .saved-articles {
+    padding: 0;
+    gap: 10px;
+  }
+  .saved-articles__info {
+    padding: 8px 16px 32px 15px;
+    background-color: white;
+  }
+
+  .saved-articles__count {
+    font-size: 30px;
+    line-height: 34px;
+    margin-bottom: 50px;
+  }
+
+  .saved-articles__keywords-label {
+    margin-top: 0;
+  }
+
+  .saved-articles__list-wrapper {
+    padding: 0 16px 0 16px;
+  }
+}

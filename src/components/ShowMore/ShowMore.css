@@ -1,0 +1,40 @@
+.show-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.show-more__btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: none;
+  width: 288px;
+  height: 64px;
+  cursor: pointer;
+  color: #1a1b22;
+  padding: 0;
+  display: block;
+  font-size: 18px;
+  background-color: #ffffff;
+  border-radius: 50px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0;
+  margin: 0 auto;
+  margin-top: 56px;
+}
+
+.show-more__btn:hover {
+  background-color: #e8e8e8;
+  color: #1a1b22;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .show-more__btn {
+    margin-top: 32px;
+  }
+}

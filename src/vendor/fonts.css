@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "roboto";
+  src: url("./fonts/roboto-500.woff") format("woff");
+}
+
+@font-face {
+  font-family: "roboto-slab";
+  src: url("./fonts/roboto-slab-400-regular.woff") format("woff2");
+}
+
+@font-face {
+  font-family: "inter";
+  src: url("./fonts/inter-400-regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "roboto_400";
+  src: url("./fonts/inter-400-regular.woff") format("woff");
+}

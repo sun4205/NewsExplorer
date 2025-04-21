@@ -1,0 +1,232 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #0000004d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  z-index: 1000;
+}
+
+button {
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.modal__content {
+  background-color: #fff;
+  padding: 34px 36px 28px 36px;
+  max-width: 430px;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 16px;
+  z-index: 100;
+  position: relative;
+}
+
+.modal__title {
+  font-family: "roboto", Arial, sans-serif;
+  margin-bottom: 0;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 100%;
+  color: #1a1b22;
+}
+
+.modal__close {
+  border: none;
+  background: none;
+}
+
+.modal_opened {
+  visibility: visible;
+}
+
+.modal__close-btn {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: -46px;
+  right: -41px;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+}
+
+.modal__button-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 0;
+}
+
+.error-message {
+  margin-top: 5px;
+  color: #ff0000;
+  margin: 0;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  min-height: 14px;
+  display: block;
+}
+
+.error-message_signup {
+  margin-bottom: 5px;
+}
+
+.modal_submit {
+  font-family: "inter", Arial, sans-serif;
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.modal__submit.modal__submit--filled {
+  width: 360px;
+  height: 64px;
+  background-color: #2f71e5;
+  border-radius: 50px;
+  border: none;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0;
+  color: #ffffff;
+}
+
+.modal__submit--empty {
+  width: 360px;
+  height: 64px;
+  background-color: #e6e8eb;
+  border-radius: 50px;
+  border: none;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0;
+  color: #b6bcbf;
+}
+
+.modal__signin {
+  width: 358px;
+  height: 64px;
+  border-radius: 20%;
+  border: none;
+  background-color: transparent;
+}
+
+.modal__submit_without-border {
+  margin-top: 16px;
+}
+
+.modal__label {
+  font-family: "inter", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #2f71e5;
+  margin-top: 22px;
+  display: block;
+}
+
+.modal__label_password {
+  margin-top: 31px;
+}
+
+.modal__input {
+  font-family: "inter", Arial, sans-serif;
+  box-sizing: border-box;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  color: #000000;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  outline: none;
+  margin-top: 10px;
+  margin-bottom: 0;
+  width: 100%;
+  padding: 0;
+  padding-bottom: 10px;
+}
+
+.modal__input.filled {
+  border-bottom: 1px solid #000000;
+}
+
+.modal__label_username {
+  margin-top: 31px;
+}
+
+.modal__input_username {
+  margin-bottom: 39px;
+}
+
+.modal__input_signup_password {
+  margin-bottom: 0;
+  margin-top: 10px;
+}
+
+.modal__input_signin_password {
+  margin-bottom: 43px;
+}
+
+@media screen and (max-width: 768px) {
+  .modal__content {
+    max-width: 430px;
+    padding: 34px 36px 28px 36px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .modal {
+    position: fixed;
+    top: -320px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #0000004d;
+    align-items: flex-start;
+    position: absolute;
+    z-index: 999;
+  }
+
+  .modal__content {
+    padding: 16px 16px 200px 16px;
+    margin-top: 380px;
+  }
+
+  .modal__label {
+    margin-top: 0;
+  }
+
+  .modal__label_password {
+    margin-top: 30px;
+  }
+
+  .modal__label_username {
+    margin-top: 30px;
+  }
+
+  .modal__close-btn {
+    top: -40px;
+    left: 270px;
+  }
+
+  .modal__input_signin_password {
+    margin-bottom: 23px;
+  }
+}
