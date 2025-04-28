@@ -26,4 +26,4 @@ This shows the search results after entering a keyword.
 
 ## Deploy
 - Frontend: [https://sun4205.github.io/NewsExplorer](https://sun4205.github.io/NewsExplorer)
-- Backend: [https://newsexplorer-express.onrender.com](https://newsexplorer-express.onrender.com)
+- GitHub Backend: [https://github.com/sun4205/NewsExplorer_express.git](https://github.com/sun4205/NewsExplorer_express.git)
