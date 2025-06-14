@@ -19,11 +19,11 @@ function Footer() {
           </Link>
           <a
             className="footer__link-item"
-            href="https://tripleten.com/"
+            href="https://www.linkedin.com/in/hannaintech/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            TripleTen
+            LinkedIn
           </a>
         </div>
 

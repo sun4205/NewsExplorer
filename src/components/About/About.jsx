@@ -1,5 +1,5 @@
 import "./About.css";
-import me from "../../images/me.png";
+import news from "../../images/newspaper.png";
 
 function About({ query }) {
   return (
@@ -7,19 +7,18 @@ function About({ query }) {
       <section className="about">
         <div className="about__wrapper">
         <div className="about__mypicture-wrapper">
-          <img src={me} alt="author" className="about__mypicture" />
+          <img src={news} alt="author" className="about__mypicture" />
           </div>
           <div className="about__author">
-            <h2 className="about__author-title">About the Author</h2>
+            <h2 className="about__author-title">About the App</h2>
             <div className="about__author-descriptions">
               <p className="about__author-description1">
-                I am a Full Stack Engineer, transitioning from 10 years as a Dental
-                Technician. I have strong skills in meeting deadlines, attention to
-                detail, and teamwork.
+              NewsExplorer helps users search and save news articles.  
+              It is built with React, JavaScript, Node.js and the News API.                
               </p>
               <p className="about__author-description2">
-                At TripleTen, I learned React, Node.js, and JavaScript. Now, I'm ready to use my skills to help customers by
-                creating efficient and user-friendly applications.
+              Users can sign up, log in, and search for news using keywords.
+They can save articles they like and read them later on any device — desktop, tablet, or mobile.
               </p>
             </div>
           </div>
