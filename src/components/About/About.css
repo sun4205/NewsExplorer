@@ -13,8 +13,8 @@
 }
 .about__mypicture-wrapper {
   width: 100%;
-  max-width: 454px;
-  height: 454px;
+  max-width: 350px;
+  height: 350px;
   display: flex;
   justify-content: center;
 }
