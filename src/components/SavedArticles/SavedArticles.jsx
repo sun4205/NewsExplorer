@@ -1,4 +1,4 @@
-import "./savedArticles.css";
+import "./SavedArticles.css";
 import NewsCard from "../NewsCard/NewsCard";
 import React, { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
